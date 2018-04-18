@@ -12,6 +12,8 @@
 #define PIN4 7
 #define PIN5 8
 #define PIN6 9
+#define PIN7 10  //Not sure if this is right or not
+#define PIN8 11  //Not sure if this is right or not.  Check pin configuration with Teensy
 
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(7, PIN, NEO_GRB + NEO_KHZ800);
@@ -20,6 +22,8 @@ Adafruit_NeoPixel strip3 = Adafruit_NeoPixel(7, PIN3, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip4 = Adafruit_NeoPixel(7, PIN4, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip5 = Adafruit_NeoPixel(7, PIN5, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip6 = Adafruit_NeoPixel(7, PIN6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip7 = Adafruit_NeoPixel(7, PIN5, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip8 = Adafruit_NeoPixel(7, PIN6, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap1 = Adafruit_MPR121();
@@ -45,18 +49,7 @@ void setup() {
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
   Serial.begin(9600);
-  strip.begin();
-  strip.show();
-  strip2.begin();
-  strip2.show();
-  strip3.begin();
-  strip3.show();
-  strip4.begin();
-  strip4.show();
-  strip5.begin();
-  strip5.show();
-  strip6.begin();
-  strip6.show();
+  setUpLEDStrips();
 
   while (!Serial) { // needed to keep leonardo/micro from starting too fast!
     delay(10);
@@ -67,29 +60,29 @@ void setup() {
   // Default address is 0x5A, if tied to 3.3V its 0x5B
   // If tied to SDA its 0x5C and if SCL then 0x5D
   if (!cap1.begin(0x5A,1)) {
-    Serial.println("MPR121 not found, check wiring?");
+    Serial.println("MPR121 1 not found, check wiring?");
     while(1);
   }
   
   if (!cap2.begin(0x5B,1)) {
-    Serial.println("MPR121 not found, check wiring?");
+    Serial.println("MPR121 2 not found, check wiring?");
     while(1);
   }
 
-  if (!cap3.begin(0x5A,3)) {
-    Serial.println("MPR121 not found, check wiring?");
+  if (!cap3.begin(0x5C,1)) {
+    Serial.println("MPR121 3 not found, check wiring?");
     while(1);
   }
 
-  if (!cap4.begin(0x5B,3)) {
-    Serial.println("MPR121 not found, check wiring?");
+  if (!cap4.begin(0x5D,1)) {
+    Serial.println("MPR121 4 not found, check wiring?");
     while(1);
   }
   
   else {
-    //Serial.print("Something else is terribly wrong.");
+    Serial.print("Something else is terribly wrong.");
   }
-  Serial.println("MPR121 found!");
+  Serial.println("MPR121s have been found!");
 }
 
 void loop() {
@@ -103,10 +96,6 @@ void loop() {
   for (uint8_t i=0; i<12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
     if ((currtouched2 & _BV(i)) && !(lasttouched2 & _BV(i)) ) {
-      if(i==11) {
-        usbMIDI.sendNoteOn(70, 99, channel);  
-        setColor(strip.Color(0, 0, 255));
-      }
       if(i==0) {
         usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
         setColor(strip.Color(255, 0, 0));
@@ -135,14 +124,30 @@ void loop() {
         usbMIDI.sendNoteOn(66, 99, channel);  
         setColor(strip.Color(255, 0, 0));
       }
+      if(i==7) {
+        usbMIDI.sendNoteOn(63, 99, channel);  
+        setColor4(strip4.Color(255, 0, 0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(64, 99, channel);  
+        setColor5(strip5.Color(255, 0, 0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(65, 99, channel);  
+        setColor6(strip6.Color(255, 0, 0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(66, 99, channel);  
+        setColor(strip.Color(255, 0, 0));
+      }
+      if(i==11) {
+        usbMIDI.sendNoteOn(70, 99, channel);  
+        setColor(strip.Color(0, 0, 255));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched2 & _BV(i)) && (lasttouched2 & _BV(i)) ) {
-      if(i==11) {
-        usbMIDI.sendNoteOff(70, 99, channel);  // 60 = C4
-        setColor(strip.Color(0, 0, 0));
-      }
       if(i==0) {
         usbMIDI.sendNoteOff(60, 99, channel);  // 60 = C4
         setColor(strip.Color(0, 0, 0));
@@ -167,16 +172,35 @@ void loop() {
         usbMIDI.sendNoteOff(65, 99, channel);  // 60 = C4
         setColor6(strip6.Color(0, 0, 0));
       }
-      if(i==7) {
+      if(i==6) {
         usbMIDI.sendNoteOff(66, 99, channel);  // 60 = C4
         setColor(strip.Color(0, 0, 0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(63, 99, channel);  
+        setColor4(strip4.Color(255, 0, 0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(64, 99, channel);  
+        setColor5(strip5.Color(255, 0, 0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(65, 99, channel);  
+        setColor6(strip6.Color(255, 0, 0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(66, 99, channel);  
+        setColor(strip.Color(255, 0, 0));
+      }
+      if(i==11) {
+        usbMIDI.sendNoteOn(70, 99, channel);  
+        setColor(strip.Color(0, 0, 255));
       }
       Serial.print(i); Serial.println(" released");
     }
     /*********************************************************/
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       Serial.print(i); Serial.println(" touched");
-      Serial.print("Testing again");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched1 & _BV(i)) && (lasttouched1 & _BV(i)) ) {
@@ -247,6 +271,25 @@ void OnNoteOff(byte channel, byte pitch, byte velocity) {
   setColor3(strip3.Color(0, 0, 0));
 }
 
+void setUpLEDStrips() {
+  strip.begin();
+  strip.show();
+  strip2.begin();
+  strip2.show();
+  strip3.begin();
+  strip3.show();
+  strip4.begin();
+  strip4.show();
+  strip5.begin();
+  strip5.show();
+  strip6.begin();
+  strip6.show();
+  strip7.begin();
+  strip7.show();
+  strip8.begin();
+  strip8.show();
+}
+
 void setColor(uint32_t c) {
   for(int i=0;i<240;i++) {
     strip.setPixelColor(i, c);
@@ -285,6 +328,20 @@ void setColor5(uint32_t c) {
 void setColor6(uint32_t c) {
   for(int i=0;i<7;i++) {
     strip6.setPixelColor(i, c);
+  }
+  strip6.show();
+}
+
+void setColor7(uint32_t c) {
+  for(int i=0;i<7;i++) {
+    strip7.setPixelColor(i, c);
+  }
+  strip6.show();
+}
+
+void setColor8(uint32_t c) {
+  for(int i=0;i<7;i++) {
+    strip8.setPixelColor(i, c);
   }
   strip6.show();
 }
