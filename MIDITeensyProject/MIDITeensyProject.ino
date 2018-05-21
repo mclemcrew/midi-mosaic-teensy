@@ -16,7 +16,7 @@
 #define PIN8 35  
 
 // 7 is the number of pixels on the strip
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(56, PIN1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(7, 5, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip2 = Adafruit_NeoPixel(7, PIN2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip3 = Adafruit_NeoPixel(7, PIN3, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip4 = Adafruit_NeoPixel(7, PIN4, NEO_GRB + NEO_KHZ800);
@@ -330,12 +330,12 @@ void loop() {
     }
     if ((currtouched9 & _BV(i)) && !(lasttouched9 & _BV(i)) ) {
       Serial.print(i); Serial.println(" touched");
-      setColor8(strip8.Color(255, 0, 0));
+      setColorOn(strip.Color(255, 0, 0));
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched9 & _BV(i)) && (lasttouched9 & _BV(i)) ) {
       Serial.print(i); Serial.println(" released");
-      setColor8(strip8.Color(0, 0, 0));
+      setColorOff( strip.Color(0, 255, 0));
     }
     if ((currtouched10 & _BV(i)) && !(lasttouched10 & _BV(i)) ) {
       Serial.print(i); Serial.println(" touched");
@@ -453,7 +453,7 @@ void setColorOn(uint32_t c) {
 
 void setColorOff(uint32_t c) {
   for(int i=0;i<56;i++) {
-    strip.setPixelColor(i, c);
+    strip.setPixelColor(i,  strip.Color(0, 0, 0));
   }
   strip.show();
 }
