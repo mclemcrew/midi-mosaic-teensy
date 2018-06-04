@@ -25,22 +25,8 @@
 
 // 7 is the number of pixels on the strip
 // Have to change this for 16 columns rather than rows
+Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7,  23, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip1 = Adafruit_NeoPixel(7,  23, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip2 = Adafruit_NeoPixel(7, PIN2, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip3 = Adafruit_NeoPixel(7, PIN3, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip4 = Adafruit_NeoPixel(7, PIN4, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip5 = Adafruit_NeoPixel(7, PIN5, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip6 = Adafruit_NeoPixel(7, PIN6, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip7 = Adafruit_NeoPixel(7, PIN7, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip8 = Adafruit_NeoPixel(7, PIN8, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip9 = Adafruit_NeoPixel(7,  PIN9, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip10 = Adafruit_NeoPixel(7, PIN10, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip11 = Adafruit_NeoPixel(7, PIN11, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip12 = Adafruit_NeoPixel(7, PIN12, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip13 = Adafruit_NeoPixel(7, PIN13, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip14 = Adafruit_NeoPixel(7, PIN14, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip15 = Adafruit_NeoPixel(7, PIN15, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip16 = Adafruit_NeoPixel(7, PIN16, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap1 = Adafruit_MPR121();
@@ -84,7 +70,15 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
-int EN = 5;
+int EN_MAIN = 5;
+int EN_ONE = 5;
+int EN_TWO = 5;
+int EN_THREE = 5;
+int EN_FOUR = 5;
+int EN_FIVE = 5;
+int EN_SIX = 5;
+int EN_SEVEN = 5;
+int EN_EIGHT = 5;
 int S0 = 7;
 int S1 = 2;
 int S2 = 9;
@@ -92,7 +86,7 @@ int S3 = 11;
 
 void setup() {
 
-  pinMode (EN, OUTPUT);
+ pinMode (EN_MAIN, OUTPUT);
  pinMode (S0, OUTPUT);
  pinMode (S1, OUTPUT);
  pinMode (S2, OUTPUT);
@@ -167,7 +161,6 @@ void setup() {
 //  }
 
   Serial.println("All MPR121S have been found and you're good to go!");
-  digitalWrite(5,LOW);
 }
 
 void loop() {
@@ -193,53 +186,53 @@ void loop() {
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
-        out0();
-        setBlockColor(1,strip1.Color(255,0,0));
+        out0_MAIN();
+        setBlockColor(1,led_strip.Color(255,0,0));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(61, 99, channel);  
-        setBlockColor(2,strip1.Color(255,0,0));
+        setBlockColor(2,led_strip.Color(255,0,0));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(62, 99, channel);  
-        setBlockColor(3,strip1.Color(255,0,0));
+        setBlockColor(3,led_strip.Color(255,0,0));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(63, 99, channel);  
-        setBlockColor(4,strip1.Color(255,0,0));
+        setBlockColor(4,led_strip.Color(255,0,0));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(64, 99, channel);
-        out1();  
-        setBlockColor(1,strip1.Color(255,0,0)); 
+        out1_MAIN();  
+        setBlockColor(1,led_strip.Color(255,0,0)); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(65, 99, channel);  
-        setBlockColor(6,strip1.Color(255,0,0));
+        setBlockColor(6,led_strip.Color(255,0,0));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(66, 99, channel);  
-        setBlockColor(7,strip1.Color(255,0,0));
+        setBlockColor(7,led_strip.Color(255,0,0));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(63, 99, channel);  
-        setBlockColor(8,strip1.Color(255,0,0));
+        setBlockColor(8,led_strip.Color(255,0,0));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(64, 99, channel);  
-        setBlockColor(9,strip2.Color(255,0,0));
+        setBlockColor(9,led_strip.Color(255,0,0));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(65, 99, channel);  
-        setBlockColor(10,strip2.Color(255,0,0));
+        setBlockColor(10,led_strip.Color(255,0,0));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(66, 99, channel);  
-        setBlockColor(11,strip2.Color(255,0,0));
+        setBlockColor(11,led_strip.Color(255,0,0));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(70, 99, channel);  
-        setBlockColor(12,strip2.Color(255,0,0));
+        setBlockColor(12,led_strip.Color(255,0,0));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -247,54 +240,53 @@ void loop() {
     if (!(currtouched1 & _BV(i)) && (lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOff(60, 99, channel);  // 60 = C4
-//        digitalWrite(5,HIGH);
-        out0();
-        setBlockColor(1,strip1.Color(0,0,0));
+        out0_MAIN();
+        setBlockColor(1,led_strip.Color(0,0,0));
       }
       if(i==10) {
         usbMIDI.sendNoteOff(61, 99, channel);  
-        setBlockColor(2,strip1.Color(0,0,0));
+        setBlockColor(2,led_strip.Color(0,0,0));
       }
       if(i==9) {
         usbMIDI.sendNoteOff(62, 99, channel);  
-        setBlockColor(3,strip1.Color(0,0,0));
+        setBlockColor(3,led_strip.Color(0,0,0));
       }
       if(i==8) {
         usbMIDI.sendNoteOff(63, 99, channel);  
-        setBlockColor(4,strip1.Color(0,0,0));
+        setBlockColor(4,led_strip.Color(0,0,0));
       }
       if(i==7) {
         usbMIDI.sendNoteOff(64, 99, channel);
-        out1();
-        setBlockColor(1,strip1.Color(0,0,0));
+        out1_MAIN();
+        setBlockColor(1,led_strip.Color(0,0,0));
       }
       if(i==6) {
         usbMIDI.sendNoteOff(65, 99, channel);  
-        setBlockColor(6,strip1.Color(0,0,0));
+        setBlockColor(6,led_strip.Color(0,0,0));
       }
       if(i==5) {
         usbMIDI.sendNoteOff(66, 99, channel);  
-        setBlockColor(7,strip1.Color(0,0,0));
+        setBlockColor(7,led_strip.Color(0,0,0));
       }
       if(i==4) {
         usbMIDI.sendNoteOff(63, 99, channel);  
-        setBlockColor(8,strip1.Color(0,0,0));
+        setBlockColor(8,led_strip.Color(0,0,0));
       }
       if(i==3) {
         usbMIDI.sendNoteOff(64, 99, channel);  
-        setBlockColor(9,strip2.Color(0,0,0));
+        setBlockColor(9,led_strip.Color(0,0,0));
       }
       if(i==2) {
         usbMIDI.sendNoteOff(65, 99, channel);  
-        setBlockColor(10,strip2.Color(0,0,0));
+        setBlockColor(10,led_strip.Color(0,0,0));
       }
       if(i==1) {
         usbMIDI.sendNoteOff(66, 99, channel);  
-        setBlockColor(11,strip2.Color(0,0,0));
+        setBlockColor(11,led_strip.Color(0,0,0));
       }
       if(i==0) {
         usbMIDI.sendNoteOff(70, 99, channel);  
-        setBlockColor(12,strip2.Color(0,0,0));
+        setBlockColor(12,led_strip.Color(0,0,0));
       }
       Serial.print(i); Serial.println(" released");
     }
@@ -368,7 +360,6 @@ void loop() {
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched11 & _BV(i)) && (lasttouched11 & _BV(i)) ) {
       Serial.print(i); Serial.println(" released");
-      setColor8(strip8.Color(0, 0, 0));
     }
   }
 
@@ -402,7 +393,7 @@ void loop() {
   Serial.println();
   */
   // put a delay so it isn't overwhelming
-  delay(10);
+  delay(5);
 }
 
 // this function is called whenever a MIDI note on is received
@@ -413,7 +404,7 @@ void loop() {
 void OnNoteOn(byte channel, byte pitch, byte velocity) {
   // Serial.print("Testing \n");
   // setColor4(strip4.Color(255, 0, 0));
-  // setColor3(strip3.Color(255, 0, 0));
+  // setColor3(led_strip.Color(255, 0, 0));
 }
 
 
@@ -425,809 +416,1810 @@ void OnNoteOn(byte channel, byte pitch, byte velocity) {
 void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // Serial.print("Testing Again\n");
   // setColor4(strip4.Color(0, 0, 0));
-  // setColor3(strip3.Color(0, 0, 0));
+  // setColor3(led_strip.Color(0, 0, 0));
 }
-void out0() {
- digitalWrite (EN, LOW);
+
+// Used to control the multiplexer for columns 1-2
+void out0_ONE() {
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out1()
+void out1_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out2()
+void out2_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out3()
+void out3_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out4()
+void out4_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out5()
+void out5_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out6()
+void out6_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out7()
+void out7_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out8()
+void out8_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out9()
+void out9_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out10()
+void out10_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out11()
+void out11_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out12()
+void out12_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out13()
+void out13_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out14()
+void out14_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out15()
+void out15_ONE()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_ONE, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
+
+// Used to control the multiplexer for columns 3-4
+void out0_TWO() {
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_TWO()
+{
+ digitalWrite (EN_TWO, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+
+// Used to control the multiplexer for columns 5-6
+void out0_THREE() {
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_THREE()
+{
+ digitalWrite (EN_THREE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+// Used to control the multiplexer for columns 7-8
+void out0_FOUR() {
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_FOUR()
+{
+ digitalWrite (EN_FOUR, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+// Used to control the multiplexer for columns 9-10
+void out0_FIVE() {
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_FIVE()
+{
+ digitalWrite (EN_FIVE, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+// Used to control the multiplexer for columns 11-12
+void out0_SIX() {
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_SIX()
+{
+ digitalWrite (EN_SIX, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+
+// Used to control the multiplexer for columns 13-14
+void out0_SEVEN() {
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_SEVEN()
+{
+ digitalWrite (EN_SEVEN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+
+// Used to control the multiplexer for columns 15-16
+void out0_EIGHT() {
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_EIGHT()
+{
+ digitalWrite (EN_EIGHT, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+
+void out0_MAIN() {
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15_MAIN()
+{
+ digitalWrite (EN_MAIN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+
 void setUpLEDStrips() {
-  strip1.begin();
-  strip1.show();
-  strip2.begin();
-  strip2.show();
-  strip3.begin();
-  strip3.show();
-  strip4.begin();
-  strip4.show();
-  strip5.begin();
-  strip5.show();
-  strip6.begin();
-  strip6.show();
-  strip7.begin();
-  strip7.show();
-  strip8.begin();
-  strip8.show();
-  strip9.begin();
-  strip9.show();
-  strip10.begin();
-  strip10.show();
-  strip11.begin();
-  strip11.show();
-  strip12.begin();
-  strip12.show();
-  strip13.begin();
-  strip13.show();
-  strip14.begin();
-  strip14.show();
-  strip15.begin();
-  strip15.show();
-  strip16.begin();
-  strip16.show();
+  led_strip.begin();
+  led_strip.show();
 }
 
 void setBlockColor(uint8_t number, uint32_t color) {
   switch (number) {
     case 1:
       for(int i=0;i<7;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       for(int i=7;i<56;i++) {
-        strip1.setPixelColor(i, strip1.Color(0,0,0));
+        led_strip.setPixelColor(i, led_strip.Color(0,0,0));
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 2:
       for(int i=7;i<14;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 3:
       for(int i=14;i<21;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 4:
       for(int i=21;i<28;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 5:
       for(int i=28;i<35;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 6:
       for(int i=35;i<42;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 7:
       for(int i=42;i<49;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 8:
       for(int i=49;i<56;i++) {
-        strip1.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
-      strip1.show();
+      led_strip.show();
       break;
     case 9:
       for(int i=0;i<7;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 10:
       for(int i=7;i<14;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 11:
       for(int i=14;i<21;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 12:
       for(int i=21;i<28;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 13:
       for(int i=28;i<35;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 14:
       for(int i=35;i<42;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 15:
       for(int i=42;i<49;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 16:
       for(int i=49;i<56;i++) {
-        strip2.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 17:
       for(int i=0;i<7;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 18:
       for(int i=7;i<14;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 19:
       for(int i=14;i<21;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 20:
       for(int i=21;i<28;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 21:
       for(int i=28;i<35;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 22:
       for(int i=35;i<42;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 23:
       for(int i=42;i<49;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 24:
       for(int i=49;i<56;i++) {
-        strip3.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 25:
       for(int i=0;i<7;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 26:
       for(int i=7;i<14;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 27:
       for(int i=14;i<21;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 28:
       for(int i=21;i<28;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 29:
       for(int i=28;i<35;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 30:
       for(int i=35;i<42;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 31:
       for(int i=42;i<49;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 32:
       for(int i=49;i<56;i++) {
-        strip4.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 33:
       for(int i=0;i<7;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 34:
       for(int i=7;i<14;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 35:
       for(int i=14;i<21;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 36:
       for(int i=21;i<28;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 37:
       for(int i=28;i<35;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 38:
       for(int i=35;i<42;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 39:
       for(int i=42;i<49;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 40:
       for(int i=49;i<56;i++) {
-        strip5.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 41:
       for(int i=0;i<7;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 42:
       for(int i=7;i<14;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 43:
       for(int i=14;i<21;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 44:
       for(int i=21;i<28;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 45:
       for(int i=28;i<35;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 46:
       for(int i=35;i<42;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 47:
       for(int i=42;i<49;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 48:
       for(int i=49;i<56;i++) {
-        strip6.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 49:
       for(int i=0;i<7;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 50:
       for(int i=7;i<14;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 51:
       for(int i=14;i<21;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 52:
       for(int i=21;i<28;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 53:
       for(int i=28;i<35;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 54:
       for(int i=35;i<42;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 55:
       for(int i=42;i<49;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 56:
       for(int i=49;i<56;i++) {
-        strip7.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 57:
       for(int i=0;i<7;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 58:
       for(int i=7;i<14;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 59:
       for(int i=14;i<21;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 60:
       for(int i=21;i<28;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 61:
       for(int i=28;i<35;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 62:
       for(int i=35;i<42;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 63:
       for(int i=42;i<49;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 64:
       for(int i=49;i<56;i++) {
-        strip8.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 65:
       for(int i=0;i<7;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 66:
       for(int i=7;i<14;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 67:
       for(int i=14;i<21;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 68:
       for(int i=21;i<28;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 69:
       for(int i=28;i<35;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 70:
       for(int i=35;i<42;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 71:
       for(int i=42;i<49;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 72:
       for(int i=49;i<56;i++) {
-        strip9.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 73:
       for(int i=0;i<7;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 74:
       for(int i=7;i<14;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 75:
       for(int i=14;i<21;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 76:
       for(int i=21;i<28;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 77:
       for(int i=28;i<35;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 78:
       for(int i=35;i<42;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 79:
       for(int i=42;i<49;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 80:
       for(int i=49;i<56;i++) {
-        strip10.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 81:
       for(int i=0;i<7;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 82:
       for(int i=7;i<14;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 83:
       for(int i=14;i<21;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 84:
       for(int i=21;i<28;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 85:
       for(int i=28;i<35;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 86:
       for(int i=35;i<42;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 87:
       for(int i=42;i<49;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 88:
       for(int i=49;i<56;i++) {
-        strip11.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 89:
       for(int i=0;i<7;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 90:
       for(int i=7;i<14;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 91:
       for(int i=14;i<21;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 92:
       for(int i=21;i<28;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 93:
       for(int i=28;i<35;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 94:
       for(int i=35;i<42;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 95:
       for(int i=42;i<49;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 96:
       for(int i=49;i<56;i++) {
-        strip12.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 97:
       for(int i=0;i<7;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 98:
       for(int i=7;i<14;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 99:
       for(int i=14;i<21;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 100:
       for(int i=21;i<28;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 101:
       for(int i=28;i<35;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 102:
       for(int i=35;i<42;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 103:
       for(int i=42;i<49;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 104:
       for(int i=49;i<56;i++) {
-        strip13.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 105:
       for(int i=0;i<7;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 106:
       for(int i=7;i<14;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 107:
       for(int i=14;i<21;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 108:
       for(int i=21;i<28;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 109:
       for(int i=28;i<35;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 110:
       for(int i=35;i<42;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 111:
       for(int i=42;i<49;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 112:
       for(int i=49;i<56;i++) {
-        strip14.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 113:
       for(int i=0;i<7;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 114:
       for(int i=7;i<14;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 115:
       for(int i=14;i<21;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 116:
       for(int i=21;i<28;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 117:
       for(int i=28;i<35;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 118:
       for(int i=35;i<42;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 119:
       for(int i=42;i<49;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 120:
       for(int i=49;i<56;i++) {
-        strip15.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
     case 121:
       for(int i=0;i<7;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 122:
       for(int i=7;i<14;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 123:
       for(int i=14;i<21;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 124:
       for(int i=21;i<28;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 125:
       for(int i=28;i<35;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 126:
       for(int i=35;i<42;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 127:
       for(int i=42;i<49;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     case 128:
       for(int i=49;i<56;i++) {
-        strip16.setPixelColor(i, color);
+        led_strip.setPixelColor(i, color);
       }
       break;
     default:
@@ -1235,60 +2227,3 @@ void setBlockColor(uint8_t number, uint32_t color) {
       // statements
   }
 }
-
-void setColor1(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip1.setPixelColor(i, c);
-  }
-  strip1.show();
-}
-
-void setColor2(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip2.setPixelColor(i, c);
-  }
-  strip2.show();
-}
-
-void setColor3(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip3.setPixelColor(i, c);
-  }
-  strip3.show();
-}
-
-void setColor4(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip4.setPixelColor(i, c);
-  }
-  strip4.show();
-}
-
-void setColor5(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip5.setPixelColor(i, c);
-  }
-  strip5.show();
-}
-
-void setColor6(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip6.setPixelColor(i, c);
-  }
-  strip6.show();
-}
-
-void setColor7(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip7.setPixelColor(i, c);
-  }
-  strip7.show();
-}
-
-void setColor8(uint32_t c) {
-  for(int i=0;i<7;i++) {
-    strip8.setPixelColor(i, c);
-  }
-  strip8.show();
-}
-
