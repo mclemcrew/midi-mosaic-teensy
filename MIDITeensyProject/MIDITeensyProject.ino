@@ -6,7 +6,7 @@
   #include <avr/power.h>
 #endif
 
-#define PIN1 2
+//#define PIN1 2
 #define PIN2 12
 #define PIN3 24
 #define PIN4 25
@@ -14,7 +14,7 @@
 #define PIN6 10
 #define PIN7 36 
 #define PIN8 35  
-#define PIN9 2
+#define PIN9 12
 #define PIN10 12
 #define PIN11 24
 #define PIN12 25
@@ -25,7 +25,7 @@
 
 // 7 is the number of pixels on the strip
 // Have to change this for 16 columns rather than rows
-Adafruit_NeoPixel strip1 = Adafruit_NeoPixel(7,  PIN1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip1 = Adafruit_NeoPixel(7,  23, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip2 = Adafruit_NeoPixel(7, PIN2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip3 = Adafruit_NeoPixel(7, PIN3, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip4 = Adafruit_NeoPixel(7, PIN4, NEO_GRB + NEO_KHZ800);
@@ -84,7 +84,20 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
+int EN = 5;
+int S0 = 7;
+int S1 = 2;
+int S2 = 9;
+int S3 = 11;
+
 void setup() {
+
+  pinMode (EN, OUTPUT);
+ pinMode (S0, OUTPUT);
+ pinMode (S1, OUTPUT);
+ pinMode (S2, OUTPUT);
+ pinMode (S3, OUTPUT);
+ 
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
   Serial.begin(9600);
@@ -113,47 +126,48 @@ void setup() {
     while(1);
   }
 
-  if (!cap4.begin(0x5D,1)) {
-    Serial.println("MPR121 4 not found, check wiring?");
-    while(1);
-  }
-
-  if (!cap5.begin(0x5A,2)) {
-    Serial.println("MPR121 1 not found, check wiring?");
-    while(1);
-  }
-  
-  if (!cap6.begin(0x5B,2)) {
-    Serial.println("MPR121 2 not found, check wiring?");
-    while(1);
-  }
-
-  if (!cap7.begin(0x5C,2)) {
-    Serial.println("MPR121 3 not found, check wiring?");
-    while(1);
-  }
-
-  if (!cap8.begin(0x5D,2)) {
-    Serial.println("MPR121 4 not found, check wiring?");
-    while(1);
-  }
-
-  if (!cap9.begin(0x5A,3)) {
-    Serial.println("MPR121 1 not found, check wiring?");
-    while(1);
-  }
-  
-  if (!cap10.begin(0x5B,3)) {
-    Serial.println("MPR121 2 not found, check wiring?");
-    while(1);
-  }
-
-  if (!cap11.begin(0x5C,3)) {
-    Serial.println("MPR121 3 not found, check wiring?");
-    while(1);
-  }
+//  if (!cap4.begin(0x5D,1)) {
+//    Serial.println("MPR121 4 not found, check wiring?");
+//    while(1);
+//  }
+//
+//  if (!cap5.begin(0x5A,2)) {
+//    Serial.println("MPR121 1 not found, check wiring?");
+//    while(1);
+//  }
+//  
+//  if (!cap6.begin(0x5B,2)) {
+//    Serial.println("MPR121 2 not found, check wiring?");
+//    while(1);
+//  }
+//
+//  if (!cap7.begin(0x5C,2)) {
+//    Serial.println("MPR121 3 not found, check wiring?");
+//    while(1);
+//  }
+//
+//  if (!cap8.begin(0x5D,2)) {
+//    Serial.println("MPR121 4 not found, check wiring?");
+//    while(1);
+//  }
+//
+//  if (!cap9.begin(0x5A,3)) {
+//    Serial.println("MPR121 1 not found, check wiring?");
+//    while(1);
+//  }
+//  
+//  if (!cap10.begin(0x5B,3)) {
+//    Serial.println("MPR121 2 not found, check wiring?");
+//    while(1);
+//  }
+//
+//  if (!cap11.begin(0x5C,3)) {
+//    Serial.println("MPR121 3 not found, check wiring?");
+//    while(1);
+//  }
 
   Serial.println("All MPR121S have been found and you're good to go!");
+  digitalWrite(5,LOW);
 }
 
 void loop() {
@@ -179,6 +193,7 @@ void loop() {
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
+        out0();
         setBlockColor(1,strip1.Color(255,0,0));
       }
       if(i==10) {
@@ -194,8 +209,9 @@ void loop() {
         setBlockColor(4,strip1.Color(255,0,0));
       }
       if(i==7) {
-        usbMIDI.sendNoteOn(64, 99, channel);  
-        setBlockColor(5,strip1.Color(255,0,0));
+        usbMIDI.sendNoteOn(64, 99, channel);
+        out1();  
+        setBlockColor(1,strip1.Color(255,0,0)); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(65, 99, channel);  
@@ -231,6 +247,8 @@ void loop() {
     if (!(currtouched1 & _BV(i)) && (lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOff(60, 99, channel);  // 60 = C4
+//        digitalWrite(5,HIGH);
+        out0();
         setBlockColor(1,strip1.Color(0,0,0));
       }
       if(i==10) {
@@ -246,8 +264,9 @@ void loop() {
         setBlockColor(4,strip1.Color(0,0,0));
       }
       if(i==7) {
-        usbMIDI.sendNoteOff(64, 99, channel);  
-        setBlockColor(5,strip1.Color(0,0,0));
+        usbMIDI.sendNoteOff(64, 99, channel);
+        out1();
+        setBlockColor(1,strip1.Color(0,0,0));
       }
       if(i==6) {
         usbMIDI.sendNoteOff(65, 99, channel);  
@@ -408,7 +427,133 @@ void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // setColor4(strip4.Color(0, 0, 0));
   // setColor3(strip3.Color(0, 0, 0));
 }
-
+void out0() {
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out1()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out2()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out3()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+}
+void out4()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out5()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out6()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out7()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+}
+void out8()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out9()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out10()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out11()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+}
+void out12()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out13()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out14()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
+void out15()
+{
+ digitalWrite (EN, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+}
 void setUpLEDStrips() {
   strip1.begin();
   strip1.show();
@@ -450,41 +595,52 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         strip1.setPixelColor(i, color);
       }
+      for(int i=7;i<56;i++) {
+        strip1.setPixelColor(i, strip1.Color(0,0,0));
+      }
+      strip1.show();
       break;
     case 2:
       for(int i=7;i<14;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 3:
       for(int i=14;i<21;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 4:
       for(int i=21;i<28;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 5:
       for(int i=28;i<35;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 6:
       for(int i=35;i<42;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 7:
       for(int i=42;i<49;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 8:
       for(int i=49;i<56;i++) {
         strip1.setPixelColor(i, color);
       }
+      strip1.show();
       break;
     case 9:
       for(int i=0;i<7;i++) {
