@@ -7,26 +7,11 @@
 #endif
 
 //#define PIN1 2
-#define PIN2 12
-#define PIN3 24
-#define PIN4 25
-#define PIN5 9
-#define PIN6 10
-#define PIN7 36 
-#define PIN8 35  
-#define PIN9 12
-#define PIN10 12
-#define PIN11 24
-#define PIN12 25
-#define PIN13 9
-#define PIN14 10
-#define PIN15 36 
-#define PIN16 35  
+#define LED_SIGNAL 23
 
 // 7 is the number of pixels on the strip
 // Have to change this for 16 columns rather than rows
-Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7,  23, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip1 = Adafruit_NeoPixel(7,  23, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap1 = Adafruit_MPR121();
@@ -70,23 +55,43 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
-int EN_MAIN = 5;
-int EN_ONE = 5;
-int EN_TWO = 5;
+int EN_MAIN = 0;
+int EN_ONE  = 1;
+int EN_TWO  = 2;
 int EN_THREE = 5;
-int EN_FOUR = 5;
-int EN_FIVE = 5;
-int EN_SIX = 5;
-int EN_SEVEN = 5;
-int EN_EIGHT = 5;
-int S0 = 7;
-int S1 = 2;
-int S2 = 9;
-int S3 = 11;
+int EN_FOUR = 6;
+int EN_FIVE = 7;
+int EN_SIX  = 8;
+int EN_SEVEN = 9;
+int EN_EIGHT = 10;
+
+int S0_MAIN = 11;
+int S1_MAIN = 12;
+int S2_MAIN = 24;
+int S3_MAIN = 25;
+
+int S0 = 26;
+int S1 = 27;
+int S2 = 28;
+int S3 = 29;
 
 void setup() {
 
  pinMode (EN_MAIN, OUTPUT);
+ pinMode (EN_ONE, OUTPUT);
+ pinMode (EN_TWO, OUTPUT);
+ pinMode (EN_THREE, OUTPUT);
+ pinMode (EN_FOUR, OUTPUT);
+ pinMode (EN_FIVE, OUTPUT);
+ pinMode (EN_SIX, OUTPUT);
+ pinMode (EN_SEVEN, OUTPUT);
+ pinMode (EN_EIGHT, OUTPUT);
+
+ pinMode (S0_MAIN, OUTPUT);
+ pinMode (S1_MAIN, OUTPUT);
+ pinMode (S2_MAIN, OUTPUT);
+ pinMode (S3_MAIN, OUTPUT);
+
  pinMode (S0, OUTPUT);
  pinMode (S1, OUTPUT);
  pinMode (S2, OUTPUT);
@@ -94,6 +99,7 @@ void setup() {
  
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
+
   Serial.begin(9600);
   setUpLEDStrips();
 
@@ -298,18 +304,18 @@ void loop() {
     if (!(currtouched2 & _BV(i)) && (lasttouched2 & _BV(i)) ) {
       Serial.print(i); Serial.println(" released");
     }
-    if ((currtouched4 & _BV(i)) && !(lasttouched4 & _BV(i)) ) {
-      Serial.print(i); Serial.println(" touched");
-    }
-    // if it *was* touched and now *isnt*, alert!
-    if (!(currtouched4 & _BV(i)) && (lasttouched4 & _BV(i)) ) {
-      Serial.print(i); Serial.println(" released");
-    }
     if ((currtouched3 & _BV(i)) && !(lasttouched3 & _BV(i)) ) {
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched3 & _BV(i)) && (lasttouched3 & _BV(i)) ) {
+      Serial.print(i); Serial.println(" released");
+    }
+    if ((currtouched4 & _BV(i)) && !(lasttouched4 & _BV(i)) ) {
+      Serial.print(i); Serial.println(" touched");
+    }
+    // if it *was* touched and now *isnt*, alert!
+    if (!(currtouched4 & _BV(i)) && (lasttouched4 & _BV(i)) ) {
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched5 & _BV(i)) && !(lasttouched5 & _BV(i)) ) {
@@ -1586,9 +1592,6 @@ void setBlockColor(uint8_t number, uint32_t color) {
     case 1:
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
-      }
-      for(int i=7;i<56;i++) {
-        led_strip.setPixelColor(i, led_strip.Color(0,0,0));
       }
       led_strip.show();
       break;
