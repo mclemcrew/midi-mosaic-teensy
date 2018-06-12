@@ -6,11 +6,9 @@
   #include <avr/power.h>
 #endif
 
-//#define PIN1 2
 #define LED_SIGNAL 23
 
 // 7 is the number of pixels on the strip
-// Have to change this for 16 columns rather than rows
 Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
@@ -55,37 +53,23 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
-int EN_MAIN = 0;
-int EN_ONE  = 1;
-int EN_TWO  = 2;
-int EN_THREE = 5;
-int EN_FOUR = 6;
-int EN_FIVE = 7;
-int EN_SIX  = 8;
-int EN_SEVEN = 9;
-int EN_EIGHT = 10;
+int EN_MAIN = 2;
+int EN  = 24;
 
-int S0_MAIN = 11;
-int S1_MAIN = 12;
-int S2_MAIN = 24;
-int S3_MAIN = 25;
+int S0_MAIN = 8;
+int S1_MAIN = 7;
+int S2_MAIN = 6;
+int S3_MAIN = 5;
 
-int S0 = 26;
-int S1 = 27;
-int S2 = 28;
-int S3 = 29;
+int S0 = 12;
+int S1 = 11;
+int S2 = 10;
+int S3 = 9;
 
 void setup() {
 
  pinMode (EN_MAIN, OUTPUT);
- pinMode (EN_ONE, OUTPUT);
- pinMode (EN_TWO, OUTPUT);
- pinMode (EN_THREE, OUTPUT);
- pinMode (EN_FOUR, OUTPUT);
- pinMode (EN_FIVE, OUTPUT);
- pinMode (EN_SIX, OUTPUT);
- pinMode (EN_SEVEN, OUTPUT);
- pinMode (EN_EIGHT, OUTPUT);
+ pinMode (EN, OUTPUT);
 
  pinMode (S0_MAIN, OUTPUT);
  pinMode (S1_MAIN, OUTPUT);
@@ -126,45 +110,46 @@ void setup() {
     while(1);
   }
 
-//  if (!cap4.begin(0x5D,1)) {
-//    Serial.println("MPR121 4 not found, check wiring?");
-//    while(1);
-//  }
-//
-//  if (!cap5.begin(0x5A,2)) {
-//    Serial.println("MPR121 1 not found, check wiring?");
-//    while(1);
-//  }
-//  
-//  if (!cap6.begin(0x5B,2)) {
-//    Serial.println("MPR121 2 not found, check wiring?");
-//    while(1);
-//  }
-//
-//  if (!cap7.begin(0x5C,2)) {
-//    Serial.println("MPR121 3 not found, check wiring?");
-//    while(1);
-//  }
-//
-//  if (!cap8.begin(0x5D,2)) {
-//    Serial.println("MPR121 4 not found, check wiring?");
-//    while(1);
-//  }
-//
-//  if (!cap9.begin(0x5A,3)) {
-//    Serial.println("MPR121 1 not found, check wiring?");
-//    while(1);
-//  }
-//  
-//  if (!cap10.begin(0x5B,3)) {
-//    Serial.println("MPR121 2 not found, check wiring?");
-//    while(1);
-//  }
-//
-//  if (!cap11.begin(0x5C,3)) {
-//    Serial.println("MPR121 3 not found, check wiring?");
-//    while(1);
-//  }
+ if (!cap4.begin(0x5D,1)) {
+   Serial.println("MPR121 4 not found, check wiring?");
+   while(1);
+ }
+
+ if (!cap5.begin(0x5A,2)) {
+   Serial.println("MPR121 1 not found, check wiring?");
+   while(1);
+ }
+ 
+ if (!cap6.begin(0x5B,2)) {
+   Serial.println("MPR121 2 not found, check wiring?");
+   while(1);
+ }
+
+ if (!cap7.begin(0x5C,2)) {
+   Serial.println("MPR121 3 not found, check wiring?");
+   while(1);
+ }
+
+ if (!cap8.begin(0x5D,2)) {
+   Serial.println("MPR121 4 not found, check wiring?");
+   while(1);
+ }
+
+
+ if (!cap9.begin(0x5A,3)) {
+   Serial.println("MPR121 1 not found, check wiring?");
+   while(1);
+ }
+ 
+ if (!cap10.begin(0x5B,3)) {
+   Serial.println("MPR121 2 not found, check wiring?");
+   while(1);
+ }
+
+ if (!cap11.begin(0x5C,3)) {
+   Serial.println("MPR121 3 not found, check wiring?");
+   while(1);
+ }
 
   Serial.println("All MPR121S have been found and you're good to go!");
 }
@@ -191,53 +176,51 @@ void loop() {
     /* Used for detecting and handling touch events that occur on the first MPR121 Module */
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       if(i==11) {
-        usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
-        out0_MAIN();
+        usbMIDI.sendNoteOn(0, 99, channel);  // 60 = C4
         setBlockColor(1,led_strip.Color(255,0,0));
       }
       if(i==10) {
-        usbMIDI.sendNoteOn(61, 99, channel);  
+        usbMIDI.sendNoteOn(1, 99, channel);  
         setBlockColor(2,led_strip.Color(255,0,0));
       }
       if(i==9) {
-        usbMIDI.sendNoteOn(62, 99, channel);  
+        usbMIDI.sendNoteOn(2, 99, channel);  
         setBlockColor(3,led_strip.Color(255,0,0));
       }
       if(i==8) {
-        usbMIDI.sendNoteOn(63, 99, channel);  
+        usbMIDI.sendNoteOn(3, 99, channel);  
         setBlockColor(4,led_strip.Color(255,0,0));
       }
       if(i==7) {
-        usbMIDI.sendNoteOn(64, 99, channel);
-        out1_MAIN();  
-        setBlockColor(1,led_strip.Color(255,0,0)); 
+        usbMIDI.sendNoteOn(4, 99, channel);
+        setBlockColor(5,led_strip.Color(255,0,0)); 
       }
       if(i==6) {
-        usbMIDI.sendNoteOn(65, 99, channel);  
+        usbMIDI.sendNoteOn(5, 99, channel);  
         setBlockColor(6,led_strip.Color(255,0,0));
       }
       if(i==5) {
-        usbMIDI.sendNoteOn(66, 99, channel);  
+        usbMIDI.sendNoteOn(6, 99, channel);  
         setBlockColor(7,led_strip.Color(255,0,0));
       }
       if(i==4) {
-        usbMIDI.sendNoteOn(63, 99, channel);  
+        usbMIDI.sendNoteOn(7, 99, channel);  
         setBlockColor(8,led_strip.Color(255,0,0));
       }
       if(i==3) {
-        usbMIDI.sendNoteOn(64, 99, channel);  
+        usbMIDI.sendNoteOn(8, 99, channel);  
         setBlockColor(9,led_strip.Color(255,0,0));
       }
       if(i==2) {
-        usbMIDI.sendNoteOn(65, 99, channel);  
+        usbMIDI.sendNoteOn(9, 99, channel);  
         setBlockColor(10,led_strip.Color(255,0,0));
       }
       if(i==1) {
-        usbMIDI.sendNoteOn(66, 99, channel);  
+        usbMIDI.sendNoteOn(10, 99, channel);  
         setBlockColor(11,led_strip.Color(255,0,0));
       }
       if(i==0) {
-        usbMIDI.sendNoteOn(70, 99, channel);  
+        usbMIDI.sendNoteOn(11, 99, channel);  
         setBlockColor(12,led_strip.Color(255,0,0));
       }
       Serial.print(i); Serial.println(" touched");
@@ -245,77 +228,363 @@ void loop() {
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched1 & _BV(i)) && (lasttouched1 & _BV(i)) ) {
       if(i==11) {
-        usbMIDI.sendNoteOff(60, 99, channel);  // 60 = C4
-        out0_MAIN();
+        usbMIDI.sendNoteOff(0, 99, channel);  // 60 = C4
         setBlockColor(1,led_strip.Color(0,0,0));
       }
       if(i==10) {
-        usbMIDI.sendNoteOff(61, 99, channel);  
+        usbMIDI.sendNoteOff(1, 99, channel);  
         setBlockColor(2,led_strip.Color(0,0,0));
       }
       if(i==9) {
-        usbMIDI.sendNoteOff(62, 99, channel);  
+        usbMIDI.sendNoteOff(2, 99, channel);  
         setBlockColor(3,led_strip.Color(0,0,0));
       }
       if(i==8) {
-        usbMIDI.sendNoteOff(63, 99, channel);  
+        usbMIDI.sendNoteOff(3, 99, channel);  
         setBlockColor(4,led_strip.Color(0,0,0));
       }
       if(i==7) {
-        usbMIDI.sendNoteOff(64, 99, channel);
-        out1_MAIN();
+        usbMIDI.sendNoteOff(4, 99, channel);
         setBlockColor(1,led_strip.Color(0,0,0));
       }
       if(i==6) {
-        usbMIDI.sendNoteOff(65, 99, channel);  
+        usbMIDI.sendNoteOff(5, 99, channel);  
         setBlockColor(6,led_strip.Color(0,0,0));
       }
       if(i==5) {
-        usbMIDI.sendNoteOff(66, 99, channel);  
+        usbMIDI.sendNoteOff(6, 99, channel);  
         setBlockColor(7,led_strip.Color(0,0,0));
       }
       if(i==4) {
-        usbMIDI.sendNoteOff(63, 99, channel);  
+        usbMIDI.sendNoteOff(7, 99, channel);  
         setBlockColor(8,led_strip.Color(0,0,0));
       }
       if(i==3) {
-        usbMIDI.sendNoteOff(64, 99, channel);  
+        usbMIDI.sendNoteOff(8, 99, channel);  
         setBlockColor(9,led_strip.Color(0,0,0));
       }
       if(i==2) {
-        usbMIDI.sendNoteOff(65, 99, channel);  
+        usbMIDI.sendNoteOff(9, 99, channel);  
         setBlockColor(10,led_strip.Color(0,0,0));
       }
       if(i==1) {
-        usbMIDI.sendNoteOff(66, 99, channel);  
+        usbMIDI.sendNoteOff(10, 99, channel);  
         setBlockColor(11,led_strip.Color(0,0,0));
       }
       if(i==0) {
-        usbMIDI.sendNoteOff(70, 99, channel);  
+        usbMIDI.sendNoteOff(11, 99, channel);  
         setBlockColor(12,led_strip.Color(0,0,0));
       }
       Serial.print(i); Serial.println(" released");
     }
     /*********************************************************/
     if ((currtouched2 & _BV(i)) && !(lasttouched2 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(12, 99, channel);  // 60 = C4
+        setBlockColor(13,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(13, 99, channel);  
+        setBlockColor(14,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(14, 99, channel);  
+        setBlockColor(15,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(15, 99, channel);  
+        setBlockColor(16,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(16, 99, channel);
+        setBlockColor(17,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(17, 99, channel);  
+        setBlockColor(18,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(18, 99, channel);  
+        setBlockColor(19,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(19, 99, channel);  
+        setBlockColor(20,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(20, 99, channel);  
+        setBlockColor(21,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(21, 99, channel);  
+        setBlockColor(22,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(22, 99, channel);  
+        setBlockColor(23,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(23, 99, channel);  
+        setBlockColor(24,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched2 & _BV(i)) && (lasttouched2 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(12, 99, channel);  // 60 = C4
+        setBlockColor(13,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(13, 99, channel);  
+        setBlockColor(14,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(14, 99, channel);  
+        setBlockColor(15,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(15, 99, channel);  
+        setBlockColor(16,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(16, 99, channel);
+        setBlockColor(17,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(17, 99, channel);  
+        setBlockColor(18,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(18, 99, channel);  
+        setBlockColor(19,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(19, 99, channel);  
+        setBlockColor(20,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(20, 99, channel);  
+        setBlockColor(21,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(21, 99, channel);  
+        setBlockColor(22,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(22, 99, channel);  
+        setBlockColor(23,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(23, 99, channel);  
+        setBlockColor(24,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched3 & _BV(i)) && !(lasttouched3 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(24, 99, channel);  // 60 = C4
+        setBlockColor(25,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(25, 99, channel);  
+        setBlockColor(26,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(26, 99, channel);  
+        setBlockColor(27,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(27, 99, channel);  
+        setBlockColor(28,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(28, 99, channel);
+        setBlockColor(29,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(29, 99, channel);  
+        setBlockColor(30,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(30, 99, channel);  
+        setBlockColor(31,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(31, 99, channel);  
+        setBlockColor(32,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(32, 99, channel);  
+        setBlockColor(33,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(33, 99, channel);  
+        setBlockColor(34,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(34, 99, channel);  
+        setBlockColor(35,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(35, 99, channel);  
+        setBlockColor(36,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched3 & _BV(i)) && (lasttouched3 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(24, 99, channel);  // 60 = C4
+        setBlockColor(25,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(25, 99, channel);  
+        setBlockColor(26,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(26, 99, channel);  
+        setBlockColor(27,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(27, 99, channel);  
+        setBlockColor(28,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(28, 99, channel);
+        setBlockColor(29,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(29, 99, channel);  
+        setBlockColor(30,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(30, 99, channel);  
+        setBlockColor(31,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(31, 99, channel);  
+        setBlockColor(32,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(32, 99, channel);  
+        setBlockColor(33,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(33, 99, channel);  
+        setBlockColor(34,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(34, 99, channel);  
+        setBlockColor(35,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(35, 99, channel);  
+        setBlockColor(36,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched4 & _BV(i)) && !(lasttouched4 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(36, 99, channel);  // 60 = C4
+        setBlockColor(37,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(37, 99, channel);  
+        setBlockColor(38,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(38, 99, channel);  
+        setBlockColor(39,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(39, 99, channel);  
+        setBlockColor(40,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(40, 99, channel);
+        setBlockColor(41,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(41, 99, channel);  
+        setBlockColor(42,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(42, 99, channel);  
+        setBlockColor(43,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(43, 99, channel);  
+        setBlockColor(44,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(44, 99, channel);  
+        setBlockColor(45,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(45, 99, channel);  
+        setBlockColor(46,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(46, 99, channel);  
+        setBlockColor(47,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(47, 99, channel);  
+        setBlockColor(48,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched4 & _BV(i)) && (lasttouched4 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(36, 99, channel);  // 60 = C4
+        setBlockColor(37,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(37, 99, channel);  
+        setBlockColor(38,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(38, 99, channel);  
+        setBlockColor(39,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(39, 99, channel);  
+        setBlockColor(40,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(40, 99, channel);
+        setBlockColor(41,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(41, 99, channel);  
+        setBlockColor(42,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(42, 99, channel);  
+        setBlockColor(43,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(43, 99, channel);  
+        setBlockColor(44,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(44, 99, channel);  
+        setBlockColor(45,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(45, 99, channel);  
+        setBlockColor(46,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(46, 99, channel);  
+        setBlockColor(47,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(47, 99, channel);  
+        setBlockColor(48,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched5 & _BV(i)) && !(lasttouched5 & _BV(i)) ) {
@@ -424,1099 +693,198 @@ void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // setColor4(strip4.Color(0, 0, 0));
   // setColor3(led_strip.Color(0, 0, 0));
 }
+// void out0_MAIN() {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, LOW);
+//  digitalWrite (S1, LOW);
+//  digitalWrite (S2, LOW);
+//  digitalWrite (S3, LOW);
+// }
+// void out1_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, HIGH);
+//  digitalWrite (S1, LOW);
+//  digitalWrite (S2, LOW);
+//  digitalWrite (S3, LOW);
+// }
+// void out2_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, LOW);
+//  digitalWrite (S1, HIGH);
+//  digitalWrite (S2, LOW);
+//  digitalWrite (S3, LOW);
+// }
+// void out3_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, HIGH);
+//  digitalWrite (S1, HIGH);
+//  digitalWrite (S2, LOW);
+//  digitalWrite (S3, LOW);
+// }
+// void out4_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, LOW);
+//  digitalWrite (S1, LOW);
+//  digitalWrite (S2, HIGH);
+//  digitalWrite (S3, LOW);
+// }
+// void out5_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, HIGH);
+//  digitalWrite (S1, LOW);
+//  digitalWrite (S2, HIGH);
+//  digitalWrite (S3, LOW);
+// }
+// void out6_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, LOW);
+//  digitalWrite (S1, HIGH);
+//  digitalWrite (S2, HIGH);
+//  digitalWrite (S3, LOW);
+// }
+// void out7_MAIN()
+// {
+//  digitalWrite (EN_MAIN, LOW);
+//  digitalWrite (S0, HIGH);
+//  digitalWrite (S1, HIGH);
+//  digitalWrite (S2, HIGH);
+//  digitalWrite (S3, LOW);
+// }
 
-// Used to control the multiplexer for columns 1-2
-void out0_ONE() {
- digitalWrite (EN_ONE, LOW);
+void out0() {
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out1_ONE()
+void out1()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out2_ONE()
+void out2()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out3_ONE()
+void out3()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
 }
-void out4_ONE()
+void out4()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out5_ONE()
+void out5()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out6_ONE()
+void out6()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out7_ONE()
+void out7()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
 }
-void out8_ONE()
+void out8()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out9_ONE()
+void out9()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out10_ONE()
+void out10()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out11_ONE()
+void out11()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
 }
-void out12_ONE()
+void out12()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out13_ONE()
+void out13()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out14_ONE()
+void out14()
 {
- digitalWrite (EN_ONE, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
-void out15_ONE()
+void out15()
 {
- digitalWrite (EN_ONE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-
-// Used to control the multiplexer for columns 3-4
-void out0_TWO() {
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_TWO()
-{
- digitalWrite (EN_TWO, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_TWO()
-{
- digitalWrite (EN_TWO, LOW);
+ digitalWrite (EN, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
 }
 
-// Used to control the multiplexer for columns 5-6
-void out0_THREE() {
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_THREE()
-{
- digitalWrite (EN_THREE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-// Used to control the multiplexer for columns 7-8
-void out0_FOUR() {
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_FOUR()
-{
- digitalWrite (EN_FOUR, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-// Used to control the multiplexer for columns 9-10
-void out0_FIVE() {
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_FIVE()
-{
- digitalWrite (EN_FIVE, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-// Used to control the multiplexer for columns 11-12
-void out0_SIX() {
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_SIX()
-{
- digitalWrite (EN_SIX, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-
-// Used to control the multiplexer for columns 13-14
-void out0_SEVEN() {
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_SEVEN()
-{
- digitalWrite (EN_SEVEN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-
-// Used to control the multiplexer for columns 15-16
-void out0_EIGHT() {
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out8_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out9_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out10_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out11_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
-}
-void out12_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out13_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out14_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-void out15_EIGHT()
-{
- digitalWrite (EN_EIGHT, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
-}
-
-void out0_MAIN() {
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out1_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out2_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out3_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, LOW);
-}
-void out4_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out5_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out6_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
-void out7_MAIN()
-{
- digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, LOW);
-}
 void out8_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
@@ -1590,89 +958,121 @@ void setUpLEDStrips() {
 void setBlockColor(uint8_t number, uint32_t color) {
   switch (number) {
     case 1:
+      out8_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 2:
-      for(int i=7;i<14;i++) {
+      out8_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 3:
-      for(int i=14;i<21;i++) {
+      out8_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 4:
-      for(int i=21;i<28;i++) {
+      out8_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 5:
-      for(int i=28;i<35;i++) {
+      out8_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 6:
-      for(int i=35;i<42;i++) {
+      out8_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 7:
-      for(int i=42;i<49;i++) {
+      out8_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 8:
-      for(int i=49;i<56;i++) {
+      out8_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       led_strip.show();
       break;
     case 9:
+      out8_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 10:
-      for(int i=7;i<14;i++) {
+      out8_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 11:
-      for(int i=14;i<21;i++) {
+      out8_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 12:
-      for(int i=21;i<28;i++) {
+      out8_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 13:
-      for(int i=28;i<35;i++) {
+      out8_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 14:
-      for(int i=35;i<42;i++) {
+      out8_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 15:
-      for(int i=42;i<49;i++) {
+      out8_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 16:
+      out8_MAIN();
+      out15();
       for(int i=49;i<56;i++) {
         led_strip.setPixelColor(i, color);
       }
