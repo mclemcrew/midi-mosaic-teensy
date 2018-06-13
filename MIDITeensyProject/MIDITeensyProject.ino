@@ -693,69 +693,7 @@ void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // setColor4(strip4.Color(0, 0, 0));
   // setColor3(led_strip.Color(0, 0, 0));
 }
-// void out0_MAIN() {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, LOW);
-//  digitalWrite (S1, LOW);
-//  digitalWrite (S2, LOW);
-//  digitalWrite (S3, LOW);
-// }
-// void out1_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, HIGH);
-//  digitalWrite (S1, LOW);
-//  digitalWrite (S2, LOW);
-//  digitalWrite (S3, LOW);
-// }
-// void out2_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, LOW);
-//  digitalWrite (S1, HIGH);
-//  digitalWrite (S2, LOW);
-//  digitalWrite (S3, LOW);
-// }
-// void out3_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, HIGH);
-//  digitalWrite (S1, HIGH);
-//  digitalWrite (S2, LOW);
-//  digitalWrite (S3, LOW);
-// }
-// void out4_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, LOW);
-//  digitalWrite (S1, LOW);
-//  digitalWrite (S2, HIGH);
-//  digitalWrite (S3, LOW);
-// }
-// void out5_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, HIGH);
-//  digitalWrite (S1, LOW);
-//  digitalWrite (S2, HIGH);
-//  digitalWrite (S3, LOW);
-// }
-// void out6_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, LOW);
-//  digitalWrite (S1, HIGH);
-//  digitalWrite (S2, HIGH);
-//  digitalWrite (S3, LOW);
-// }
-// void out7_MAIN()
-// {
-//  digitalWrite (EN_MAIN, LOW);
-//  digitalWrite (S0, HIGH);
-//  digitalWrite (S1, HIGH);
-//  digitalWrite (S2, HIGH);
-//  digitalWrite (S3, LOW);
-// }
+
 
 void out0() {
  digitalWrite (EN, LOW);
@@ -763,7 +701,6 @@ void out0() {
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
-// led_strip.show();
 }
 void out1()
 {
@@ -772,7 +709,6 @@ void out1()
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
-// led_strip.show();
 }
 void out2()
 {
@@ -781,7 +717,6 @@ void out2()
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
-// led_strip.show();
 }
 void out3()
 {
@@ -790,7 +725,6 @@ void out3()
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
-// led_strip.show();
 }
 void out4()
 {
@@ -889,6 +823,7 @@ void out15()
  digitalWrite (S3, HIGH);
 }
 
+// Used to switch the main multiplexer (16 to 1 MUX acting as an 8 to 1 MUX)
 void out8_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
@@ -901,50 +836,56 @@ void out8_MAIN()
 void out9_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, HIGH);
+ digitalWrite (S1_MAIN, LOW);
+ digitalWrite (S2_MAIN, LOW);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out10_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, LOW);
+ digitalWrite (S1_MAIN, HIGH);
+ digitalWrite (S2_MAIN, LOW);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out11_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, HIGH);
+ digitalWrite (S1_MAIN, HIGH);
+ digitalWrite (S2_MAIN, LOW);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out12_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, LOW);
+ digitalWrite (S1_MAIN, LOW);
+ digitalWrite (S2_MAIN, HIGH);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out13_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, HIGH);
+ digitalWrite (S1_MAIN, LOW);
+ digitalWrite (S2_MAIN, HIGH);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out14_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, LOW);
+ digitalWrite (S1_MAIN, HIGH);
+ digitalWrite (S2_MAIN, HIGH);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out15_MAIN()
 {
@@ -1079,555 +1020,779 @@ void setBlockColor(uint8_t number, uint32_t color) {
     case 16:
       out8_MAIN();
       out15();
-      for(int i=49;i<56;i++) {
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 17:
+      out9_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 18:
-      for(int i=7;i<14;i++) {
+      out9_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 19:
-      for(int i=14;i<21;i++) {
+      out9_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 20:
-      for(int i=21;i<28;i++) {
+      out9_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 21:
-      for(int i=28;i<35;i++) {
+      out9_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 22:
-      for(int i=35;i<42;i++) {
+      out9_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 23:
-      for(int i=42;i<49;i++) {
+      out9_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 24:
-      for(int i=49;i<56;i++) {
+      out9_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 25:
+      out9_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 26:
-      for(int i=7;i<14;i++) {
+      out9_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 27:
-      for(int i=14;i<21;i++) {
+      out9_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 28:
-      for(int i=21;i<28;i++) {
+      out9_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 29:
-      for(int i=28;i<35;i++) {
+      out9_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 30:
-      for(int i=35;i<42;i++) {
+      out9_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 31:
-      for(int i=42;i<49;i++) {
+      out9_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 32:
-      for(int i=49;i<56;i++) {
+      out9_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 33:
+      out10_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 34:
-      for(int i=7;i<14;i++) {
+      out10_MAIN();
+      out1();      
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 35:
-      for(int i=14;i<21;i++) {
+      out10_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 36:
-      for(int i=21;i<28;i++) {
+      out10_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 37:
-      for(int i=28;i<35;i++) {
+      out10_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 38:
-      for(int i=35;i<42;i++) {
+      out10_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 39:
-      for(int i=42;i<49;i++) {
+      out10_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 40:
-      for(int i=49;i<56;i++) {
+      out10_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 41:
+      out10_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 42:
-      for(int i=7;i<14;i++) {
+      out10_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 43:
-      for(int i=14;i<21;i++) {
+      out10_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 44:
-      for(int i=21;i<28;i++) {
+      out10_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 45:
-      for(int i=28;i<35;i++) {
+      out10_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 46:
-      for(int i=35;i<42;i++) {
+      out10_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 47:
-      for(int i=42;i<49;i++) {
+      out10_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 48:
-      for(int i=49;i<56;i++) {
+      out10_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 49:
+      out11_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 50:
-      for(int i=7;i<14;i++) {
+      out11_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 51:
-      for(int i=14;i<21;i++) {
+      out11_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 52:
-      for(int i=21;i<28;i++) {
+      out11_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 53:
-      for(int i=28;i<35;i++) {
+      out11_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 54:
-      for(int i=35;i<42;i++) {
+      out11_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 55:
-      for(int i=42;i<49;i++) {
+      out11_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 56:
-      for(int i=49;i<56;i++) {
+      out11_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 57:
+      out11_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 58:
-      for(int i=7;i<14;i++) {
+      out11_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 59:
-      for(int i=14;i<21;i++) {
+      out11_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 60:
-      for(int i=21;i<28;i++) {
+      out11_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 61:
-      for(int i=28;i<35;i++) {
+      out11_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 62:
-      for(int i=35;i<42;i++) {
+      out11_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 63:
-      for(int i=42;i<49;i++) {
+      out11_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 64:
-      for(int i=49;i<56;i++) {
+      out11_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 65:
+      out12_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 66:
-      for(int i=7;i<14;i++) {
+      out12_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 67:
-      for(int i=14;i<21;i++) {
+      out12_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 68:
-      for(int i=21;i<28;i++) {
+      out12_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 69:
-      for(int i=28;i<35;i++) {
+      out12_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 70:
-      for(int i=35;i<42;i++) {
+      out12_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 71:
-      for(int i=42;i<49;i++) {
+      out12_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 72:
-      for(int i=49;i<56;i++) {
+      out12_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 73:
+      out12_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 74:
-      for(int i=7;i<14;i++) {
+      out12_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 75:
-      for(int i=14;i<21;i++) {
+      out12_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 76:
-      for(int i=21;i<28;i++) {
+      out12_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 77:
-      for(int i=28;i<35;i++) {
+      out12_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 78:
-      for(int i=35;i<42;i++) {
+      out12_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 79:
-      for(int i=42;i<49;i++) {
+      out12_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 80:
-      for(int i=49;i<56;i++) {
+      out12_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 81:
+      out13_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 82:
-      for(int i=7;i<14;i++) {
+      out13_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 83:
-      for(int i=14;i<21;i++) {
+      out13_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 84:
-      for(int i=21;i<28;i++) {
+      out13_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 85:
-      for(int i=28;i<35;i++) {
+      out13_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 86:
-      for(int i=35;i<42;i++) {
+      out13_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 87:
-      for(int i=42;i<49;i++) {
+      out13_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 88:
-      for(int i=49;i<56;i++) {
+      out13_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 89:
+      out13_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 90:
-      for(int i=7;i<14;i++) {
+      out13_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 91:
-      for(int i=14;i<21;i++) {
+      out13_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 92:
-      for(int i=21;i<28;i++) {
+      out13_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 93:
-      for(int i=28;i<35;i++) {
+      out13_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 94:
-      for(int i=35;i<42;i++) {
+      out13_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 95:
-      for(int i=42;i<49;i++) {
+      out13_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 96:
-      for(int i=49;i<56;i++) {
+      out13_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 97:
+      out14_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 98:
-      for(int i=7;i<14;i++) {
+      out14_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 99:
-      for(int i=14;i<21;i++) {
+      out14_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 100:
-      for(int i=21;i<28;i++) {
+      out14_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 101:
-      for(int i=28;i<35;i++) {
+      out14_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 102:
-      for(int i=35;i<42;i++) {
+      out14_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 103:
-      for(int i=42;i<49;i++) {
+      out14_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 104:
-      for(int i=49;i<56;i++) {
+      out14_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 105:
+      out14_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 106:
-      for(int i=7;i<14;i++) {
+      out14_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 107:
-      for(int i=14;i<21;i++) {
+      out14_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 108:
-      for(int i=21;i<28;i++) {
+      out14_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 109:
-      for(int i=28;i<35;i++) {
+      out14_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 110:
-      for(int i=35;i<42;i++) {
+      out14_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 111:
-      for(int i=42;i<49;i++) {
+      out14_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 112:
-      for(int i=49;i<56;i++) {
+      out14_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 113:
+      out15_MAIN();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 114:
-      for(int i=7;i<14;i++) {
+      out15_MAIN();
+      out1();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 115:
-      for(int i=14;i<21;i++) {
+      out15_MAIN();
+      out2();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 116:
-      for(int i=21;i<28;i++) {
+      out15_MAIN();
+      out3();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 117:
-      for(int i=28;i<35;i++) {
+      out15_MAIN();
+      out4();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 118:
-      for(int i=35;i<42;i++) {
+      out15_MAIN();
+      out5();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 119:
-      for(int i=42;i<49;i++) {
+      out15_MAIN();
+      out6();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 120:
-      for(int i=49;i<56;i++) {
+      out15_MAIN();
+      out7();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
     case 121:
+      out15_MAIN();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 122:
-      for(int i=7;i<14;i++) {
+      out15_MAIN();
+      out9();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 123:
-      for(int i=14;i<21;i++) {
+      out15_MAIN();
+      out10();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 124:
-      for(int i=21;i<28;i++) {
+      out15_MAIN();
+      out11();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 125:
-      for(int i=28;i<35;i++) {
+      out15_MAIN();
+      out12();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 126:
-      for(int i=35;i<42;i++) {
+      out15_MAIN();
+      out13();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 127:
-      for(int i=42;i<49;i++) {
+      out15_MAIN();
+      out14();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
     case 128:
-      for(int i=49;i<56;i++) {
+      out15_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
       break;
