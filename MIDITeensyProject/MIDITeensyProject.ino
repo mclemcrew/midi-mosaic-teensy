@@ -185,7 +185,7 @@ void loop() {
       }
       if(i==9) {
         usbMIDI.sendNoteOn(2, 99, channel);  
-        setBlockColor(3,led_strip.Color(255,0,0));
+        setBlockColor(3,led_strip.Color(150,0,20));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(3, 99, channel);  
@@ -201,7 +201,7 @@ void loop() {
       }
       if(i==5) {
         usbMIDI.sendNoteOn(6, 99, channel);  
-        setBlockColor(7,led_strip.Color(255,0,0));
+        setBlockColor(7,led_strip.Color(0,0,250));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(7, 99, channel);  
@@ -245,7 +245,7 @@ void loop() {
       }
       if(i==7) {
         usbMIDI.sendNoteOff(4, 99, channel);
-        setBlockColor(1,led_strip.Color(0,0,0));
+        setBlockColor(5,led_strip.Color(0,0,0));
       }
       if(i==6) {
         usbMIDI.sendNoteOff(5, 99, channel);  
@@ -763,6 +763,7 @@ void out0() {
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+// led_strip.show();
 }
 void out1()
 {
@@ -771,6 +772,7 @@ void out1()
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+// led_strip.show();
 }
 void out2()
 {
@@ -779,6 +781,7 @@ void out2()
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+// led_strip.show();
 }
 void out3()
 {
@@ -787,6 +790,7 @@ void out3()
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+// led_strip.show();
 }
 void out4()
 {
@@ -888,10 +892,11 @@ void out15()
 void out8_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, LOW);
+ digitalWrite (S1_MAIN, LOW);
+ digitalWrite (S2_MAIN, LOW);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 void out9_MAIN()
 {
@@ -944,10 +949,11 @@ void out14_MAIN()
 void out15_MAIN()
 {
  digitalWrite (EN_MAIN, LOW);
- digitalWrite (S0, HIGH);
- digitalWrite (S1, HIGH);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
+ digitalWrite (S0_MAIN, HIGH);
+ digitalWrite (S1_MAIN, HIGH);
+ digitalWrite (S2_MAIN, HIGH);
+ digitalWrite (S3_MAIN, HIGH);
+ led_strip.show();
 }
 
 void setUpLEDStrips() {
