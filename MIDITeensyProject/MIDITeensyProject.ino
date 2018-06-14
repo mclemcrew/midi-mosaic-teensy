@@ -588,52 +588,692 @@ void loop() {
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched5 & _BV(i)) && !(lasttouched5 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(48, 99, channel);  // 60 = C4
+        setBlockColor(49,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(49, 99, channel);  
+        setBlockColor(50,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(50, 99, channel);  
+        setBlockColor(51,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(51, 99, channel);  
+        setBlockColor(52,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(52, 99, channel);
+        setBlockColor(53,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(53, 99, channel);  
+        setBlockColor(54,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(54, 99, channel);  
+        setBlockColor(55,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(55, 99, channel);  
+        setBlockColor(56,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(56, 99, channel);  
+        setBlockColor(57,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(57, 99, channel);  
+        setBlockColor(58,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(58, 99, channel);  
+        setBlockColor(59,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(59, 99, channel);  
+        setBlockColor(60,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched5 & _BV(i)) && (lasttouched5 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(48, 99, channel);  // 60 = C4
+        setBlockColor(49,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(49, 99, channel);  
+        setBlockColor(50,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(50, 99, channel);  
+        setBlockColor(51,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(51, 99, channel);  
+        setBlockColor(52,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(52, 99, channel);
+        setBlockColor(53,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(53, 99, channel);  
+        setBlockColor(54,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(54, 99, channel);  
+        setBlockColor(55,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(55, 99, channel);  
+        setBlockColor(56,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(56, 99, channel);  
+        setBlockColor(57,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(57, 99, channel);  
+        setBlockColor(58,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(58, 99, channel);  
+        setBlockColor(59,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(59, 99, channel);  
+        setBlockColor(60,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched6 & _BV(i)) && !(lasttouched6 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
+        setBlockColor(61,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(61, 99, channel);  
+        setBlockColor(62,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(62, 99, channel);  
+        setBlockColor(63,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(63, 99, channel);  
+        setBlockColor(64,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(64, 99, channel);
+        setBlockColor(65,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(65, 99, channel);  
+        setBlockColor(66,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(66, 99, channel);  
+        setBlockColor(67,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(67, 99, channel);  
+        setBlockColor(68,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(68, 99, channel);  
+        setBlockColor(69,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(69, 99, channel);  
+        setBlockColor(70,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(70, 99, channel);  
+        setBlockColor(71,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(71, 99, channel);  
+        setBlockColor(72,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched6 & _BV(i)) && (lasttouched6 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(60, 99, channel);  // 60 = C4
+        setBlockColor(61,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(61, 99, channel);  
+        setBlockColor(62,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(62, 99, channel);  
+        setBlockColor(63,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(63, 99, channel);  
+        setBlockColor(64,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(64, 99, channel);
+        setBlockColor(65,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(65, 99, channel);  
+        setBlockColor(66,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(66, 99, channel);  
+        setBlockColor(67,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(67, 99, channel);  
+        setBlockColor(68,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(68, 99, channel);  
+        setBlockColor(69,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(69, 99, channel);  
+        setBlockColor(70,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(70, 99, channel);  
+        setBlockColor(71,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(71, 99, channel);  
+        setBlockColor(72,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched7 & _BV(i)) && !(lasttouched7 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(72, 99, channel);  // 60 = C4
+        setBlockColor(73,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(73, 99, channel);  
+        setBlockColor(74,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(74, 99, channel);  
+        setBlockColor(75,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(75, 99, channel);  
+        setBlockColor(76,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(76, 99, channel);
+        setBlockColor(77,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(77, 99, channel);  
+        setBlockColor(78,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(78, 99, channel);  
+        setBlockColor(79,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(79, 99, channel);  
+        setBlockColor(80,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(80, 99, channel);  
+        setBlockColor(81,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(81, 99, channel);  
+        setBlockColor(82,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(82, 99, channel);  
+        setBlockColor(83,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(83, 99, channel);  
+        setBlockColor(84,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched7 & _BV(i)) && (lasttouched7 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(72, 99, channel);  // 60 = C4
+        setBlockColor(73,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(73, 99, channel);  
+        setBlockColor(74,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(74, 99, channel);  
+        setBlockColor(75,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(75, 99, channel);  
+        setBlockColor(76,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(76, 99, channel);
+        setBlockColor(77,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(77, 99, channel);  
+        setBlockColor(78,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(78, 99, channel);  
+        setBlockColor(79,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(79, 99, channel);  
+        setBlockColor(80,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(80, 99, channel);  
+        setBlockColor(81,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(81, 99, channel);  
+        setBlockColor(82,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(82, 99, channel);  
+        setBlockColor(83,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(83, 99, channel);  
+        setBlockColor(84,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched8 & _BV(i)) && !(lasttouched8 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(84, 99, channel);  // 60 = C4
+        setBlockColor(85,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(85, 99, channel);  
+        setBlockColor(86,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(86, 99, channel);  
+        setBlockColor(87,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(87, 99, channel);  
+        setBlockColor(88,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(88, 99, channel);
+        setBlockColor(89,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(89, 99, channel);  
+        setBlockColor(90,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(90, 99, channel);  
+        setBlockColor(91,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(91, 99, channel);  
+        setBlockColor(92,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(92, 99, channel);  
+        setBlockColor(93,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(93, 99, channel);  
+        setBlockColor(94,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(94, 99, channel);  
+        setBlockColor(95,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(95, 99, channel);  
+        setBlockColor(96,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched8 & _BV(i)) && (lasttouched8 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(84, 99, channel);  // 60 = C4
+        setBlockColor(85,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(85, 99, channel);  
+        setBlockColor(86,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(86, 99, channel);  
+        setBlockColor(87,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(87, 99, channel);  
+        setBlockColor(88,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(88, 99, channel);
+        setBlockColor(89,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(89, 99, channel);  
+        setBlockColor(90,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(90, 99, channel);  
+        setBlockColor(91,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(91, 99, channel);  
+        setBlockColor(92,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(92, 99, channel);  
+        setBlockColor(93,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(93, 99, channel);  
+        setBlockColor(94,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(94, 99, channel);  
+        setBlockColor(95,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(95, 99, channel);  
+        setBlockColor(96,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched9 & _BV(i)) && !(lasttouched9 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(96, 99, channel);  // 60 = C4
+        setBlockColor(97,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(97, 99, channel);  
+        setBlockColor(98,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(98, 99, channel);  
+        setBlockColor(99,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(99, 99, channel);  
+        setBlockColor(100,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(100, 99, channel);
+        setBlockColor(101,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(101, 99, channel);  
+        setBlockColor(102,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(102, 99, channel);  
+        setBlockColor(103,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(103, 99, channel);  
+        setBlockColor(104,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(104, 99, channel);  
+        setBlockColor(105,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(105, 99, channel);  
+        setBlockColor(106,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(106, 99, channel);  
+        setBlockColor(107,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched9 & _BV(i)) && (lasttouched9 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(96, 99, channel);  // 60 = C4
+        setBlockColor(97,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(97, 99, channel);  
+        setBlockColor(98,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(98, 99, channel);  
+        setBlockColor(99,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(99, 99, channel);  
+        setBlockColor(100,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(100, 99, channel);
+        setBlockColor(101,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(101, 99, channel);  
+        setBlockColor(102,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(102, 99, channel);  
+        setBlockColor(103,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(103, 99, channel);  
+        setBlockColor(104,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(104, 99, channel);  
+        setBlockColor(105,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(105, 99, channel);  
+        setBlockColor(106,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(106, 99, channel);  
+        setBlockColor(107,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched10 & _BV(i)) && !(lasttouched10 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(107, 99, channel);  // 60 = C4
+        setBlockColor(108,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(108, 99, channel);  
+        setBlockColor(109,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(109, 99, channel);  
+        setBlockColor(110,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(110, 99, channel);  
+        setBlockColor(111,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(111, 99, channel);
+        setBlockColor(112,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(112, 99, channel);  
+        setBlockColor(113,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(113, 99, channel);  
+        setBlockColor(114,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(114, 99, channel);  
+        setBlockColor(115,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(115, 99, channel);  
+        setBlockColor(116,led_strip.Color(255,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOn(116, 99, channel);  
+        setBlockColor(117,led_strip.Color(255,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOn(117, 99, channel);  
+        setBlockColor(118,led_strip.Color(255,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOn(118, 99, channel);  
+        setBlockColor(119,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched10 & _BV(i)) && (lasttouched10 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(107, 99, channel);  // 60 = C4
+        setBlockColor(108,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(108, 99, channel);  
+        setBlockColor(109,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(109, 99, channel);  
+        setBlockColor(110,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(110, 99, channel);  
+        setBlockColor(111,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(111, 99, channel);
+        setBlockColor(112,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(112, 99, channel);  
+        setBlockColor(113,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(113, 99, channel);  
+        setBlockColor(114,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(114, 99, channel);  
+        setBlockColor(115,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(115, 99, channel);  
+        setBlockColor(116,led_strip.Color(0,0,0));
+      }
+      if(i==2) {
+        usbMIDI.sendNoteOff(116, 99, channel);  
+        setBlockColor(117,led_strip.Color(0,0,0));
+      }
+      if(i==1) {
+        usbMIDI.sendNoteOff(117, 99, channel);  
+        setBlockColor(118,led_strip.Color(0,0,0));
+      }
+      if(i==0) {
+        usbMIDI.sendNoteOff(118, 99, channel);  
+        setBlockColor(119,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
     if ((currtouched11 & _BV(i)) && !(lasttouched11 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOn(119, 99, channel);  // 60 = C4
+        setBlockColor(120,led_strip.Color(255,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOn(120, 99, channel);  
+        setBlockColor(121,led_strip.Color(255,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOn(121, 99, channel);  
+        setBlockColor(122,led_strip.Color(255,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOn(122, 99, channel);  
+        setBlockColor(123,led_strip.Color(255,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOn(123, 99, channel);
+        setBlockColor(124,led_strip.Color(255,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOn(124, 99, channel);  
+        setBlockColor(125,led_strip.Color(255,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOn(125, 99, channel);  
+        setBlockColor(126,led_strip.Color(255,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOn(126, 99, channel);  
+        setBlockColor(127,led_strip.Color(255,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOn(127, 99, channel);  
+        setBlockColor(128,led_strip.Color(255,0,0));
+      }
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched11 & _BV(i)) && (lasttouched11 & _BV(i)) ) {
+      if(i==11) {
+        usbMIDI.sendNoteOff(119, 99, channel);  // 60 = C4
+        setBlockColor(120,led_strip.Color(0,0,0));
+      }
+      if(i==10) {
+        usbMIDI.sendNoteOff(120, 99, channel);  
+        setBlockColor(121,led_strip.Color(0,0,0));
+      }
+      if(i==9) {
+        usbMIDI.sendNoteOff(121, 99, channel);  
+        setBlockColor(122,led_strip.Color(0,0,0));
+      }
+      if(i==8) {
+        usbMIDI.sendNoteOff(122, 99, channel);  
+        setBlockColor(123,led_strip.Color(0,0,0));
+      }
+      if(i==7) {
+        usbMIDI.sendNoteOff(123, 99, channel);
+        setBlockColor(124,led_strip.Color(0,0,0)); 
+      }
+      if(i==6) {
+        usbMIDI.sendNoteOff(124, 99, channel);  
+        setBlockColor(125,led_strip.Color(0,0,0));
+      }
+      if(i==5) {
+        usbMIDI.sendNoteOff(125, 99, channel);  
+        setBlockColor(126,led_strip.Color(0,0,0));
+      }
+      if(i==4) {
+        usbMIDI.sendNoteOff(126, 99, channel);  
+        setBlockColor(127,led_strip.Color(0,0,0));
+      }
+      if(i==3) {
+        usbMIDI.sendNoteOff(127, 99, channel);  
+        setBlockColor(128,led_strip.Color(0,0,0));
+      }
       Serial.print(i); Serial.println(" released");
     }
   }
