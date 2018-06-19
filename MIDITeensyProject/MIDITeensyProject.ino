@@ -6,7 +6,7 @@
   #include <avr/power.h>
 #endif
 
-#define LED_SIGNAL 23
+#define LED_SIGNAL 12
 
 // 7 is the number of pixels on the strip
 Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL, NEO_GRB + NEO_KHZ800);
@@ -53,18 +53,18 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
+int EN  = 30;
+
+int S0 = 20;
+int S1 = 21;
+int S2 = 22;
+int S3 = 23;
 int EN_MAIN = 2;
-int EN  = 24;
 
 int S0_MAIN = 8;
 int S1_MAIN = 7;
 int S2_MAIN = 6;
 int S3_MAIN = 5;
-
-int S0 = 12;
-int S1 = 11;
-int S2 = 10;
-int S3 = 9;
 
 void setup() {
 
@@ -83,12 +83,12 @@ void setup() {
  
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
-
+  Serial4.begin(9600);
   Serial.begin(9600);
   setUpLEDStrips();
 
   while (!Serial) { // needed to keep leonardo/micro from starting too fast!
-    delay(10);
+    //delay(10);
   }
   
   Serial.println("Adafruit MPR121 cap1acitive Touch sensor test"); 
@@ -109,7 +109,7 @@ void setup() {
     Serial.println("MPR121 3 not found, check wiring?");
     while(1);
   }
-
+//
  if (!cap4.begin(0x5D,1)) {
    Serial.println("MPR121 4 not found, check wiring?");
    while(1);
@@ -169,6 +169,17 @@ void loop() {
   currtouched10 = cap10.touched();
   currtouched11 = cap11.touched();
 
+  if(Serial4.available()) {
+    if(Serial4.read()==20){
+      testColorStrip(led_strip.Color(255,0,0));
+    }
+    if(Serial4.read()==53){
+      testColorStrip(led_strip.Color(0,255,0));
+    }
+    if(Serial4.read()==181){
+      testColorStrip(led_strip.Color(0,0,255));
+    }
+ }
   
   for (uint8_t i=0; i<12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
@@ -327,7 +338,7 @@ void loop() {
         usbMIDI.sendNoteOn(23, 99, channel);  
         setBlockColor(24,led_strip.Color(255,0,0));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 1");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched2 & _BV(i)) && (lasttouched2 & _BV(i)) ) {
@@ -430,7 +441,7 @@ void loop() {
         usbMIDI.sendNoteOn(35, 99, channel);  
         setBlockColor(36,led_strip.Color(255,0,0));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 2");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched3 & _BV(i)) && (lasttouched3 & _BV(i)) ) {
@@ -533,7 +544,7 @@ void loop() {
         usbMIDI.sendNoteOn(47, 99, channel);  
         setBlockColor(48,led_strip.Color(255,0,0));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 3");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched4 & _BV(i)) && (lasttouched4 & _BV(i)) ) {
@@ -636,7 +647,7 @@ void loop() {
         usbMIDI.sendNoteOn(59, 99, channel);  
         setBlockColor(60,led_strip.Color(255,0,0));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 4");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched5 & _BV(i)) && (lasttouched5 & _BV(i)) ) {
@@ -1341,6 +1352,7 @@ void out0() {
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+ led_strip.show();
 }
 void out1()
 {
@@ -1405,6 +1417,7 @@ void out8()
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
+ led_strip.show();
 }
 void out9()
 {
@@ -1461,6 +1474,7 @@ void out15()
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
+ led_strip.show();
 }
 
 // Used to switch the main multiplexer (16 to 1 MUX acting as an 8 to 1 MUX)
@@ -1542,6 +1556,14 @@ void setUpLEDStrips() {
   led_strip.show();
 }
 
+void testColorStrip(uint32_t color) {
+  out8();
+  for(int i=0;i<7;i++) {
+        led_strip.setPixelColor(i, color);
+      }
+      led_strip.show();
+}
+
 void setBlockColor(uint8_t number, uint32_t color) {
   switch (number) {
     case 1:
@@ -1614,6 +1636,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 10:
       out8_MAIN();
@@ -1621,6 +1644,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 11:
       out8_MAIN();
@@ -1628,6 +1652,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 12:
       out8_MAIN();
@@ -1635,6 +1660,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 13:
       out8_MAIN();
@@ -1642,6 +1668,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 14:
       out8_MAIN();
@@ -1649,6 +1676,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 15:
       out8_MAIN();
@@ -1656,6 +1684,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 16:
       out8_MAIN();
@@ -1886,29 +1915,28 @@ void setBlockColor(uint8_t number, uint32_t color) {
         led_strip.setPixelColor(i, color);
       }
     case 49:
-      out11_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
+        led_strip.setPixelColor(i, color);
+      }
+      led_strip.show();
+      break;
+    case 50:
       out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
-      break;
-    case 50:
-      out11_MAIN();
-      out1();
-      for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
-      }
+      led_strip.show();
       break;
     case 51:
-      out11_MAIN();
-      out2();
+      out0();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
+      led_strip.show();
       break;
     case 52:
-      out11_MAIN();
-      out3();
+      out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
@@ -1941,32 +1969,32 @@ void setBlockColor(uint8_t number, uint32_t color) {
         led_strip.setPixelColor(i, color);
       }
     case 57:
-      out11_MAIN();
+      out15();
+      for(int i=0;i<7;i++) {
+        led_strip.setPixelColor(i, color);
+      }
+      led_strip.show();
+      break;
+    case 58:
+      out15();
+      for(int i=0;i<7;i++) {
+        led_strip.setPixelColor(i, color);
+      }
+      led_strip.show();
+      break;
+    case 59:
+      out15();
+      for(int i=0;i<7;i++) {
+        led_strip.setPixelColor(i, color);
+      }
+      led_strip.show();
+      break;
+    case 60:
       out8();
       for(int i=0;i<7;i++) {
         led_strip.setPixelColor(i, color);
       }
-      break;
-    case 58:
-      out11_MAIN();
-      out9();
-      for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
-      }
-      break;
-    case 59:
-      out11_MAIN();
-      out10();
-      for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
-      }
-      break;
-    case 60:
-      out11_MAIN();
-      out11();
-      for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
-      }
+      led_strip.show();
       break;
     case 61:
       out11_MAIN();
