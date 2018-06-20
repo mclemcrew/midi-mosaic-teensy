@@ -8,6 +8,8 @@
 
 #define LED_SIGNAL 12
 
+String readString;
+
 // 7 is the number of pixels on the strip
 Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL, NEO_GRB + NEO_KHZ800);
 
@@ -83,7 +85,7 @@ void setup() {
  
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
-  Serial4.begin(9600);
+  Serial4.begin(115200);
   Serial.begin(9600);
   setUpLEDStrips();
 
@@ -169,17 +171,36 @@ void loop() {
   currtouched10 = cap10.touched();
   currtouched11 = cap11.touched();
 
-  if(Serial4.available()) {
-    if(Serial4.read()==20){
-      testColorStrip(led_strip.Color(255,0,0));
+  while (Serial4.available()) {
+    delay(1);  //delay to allow byte to arrive in input buffer
+    char c = (char)Serial4.read();
+    readString += c;
+  }
+
+  if (readString.length() >0) {
+    Serial.println(readString);
+    if(readString=="hello world"){
+      Serial.println("This is right");
+      testColorStrip(led_strip.Color(150,30,0));
     }
-    if(Serial4.read()==53){
-      testColorStrip(led_strip.Color(0,255,0));
-    }
-    if(Serial4.read()==181){
-      testColorStrip(led_strip.Color(0,0,255));
-    }
- }
+    readString="";
+  } 
+  
+
+//  if(Serial4.available()) {
+//    String colorCode = (char)Serial4.read();
+//    Serial.print(colorCode);
+//    if(colorCode=="hello world"){
+//      Serial.print("This is right");
+//      testColorStrip(led_strip.Color(150,30,0));
+//    }
+//    if(Serial4.read()==53){
+//      testColorStrip(led_strip.Color(0,255,0));
+//    }
+//    if(Serial4.read()==181){
+//      testColorStrip(led_strip.Color(0,0,255));
+//    }
+// }
   
   for (uint8_t i=0; i<12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
