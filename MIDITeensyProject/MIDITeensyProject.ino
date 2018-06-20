@@ -6,12 +6,27 @@
   #include <avr/power.h>
 #endif
 
-#define LED_SIGNAL 12
+#define LED_SIGNAL_1 5
+#define LED_SIGNAL_2 6
+#define LED_SIGNAL_3 7
+#define LED_SIGNAL_4 8
+#define LED_SIGNAL_5 9
+#define LED_SIGNAL_6 10
+#define LED_SIGNAL_7 11
+#define LED_SIGNAL_8 12
 
 String readString;
 
 // 7 is the number of pixels on the strip
-Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_1 = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_2 = Adafruit_NeoPixel(7, LED_SIGNAL_2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_3 = Adafruit_NeoPixel(7, LED_SIGNAL_3, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_4 = Adafruit_NeoPixel(7, LED_SIGNAL_4, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_5 = Adafruit_NeoPixel(7, LED_SIGNAL_5, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_6 = Adafruit_NeoPixel(7, LED_SIGNAL_6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_7 = Adafruit_NeoPixel(7, LED_SIGNAL_7, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_8 = Adafruit_NeoPixel(7, LED_SIGNAL_8, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap1 = Adafruit_MPR121();
@@ -55,7 +70,14 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
-int EN  = 30;
+int EN_1  = 1;
+int EN_2  = 24;
+int EN_3  = 25;
+int EN_4  = 26;
+int EN_5  = 27;
+int EN_6  = 28;
+int EN_7  = 29;
+int EN_8  = 30;
 
 int S0 = 20;
 int S1 = 21;
@@ -71,7 +93,14 @@ int S3_MAIN = 5;
 void setup() {
 
  pinMode (EN_MAIN, OUTPUT);
- pinMode (EN, OUTPUT);
+ pinMode (EN_1, OUTPUT);
+ pinMode (EN_2, OUTPUT);
+ pinMode (EN_3, OUTPUT);
+ pinMode (EN_4, OUTPUT);
+ pinMode (EN_5, OUTPUT);
+ pinMode (EN_6, OUTPUT);
+ pinMode (EN_7, OUTPUT);
+ pinMode (EN_8, OUTPUT);
 
  pinMode (S0_MAIN, OUTPUT);
  pinMode (S1_MAIN, OUTPUT);
@@ -1366,138 +1395,591 @@ void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // setColor3(led_strip.Color(0, 0, 0));
 }
 
-
 void out0() {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
- led_strip.show();
+ led_strip_1.show();
 }
-void out1()
-{
- digitalWrite (EN, LOW);
- digitalWrite (S0, HIGH);
+
+// For columns 1 and 2
+void out1() {
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out2()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out3()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out4()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out5()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out6()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
+ led_strip_1.show();
 }
 void out7()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_1.show();
+}
+void out8()
+{
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, LOW);
-}
-void out8()
-{
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, LOW);
- digitalWrite (S3, HIGH);
- led_strip.show();
+ led_strip_1.show();
 }
 void out9()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
  digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
+ led_strip_1.show();
 }
 void out10()
 {
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, HIGH);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
+ led_strip_1.show();
 }
 void out11()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_1.show();
+}
+void out12()
+{
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, LOW);
  digitalWrite (S3, HIGH);
-}
-void out12()
-{
- digitalWrite (EN, LOW);
- digitalWrite (S0, LOW);
- digitalWrite (S1, LOW);
- digitalWrite (S2, HIGH);
- digitalWrite (S3, HIGH);
+ led_strip_1.show();
 }
 void out13()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_1.show();
+}
+void out14()
+{
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, LOW);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
+ led_strip_1.show();
 }
-void out14()
+void out15()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, LOW);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
+ led_strip_1.show();
 }
-void out15()
+void out16()
 {
- digitalWrite (EN, LOW);
+ digitalWrite (EN_1, LOW);
  digitalWrite (S0, HIGH);
  digitalWrite (S1, HIGH);
  digitalWrite (S2, HIGH);
  digitalWrite (S3, HIGH);
- led_strip.show();
+ led_strip_1.show();
 }
-
+// For columns 3 and 4
+void out17() {
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out18()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out19()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out20()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out21()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out22()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out23()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out24()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_2.show();
+}
+void out25()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out26()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out27()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out28()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out29()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out30()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out31()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+void out32()
+{
+ digitalWrite (EN_2, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_2.show();
+}
+// For columns 5 and 6
+void out33() {
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out34()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out35()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out36()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out37()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out38()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out39()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out40()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_3.show();
+}
+void out41()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out42()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out43()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out44()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out45()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out46()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out47()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+void out48()
+{
+ digitalWrite (EN_3, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_3.show();
+}
+// Used for columns 7 and 8
+void out49() {
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out50()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out51()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out52()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out53()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out54()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out55()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out56()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, LOW);
+ led_strip_4.show();
+}
+void out57()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out58()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out59()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out60()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, LOW);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out61()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out62()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, LOW);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out63()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, LOW);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
+void out64()
+{
+ digitalWrite (EN_4, LOW);
+ digitalWrite (S0, HIGH);
+ digitalWrite (S1, HIGH);
+ digitalWrite (S2, HIGH);
+ digitalWrite (S3, HIGH);
+ led_strip_4.show();
+}
 // Used to switch the main multiplexer (16 to 1 MUX acting as an 8 to 1 MUX)
 void out8_MAIN()
 {
@@ -1580,470 +2062,456 @@ void setUpLEDStrips() {
 void testColorStrip(uint32_t color) {
   out8();
   for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
 }
 
 void setBlockColor(uint8_t number, uint32_t color) {
   switch (number) {
     case 1:
-      out8_MAIN();
-      out0();
+      out1();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 2:
-      out8_MAIN();
-      out1();
+      out2();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 3:
-      out8_MAIN();
-      out2();
+      out3();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 4:
-      out8_MAIN();
-      out3();
+      out4();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 5:
-      out8_MAIN();
-      out4();
+      out5();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 6:
-      out8_MAIN();
-      out5();
+      out6();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 7:
-      out8_MAIN();
-      out6();
+      out7();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 8:
-      out8_MAIN();
-      out7();
+      out8();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 9:
-      out8_MAIN();
-      out8();
+      out9();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 10:
-      out8_MAIN();
-      out9();
+      out10();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 11:
-      out8_MAIN();
-      out10();
+      out11();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 12:
-      out8_MAIN();
-      out11();
+      out12();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 13:
-      out8_MAIN();
-      out12();
+      out13();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 14:
-      out8_MAIN();
-      out13();
+      out14();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 15:
-      out8_MAIN();
-      out14();
+      out15();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_1.show();
       break;
     case 16:
-      out8_MAIN();
-      out15();
+      out16();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_1.setPixelColor(i, color);
       }
+      led_strip_1.show();
       break;
     case 17:
-      out9_MAIN();
-      out0();
+      out17();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 18:
-      out9_MAIN();
-      out1();
+      out18();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 19:
-      out9_MAIN();
-      out2();
+      out19();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 20:
-      out9_MAIN();
-      out3();
+      out20();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 21:
-      out9_MAIN();
-      out4();
+      out21();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 22:
-      out9_MAIN();
-      out5();
+      out22();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 23:
-      out9_MAIN();
-      out6();
+      out23();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 24:
-      out9_MAIN();
-      out7();
+      out24();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
     case 25:
-      out9_MAIN();
-      out8();
+      out25();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 26:
-      out9_MAIN();
-      out9();
+      out26();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 27:
-      out9_MAIN();
-      out10();
+      out27();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 28:
-      out9_MAIN();
-      out11();
+      out28();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 29:
-      out9_MAIN();
-      out12();
+      out29();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 30:
-      out9_MAIN();
-      out13();
+      out30();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 31:
-      out9_MAIN();
-      out14();
+      out31();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 32:
-      out9_MAIN();
-      out15();
+      out32();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_2.setPixelColor(i, color);
       }
+      led_strip_2.show();
       break;
     case 33:
-      out10_MAIN();
-      out0();
+      out33();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 34:
-      out10_MAIN();
-      out1();      
+      out34();      
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 35:
-      out10_MAIN();
-      out2();
+      out35();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 36:
-      out10_MAIN();
-      out3();
+      out36();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 37:
-      out10_MAIN();
-      out4();
+      out37();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 38:
-      out10_MAIN();
-      out5();
+      out38();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 39:
-      out10_MAIN();
-      out6();
+      out39();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 40:
-      out10_MAIN();
-      out7();
+      out40();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
     case 41:
-      out10_MAIN();
-      out8();
+      out41();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 42:
-      out10_MAIN();
-      out9();
+      out42();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 43:
-      out10_MAIN();
-      out10();
+      out43();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 44:
-      out10_MAIN();
-      out11();
+      out44();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 45:
-      out10_MAIN();
-      out12();
+      out45();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 46:
-      out10_MAIN();
-      out13();
+      out46();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 47:
-      out10_MAIN();
-      out14();
+      out47();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
       break;
     case 48:
-      out10_MAIN();
-      out15();
+      out48();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_3.setPixelColor(i, color);
       }
+      led_strip_3.show();
     case 49:
-      out15();
+      out49();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 50:
-      out0();
+      out50();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 51:
-      out0();
+      out51();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 52:
-      out8();
+      out52();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 53:
-      out11_MAIN();
-      out4();
+      out53();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 54:
-      out11_MAIN();
-      out5();
+      out54();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 55:
-      out11_MAIN();
-      out6();
+      out55();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 56:
-      out11_MAIN();
-      out7();
+      out56();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
     case 57:
-      out15();
+      out57();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 58:
-      out15();
+      out58();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 59:
-      out15();
+      out59();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 60:
-      out8();
+      out60();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
-      led_strip.show();
+      led_strip_4.show();
       break;
     case 61:
-      out11_MAIN();
-      out12();
+      out61();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 62:
-      out11_MAIN();
-      out13();
+      out62();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 63:
-      out11_MAIN();
-      out14();
+      out63();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
       break;
     case 64:
-      out11_MAIN();
-      out15();
+      out64();
       for(int i=0;i<7;i++) {
-        led_strip.setPixelColor(i, color);
+        led_strip_4.setPixelColor(i, color);
       }
+      led_strip_4.show();
     case 65:
       out12_MAIN();
       out0();
@@ -2490,3 +2958,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
       // statements
   }
 }
+
+
+
+
