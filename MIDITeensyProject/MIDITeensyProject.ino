@@ -22,10 +22,10 @@ Adafruit_NeoPixel led_strip_1 = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO
 Adafruit_NeoPixel led_strip_2 = Adafruit_NeoPixel(7, LED_SIGNAL_2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip_3 = Adafruit_NeoPixel(7, LED_SIGNAL_3, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip_4 = Adafruit_NeoPixel(7, LED_SIGNAL_4, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel led_strip_5 = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel led_strip_6 = Adafruit_NeoPixel(7, LED_SIGNAL_2, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel led_strip_7 = Adafruit_NeoPixel(7, LED_SIGNAL_3, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel led_strip_8 = Adafruit_NeoPixel(7, LED_SIGNAL_4, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_5 = Adafruit_NeoPixel(7, LED_SIGNAL_5, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_6 = Adafruit_NeoPixel(7, LED_SIGNAL_6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_7 = Adafruit_NeoPixel(7, LED_SIGNAL_7, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel led_strip_8 = Adafruit_NeoPixel(7, LED_SIGNAL_8, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
@@ -2899,28 +2899,28 @@ void setBlockColor(uint8_t number, uint32_t color) {
       led_strip_3.show();
       break;
     case 37:
-      out37();
+      out40();
       for(int i=0;i<7;i++) {
         led_strip_3.setPixelColor(i, color);
       }
       led_strip_3.show();
       break;
     case 38:
-      out38();
+      out37();
       for(int i=0;i<7;i++) {
         led_strip_3.setPixelColor(i, color);
       }
       led_strip_3.show();
       break;
     case 39:
-      out39();
+      out38();
       for(int i=0;i<7;i++) {
         led_strip_3.setPixelColor(i, color);
       }
       led_strip_3.show();
       break;
     case 40:
-      out40();
+      out39();
       for(int i=0;i<7;i++) {
         led_strip_3.setPixelColor(i, color);
       }
