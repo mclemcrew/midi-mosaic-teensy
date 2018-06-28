@@ -574,8 +574,29 @@ void loop() {
 
   if (readString.length() >0) {
     Serial.println(readString);
-    if(readString=="hello world"){
-      Serial.println("This is right");
+    int commaIndex = readString.indexOf(',');
+    int secondCommaIndex = readString.indexOf(',', commaIndex + 1);
+    int thirdCommaIndex = readString.indexOf(',', secondCommaIndex + 1);
+    int fourthCommaIndex = readString.indexOf(',', thirdCommaIndex + 1);
+
+    String controlValue = readString.substring(0, commaIndex);
+    String numberValue = readString.substring(commaIndex + 1, secondCommaIndex);
+    String redValue = readString.substring(secondCommaIndex + 1, thirdCommaIndex);
+    String greenValue = readString.substring(thirdCommaIndex + 1, fourthCommaIndex);
+    String blueValue = readString.substring(fourthCommaIndex + 1);
+
+    Serial.println("Cntr: " + controlValue);
+    Serial.println("Num: " + numberValue);
+    Serial.println("Red: " + redValue);
+    Serial.println("Green: " + greenValue);
+    Serial.println("Blue: " + blueValue);
+    
+    int numberVal = numberValue.toInt();
+    int red = redValue.toInt();
+    int green = greenValue.toInt();
+    int blue = blueValue.toInt();
+    
+    if(controlValue=="a"){
       testBluetoothLEDLoop();
     }
     readString="";
