@@ -376,28 +376,175 @@ void loop() {
         note = usbMIDI.getData1();
         channel = usbMIDI.getChannel();
         Serial.println(String("Note On:  ch=") + channel + ", note=" + note);
+//        if(note==56) {
+//          setBlockColor(57,led_strip_4.Color(COLOR_57[0],COLOR_57[1],COLOR_57[2]));
+//        }
+//        if(note==57) {
+//          setBlockColor(58,led_strip_4.Color(COLOR_58[0],COLOR_58[1],COLOR_58[2]));
+//        }
+//        if(note==58) {
+//          setBlockColor(59,led_strip_4.Color(COLOR_59[0],COLOR_59[1],COLOR_59[2]));
+//        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(0,25,220));
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(0,25,220));
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(0,25,220));
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(0,25,220));
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(0,25,220));
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(0,25,220));
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(0,25,220));
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(0,25,220));
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(0,25,220));
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(0,25,220));
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(0,25,220));
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(0,25,220));
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(0,25,220));
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(0,25,220));
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(0,25,220));
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(0,25,220));
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(0,25,220));
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(0,25,220));
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(0,25,220));
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(0,25,220));
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(0,25,220));
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(0,25,220));
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(0,25,220));
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(0,25,220));
+        }
         if(note==56) {
-          setBlockColor(57,led_strip_4.Color(COLOR_57[0],COLOR_57[1],COLOR_57[2]));
+          setBlockColor(57,led_strip_4.Color(0,25,220));
         }
         if(note==57) {
-          setBlockColor(58,led_strip_4.Color(COLOR_58[0],COLOR_58[1],COLOR_58[2]));
-        }
-        if(note==58) {
-          setBlockColor(59,led_strip_4.Color(COLOR_59[0],COLOR_59[1],COLOR_59[2]));
+          setBlockColor(58,led_strip_4.Color(0,25,220));
         }
         break;
       case midi::NoteOff:
         note = usbMIDI.getData1();
         channel = usbMIDI.getChannel();
         Serial.println(String("Note Off: ch=") + channel + ", note=" + note);
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(0,0,0));
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(0,0,0));
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(0,0,0));
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(0,0,0));
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(0,0,0));
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(0,0,0));
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(0,0,0));
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(0,0,0));
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(0,0,0));
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(0,0,0));
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(0,0,0));
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(0,0,0));
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(0,0,0));
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(0,0,0));
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(0,0,0));
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(0,0,0));
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(0,0,0));
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(0,0,0));
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(0,0,0));
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(0,0,0));
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(0,0,0));
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(0,0,0));
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(0,0,0));
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(0,0,0));
+        }
         if(note==56) {
           setBlockColor(57,led_strip_4.Color(0,0,0));
         }
         if(note==57) {
           setBlockColor(58,led_strip_4.Color(0,0,0));
-        }
-        if(note==58) {
-          setBlockColor(59,led_strip_4.Color(0,0,0));
         }
         break;
       default:
@@ -3766,39 +3913,77 @@ void setBlockColor(uint8_t number, uint32_t color) {
 }
 
 void testBluetoothLEDLoop() {
-//  setBlockColor(4,led_strip_1.Color(COLOR_4[0],COLOR_4[1],COLOR_4[2]));
-//  setBlockColor(5,led_strip_1.Color(COLOR_5[0],COLOR_5[1],COLOR_5[2]));
-//  setBlockColor(6,led_strip_1.Color(COLOR_6[0],COLOR_6[1],COLOR_6[2]));
-//  setBlockColor(12,led_strip_1.Color(COLOR_12[0],COLOR_12[1],COLOR_12[2]));
-//  setBlockColor(13,led_strip_1.Color(COLOR_13[0],COLOR_13[1],COLOR_13[2]));
-//  setBlockColor(14,led_strip_1.Color(COLOR_14[0],COLOR_14[1],COLOR_14[2]));
-//  setBlockColor(20,led_strip_1.Color(COLOR_20[0],COLOR_20[1],COLOR_20[2]));
-//  setBlockColor(21,led_strip_1.Color(COLOR_21[0],COLOR_21[1],COLOR_21[2]));
-//  setBlockColor(22,led_strip_1.Color(COLOR_22[0],COLOR_22[1],COLOR_22[2]));
-//  setBlockColor(28,led_strip_1.Color(COLOR_28[0],COLOR_28[1],COLOR_28[2]));
-//  setBlockColor(29,led_strip_1.Color(COLOR_29[0],COLOR_29[1],COLOR_29[2]));
-//  setBlockColor(30,led_strip_1.Color(COLOR_30[0],COLOR_30[1],COLOR_30[2]));
-  for(int i=1;i<=128;i++) {
-    setBlockColor(i,led_strip_1.Color(255,30,0));
-    delay(10);
-  }
-  for(int i=1;i<=128;i++) {
-    setBlockColor(i,led_strip_1.Color(0,0,0));
-  }
+//  for(int i=1;i<=128;i++) {
+//    setBlockColor(i,led_strip_1.Color(255,30,0));
+//    delay(10);
+//  }
+//  for(int i=1;i<=128;i++) {
+//    setBlockColor(i,led_strip_1.Color(0,0,0));
+//  }
+//
+//  for(int i=128;i>=1;i--) {
+//    setBlockColor(i,led_strip_1.Color(0,100,255));
+//    delay(10);
+//  }
+//  for(int i=128;i>=1;i--) {
+//    setBlockColor(i,led_strip_1.Color(0,0,0));
+//  }
+//
+//  for(int i=1;i<=128;i++) {
+//    setBlockColor(i,led_strip_1.Color(255,0,0));
+//    delay(10);
+//  }
+//  for(int i=1;i<=128;i++) {
+//    setBlockColor(i,led_strip_1.Color(0,0,0));
+//  }
 
-  for(int i=128;i>=1;i--) {
-    setBlockColor(i,led_strip_1.Color(0,100,255));
-    delay(10);
-  }
-  for(int i=128;i>=1;i--) {
-    setBlockColor(i,led_strip_1.Color(0,0,0));
-  }
-
-  for(int i=1;i<=128;i++) {
-    setBlockColor(i,led_strip_1.Color(255,0,0));
-    delay(10);
-  }
-  for(int i=1;i<=128;i++) {
+  
+  setBlockColor(17,led_strip_1.Color(253,86,0));
+  setBlockColor(18,led_strip_1.Color(253,86,0));
+  setBlockColor(19,led_strip_1.Color(253,86,0));
+  setBlockColor(20,led_strip_1.Color(253,86,0));
+  setBlockColor(21,led_strip_1.Color(253,86,0));
+  setBlockColor(22,led_strip_1.Color(253,86,0));
+  setBlockColor(23,led_strip_1.Color(253,86,0));
+  setBlockColor(24,led_strip_1.Color(253,86,0));
+  setBlockColor(28,led_strip_1.Color(253,86,0));
+  setBlockColor(29,led_strip_1.Color(253,86,0));
+  setBlockColor(36,led_strip_1.Color(253,86,0));
+  setBlockColor(37,led_strip_1.Color(253,86,0));
+  setBlockColor(41,led_strip_1.Color(253,86,0));
+  setBlockColor(42,led_strip_1.Color(253,86,0));
+  setBlockColor(43,led_strip_1.Color(253,86,0));
+  setBlockColor(44,led_strip_1.Color(253,86,0));
+  setBlockColor(45,led_strip_1.Color(253,86,0));
+  setBlockColor(46,led_strip_1.Color(253,86,0));
+  setBlockColor(47,led_strip_1.Color(253,86,0));
+  setBlockColor(48,led_strip_1.Color(253,86,0));
+  setBlockColor(57,led_strip_1.Color(253,86,0));
+  setBlockColor(58,led_strip_1.Color(253,86,0));
+  setBlockColor(59,led_strip_1.Color(253,86,0));
+  setBlockColor(60,led_strip_1.Color(253,86,0));
+  setBlockColor(61,led_strip_1.Color(253,86,0));
+  setBlockColor(62,led_strip_1.Color(253,86,0));
+  setBlockColor(63,led_strip_1.Color(253,86,0));
+  setBlockColor(64,led_strip_1.Color(253,86,0));
+  setBlockColor(65,led_strip_1.Color(253,86,0));
+  setBlockColor(68,led_strip_1.Color(253,86,0));
+  setBlockColor(72,led_strip_1.Color(253,86,0));
+  setBlockColor(73,led_strip_1.Color(253,86,0));
+  setBlockColor(76,led_strip_1.Color(253,86,0));
+  setBlockColor(80,led_strip_1.Color(253,86,0));
+  setBlockColor(89,led_strip_1.Color(253,86,0));
+  setBlockColor(98,led_strip_1.Color(253,86,0));
+  setBlockColor(107,led_strip_1.Color(253,86,0));
+  setBlockColor(108,led_strip_1.Color(253,86,0));
+  setBlockColor(109,led_strip_1.Color(253,86,0));
+  setBlockColor(110,led_strip_1.Color(253,86,0));
+  setBlockColor(111,led_strip_1.Color(253,86,0));
+  setBlockColor(112,led_strip_1.Color(253,86,0));
+  setBlockColor(114,led_strip_1.Color(253,86,0));
+  setBlockColor(121,led_strip_1.Color(253,86,0));
+  delay(7000);
+    for(int i=1;i<=128;i++) {
     setBlockColor(i,led_strip_1.Color(0,0,0));
   }
 }
