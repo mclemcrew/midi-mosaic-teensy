@@ -456,183 +456,788 @@ void setup() {
 void loop() {
 
 
-  int type, note, channel;
+  int type, note, channel_observe;
   if (usbMIDI.read()) {                    // Is there a MIDI message incoming ?
     byte type = usbMIDI.getType();
     switch (type) {
       case midi::NoteOn:
         note = usbMIDI.getData1();
-        channel = usbMIDI.getChannel();
-        Serial.println(String("Note On:  ch=") + channel + ", note=" + note);
-//        if(note==56) {
-//          setBlockColor(57,led_strip_4.Color(COLOR_57[0],COLOR_57[1],COLOR_57[2]));
-//        }
-//        if(note==57) {
-//          setBlockColor(58,led_strip_4.Color(COLOR_58[0],COLOR_58[1],COLOR_58[2]));
-//        }
-//        if(note==58) {
-//          setBlockColor(59,led_strip_4.Color(COLOR_59[0],COLOR_59[1],COLOR_59[2]));
-//        }
+        channel_observe = usbMIDI.getChannel();
+        Serial.println(String("Note On:  ch=") + channel_observe + ", note=" + note);
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(ColorArray[0][0][0],ColorArray[0][0][1],ColorArray[0][0][2]));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(0,80,250));break;
+        }
         if(note==32) {
-          setBlockColor(33,led_strip_4.Color(0,25,220));
+          setBlockColor(33,led_strip_4.Color(0,80,250));break;
         }
         if(note==33) {
-          setBlockColor(34,led_strip_4.Color(0,25,220));
+          setBlockColor(34,led_strip_4.Color(0,80,250));break;
         }
         if(note==34) {
-          setBlockColor(35,led_strip_4.Color(0,25,220));
+          setBlockColor(35,led_strip_4.Color(0,80,250));break;
         }
         if(note==35) {
-          setBlockColor(36,led_strip_4.Color(0,25,220));
+          setBlockColor(36,led_strip_4.Color(0,80,250));break;
         }
         if(note==36) {
-          setBlockColor(37,led_strip_4.Color(0,25,220));
+          setBlockColor(37,led_strip_4.Color(0,80,250));break;
         }
         if(note==37) {
-          setBlockColor(38,led_strip_4.Color(0,25,220));
+          setBlockColor(38,led_strip_4.Color(0,80,250));break;
         }
         if(note==38) {
-          setBlockColor(39,led_strip_4.Color(0,25,220));
+          setBlockColor(39,led_strip_4.Color(0,80,250));break;
         }
         if(note==39) {
-          setBlockColor(40,led_strip_4.Color(0,25,220));
+          setBlockColor(40,led_strip_4.Color(0,80,250));break;
         }
         if(note==40) {
-          setBlockColor(41,led_strip_4.Color(0,25,220));
+          setBlockColor(41,led_strip_4.Color(0,80,250));break;
         }
         if(note==41) {
-          setBlockColor(42,led_strip_4.Color(0,25,220));
+          setBlockColor(42,led_strip_4.Color(0,80,250));break;
         }
         if(note==42) {
-          setBlockColor(43,led_strip_4.Color(0,25,220));
+          setBlockColor(43,led_strip_4.Color(0,80,250));break;
         }
         if(note==43) {
-          setBlockColor(44,led_strip_4.Color(0,25,220));
+          setBlockColor(44,led_strip_4.Color(0,80,250));break;
         }
         if(note==44) {
-          setBlockColor(45,led_strip_4.Color(0,25,220));
+          setBlockColor(45,led_strip_4.Color(0,80,250));break;
         }
         if(note==45) {
-          setBlockColor(46,led_strip_4.Color(0,25,220));
+          setBlockColor(46,led_strip_4.Color(0,80,250));break;
         }
         if(note==46) {
-          setBlockColor(47,led_strip_4.Color(0,25,220));
+          setBlockColor(47,led_strip_4.Color(0,80,250));break;
         }
         if(note==47) {
-          setBlockColor(48,led_strip_4.Color(0,25,220));
+          setBlockColor(48,led_strip_4.Color(0,80,250));break;
         }
         if(note==48) {
-          setBlockColor(49,led_strip_4.Color(0,25,220));
+          setBlockColor(49,led_strip_4.Color(0,80,250));break;
         }
         if(note==49) {
-          setBlockColor(50,led_strip_4.Color(0,25,220));
+          setBlockColor(50,led_strip_4.Color(0,80,250));break;
         }
         if(note==50) {
-          setBlockColor(51,led_strip_4.Color(0,25,220));
+          setBlockColor(51,led_strip_4.Color(0,80,250));break;
         }
         if(note==51) {
-          setBlockColor(52,led_strip_4.Color(0,25,220));
+          setBlockColor(52,led_strip_4.Color(0,80,250));break;
         }
         if(note==52) {
-          setBlockColor(53,led_strip_4.Color(0,25,220));
+          setBlockColor(53,led_strip_4.Color(0,80,250));break;
         }
         if(note==53) {
-          setBlockColor(54,led_strip_4.Color(0,25,220));
+          setBlockColor(54,led_strip_4.Color(0,80,250));break;
         }
         if(note==54) {
-          setBlockColor(55,led_strip_4.Color(0,25,220));
+          setBlockColor(55,led_strip_4.Color(0,80,250));break;
         }
         if(note==55) {
-          setBlockColor(56,led_strip_4.Color(0,25,220));
+          setBlockColor(56,led_strip_4.Color(0,80,250));break;
         }
         if(note==56) {
-          setBlockColor(57,led_strip_4.Color(0,25,220));
+          setBlockColor(57,led_strip_4.Color(0,80,250));break;
         }
         if(note==57) {
-          setBlockColor(58,led_strip_4.Color(0,25,220));
+          setBlockColor(58,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(0,80,250));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(0,80,250));
         }
         break;
       case midi::NoteOff:
         note = usbMIDI.getData1();
-        channel = usbMIDI.getChannel();
-        Serial.println(String("Note Off: ch=") + channel + ", note=" + note);
+        channel_observe = usbMIDI.getChannel();
+        Serial.println(String("Note Off: ch=") + channel_observe + ", note=" + note);
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(0,0,0));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(0,0,0));break;
+        }
         if(note==32) {
-          setBlockColor(33,led_strip_4.Color(0,0,0));
+          setBlockColor(33,led_strip_4.Color(0,0,0));break;
         }
         if(note==33) {
-          setBlockColor(34,led_strip_4.Color(0,0,0));
+          setBlockColor(34,led_strip_4.Color(0,0,0));break;
         }
         if(note==34) {
-          setBlockColor(35,led_strip_4.Color(0,0,0));
+          setBlockColor(35,led_strip_4.Color(0,0,0));break;
         }
         if(note==35) {
-          setBlockColor(36,led_strip_4.Color(0,0,0));
+          setBlockColor(36,led_strip_4.Color(0,0,0));break;
         }
         if(note==36) {
-          setBlockColor(37,led_strip_4.Color(0,0,0));
+          setBlockColor(37,led_strip_4.Color(0,0,0));break;
         }
         if(note==37) {
-          setBlockColor(38,led_strip_4.Color(0,0,0));
+          setBlockColor(38,led_strip_4.Color(0,0,0));break;
         }
         if(note==38) {
-          setBlockColor(39,led_strip_4.Color(0,0,0));
+          setBlockColor(39,led_strip_4.Color(0,0,0));break;
         }
         if(note==39) {
-          setBlockColor(40,led_strip_4.Color(0,0,0));
+          setBlockColor(40,led_strip_4.Color(0,0,0));break;
         }
         if(note==40) {
-          setBlockColor(41,led_strip_4.Color(0,0,0));
+          setBlockColor(41,led_strip_4.Color(0,0,0));break;
         }
         if(note==41) {
-          setBlockColor(42,led_strip_4.Color(0,0,0));
+          setBlockColor(42,led_strip_4.Color(0,0,0));break;
         }
         if(note==42) {
-          setBlockColor(43,led_strip_4.Color(0,0,0));
+          setBlockColor(43,led_strip_4.Color(0,0,0));break;
         }
         if(note==43) {
-          setBlockColor(44,led_strip_4.Color(0,0,0));
+          setBlockColor(44,led_strip_4.Color(0,0,0));break;
         }
         if(note==44) {
-          setBlockColor(45,led_strip_4.Color(0,0,0));
+          setBlockColor(45,led_strip_4.Color(0,0,0));break;
         }
         if(note==45) {
-          setBlockColor(46,led_strip_4.Color(0,0,0));
+          setBlockColor(46,led_strip_4.Color(0,0,0));break;
         }
         if(note==46) {
-          setBlockColor(47,led_strip_4.Color(0,0,0));
+          setBlockColor(47,led_strip_4.Color(0,0,0));break;
         }
         if(note==47) {
-          setBlockColor(48,led_strip_4.Color(0,0,0));
+          setBlockColor(48,led_strip_4.Color(0,0,0));break;
         }
         if(note==48) {
-          setBlockColor(49,led_strip_4.Color(0,0,0));
+          setBlockColor(49,led_strip_4.Color(0,0,0));break;
         }
         if(note==49) {
-          setBlockColor(50,led_strip_4.Color(0,0,0));
+          setBlockColor(50,led_strip_4.Color(0,0,0));break;
         }
         if(note==50) {
-          setBlockColor(51,led_strip_4.Color(0,0,0));
+          setBlockColor(51,led_strip_4.Color(0,0,0));break;
         }
         if(note==51) {
-          setBlockColor(52,led_strip_4.Color(0,0,0));
+          setBlockColor(52,led_strip_4.Color(0,0,0));break;
         }
         if(note==52) {
-          setBlockColor(53,led_strip_4.Color(0,0,0));
+          setBlockColor(53,led_strip_4.Color(0,0,0));break;
         }
         if(note==53) {
-          setBlockColor(54,led_strip_4.Color(0,0,0));
+          setBlockColor(54,led_strip_4.Color(0,0,0));break;
         }
         if(note==54) {
-          setBlockColor(55,led_strip_4.Color(0,0,0));
+          setBlockColor(55,led_strip_4.Color(0,0,0));break;
         }
         if(note==55) {
-          setBlockColor(56,led_strip_4.Color(0,0,0));
+          setBlockColor(56,led_strip_4.Color(0,0,0));break;
         }
         if(note==56) {
-          setBlockColor(57,led_strip_4.Color(0,0,0));
+          setBlockColor(57,led_strip_4.Color(0,0,0));break;
         }
         if(note==57) {
-          setBlockColor(58,led_strip_4.Color(0,0,0));
+          setBlockColor(58,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(0,0,0));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(0,0,0));
         }
         break;
       default:
@@ -702,7 +1307,7 @@ void loop() {
       for(int i=1;i<=128;i++) {
         setBlockColor(i,led_strip_1.Color(red,green,blue));
       }
-      delay(5000);
+      delay(2500);
       for(int i=1;i<=128;i++) {
         setBlockColor(i,led_strip_1.Color(0,0,0));
       }
@@ -713,7 +1318,7 @@ void loop() {
       ColorArray[divisor][remainder][1] = green;
       ColorArray[divisor][remainder][2] = blue;
       setBlockColor(numberVal,led_strip_1.Color(red,green,blue));
-      delay(5000);
+      delay(2500);
       setBlockColor(numberVal,led_strip_1.Color(0,0,0));
     }
     if(controlValue=="r"){
@@ -725,7 +1330,7 @@ void loop() {
       for(int i=0;i<16;i++) {
         setBlockColor(numberVal+(i*8),led_strip_1.Color(red,green,blue));
       }
-      delay(5000);
+      delay(2500);
       for(int i=0;i<16;i++) {
         setBlockColor(numberVal+(i*8),led_strip_1.Color(0,0,0));
       }
@@ -739,7 +1344,7 @@ void loop() {
       for(int i=1;i<=8;i++) {
         setBlockColor((numberVal-1)*8+i,led_strip_1.Color(red,green,blue));
       }
-      delay(5000);
+      delay(2500);
       for(int i=1;i<=8;i++) {
         setBlockColor((numberVal-1)*8+i,led_strip_1.Color(0,0,0));
       }
@@ -759,7 +1364,7 @@ void loop() {
       }
       if(i==10) {
         usbMIDI.sendNoteOn(1, 99, channel);  
-        setBlockColor(2,led_strip_1.Color(COLOR_2[0],COLOR_2[1],COLOR_2[2]));
+        setBlockColor(2,led_strip_1.Color(ColorArray[0][1][0],ColorArray[0][1][1],ColorArray[0][1][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(2, 99, channel);  
@@ -767,39 +1372,39 @@ void loop() {
       }
       if(i==8) {
         usbMIDI.sendNoteOn(3, 99, channel);  
-        setBlockColor(4,led_strip_1.Color(COLOR_4[0],COLOR_4[1],COLOR_4[2]));
+        setBlockColor(4,led_strip_1.Color(ColorArray[0][3][0],ColorArray[0][3][1],ColorArray[0][3][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(4, 99, channel);
-        setBlockColor(5,led_strip_1.Color(COLOR_5[0],COLOR_5[1],COLOR_5[2])); 
+        setBlockColor(5,led_strip_1.Color(ColorArray[0][4][0],ColorArray[0][4][1],ColorArray[0][4][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(5, 99, channel);  
-        setBlockColor(6,led_strip_1.Color(COLOR_6[0],COLOR_6[1],COLOR_6[2]));
+        setBlockColor(6,led_strip_1.Color(ColorArray[0][5][0],ColorArray[0][5][1],ColorArray[0][5][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(6, 99, channel);  
-        setBlockColor(7,led_strip_1.Color(COLOR_7[0],COLOR_7[1],COLOR_7[2]));
+        setBlockColor(7,led_strip_1.Color(ColorArray[0][6][0],ColorArray[0][6][1],ColorArray[0][6][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(7, 99, channel);  
-        setBlockColor(8,led_strip_1.Color(COLOR_8[0],COLOR_8[1],COLOR_8[2]));
+        setBlockColor(8,led_strip_1.Color(ColorArray[0][7][0],ColorArray[0][7][1],ColorArray[0][7][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(8, 99, channel);  
-        setBlockColor(9,led_strip_1.Color(COLOR_9[0],COLOR_9[1],COLOR_9[2]));
+        setBlockColor(9,led_strip_1.Color(ColorArray[1][0][0],ColorArray[1][0][1],ColorArray[1][0][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(9, 99, channel);  
-        setBlockColor(10,led_strip_1.Color(COLOR_10[0],COLOR_10[1],COLOR_10[2]));
+        setBlockColor(10,led_strip_1.Color(ColorArray[1][1][0],ColorArray[1][1][1],ColorArray[1][1][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(10, 99, channel);  
-        setBlockColor(11,led_strip_1.Color(COLOR_11[0],COLOR_11[1],COLOR_11[2]));
+        setBlockColor(11,led_strip_1.Color(ColorArray[1][2][0],ColorArray[1][2][1],ColorArray[1][2][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(11, 99, channel);  
-        setBlockColor(12,led_strip_1.Color(COLOR_12[0],COLOR_12[1],COLOR_12[2]));
+        setBlockColor(12,led_strip_1.Color(ColorArray[1][3][0],ColorArray[1][3][1],ColorArray[1][3][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -859,51 +1464,51 @@ void loop() {
     if ((currtouched2 & _BV(i)) && !(lasttouched2 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(12, 99, channel);  // 60 = C4
-        setBlockColor(13,led_strip_1.Color(COLOR_13[0],COLOR_13[1],COLOR_13[2]));
+        setBlockColor(13,led_strip_1.Color(ColorArray[1][4][0],ColorArray[1][4][1],ColorArray[1][4][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(13, 99, channel);  
-        setBlockColor(14,led_strip_1.Color(COLOR_14[0],COLOR_14[1],COLOR_14[2]));
+        setBlockColor(14,led_strip_1.Color(ColorArray[1][5][0],ColorArray[1][5][1],ColorArray[1][5][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(14, 99, channel);  
-        setBlockColor(15,led_strip_1.Color(COLOR_15[0],COLOR_15[1],COLOR_15[2]));
+        setBlockColor(15,led_strip_1.Color(ColorArray[1][6][0],ColorArray[1][6][1],ColorArray[1][6][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(15, 99, channel);  
-        setBlockColor(16,led_strip_1.Color(COLOR_16[0],COLOR_16[1],COLOR_16[2]));
+        setBlockColor(16,led_strip_1.Color(ColorArray[1][7][0],ColorArray[1][7][1],ColorArray[1][7][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(16, 99, channel);
-        setBlockColor(17,led_strip_2.Color(COLOR_17[0],COLOR_17[1],COLOR_17[2])); 
+        setBlockColor(17,led_strip_2.Color(ColorArray[2][0][0],ColorArray[2][0][1],ColorArray[2][0][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(17, 99, channel);  
-        setBlockColor(18,led_strip_2.Color(COLOR_18[0],COLOR_18[1],COLOR_18[2]));
+        setBlockColor(18,led_strip_2.Color(ColorArray[2][1][0],ColorArray[2][1][1],ColorArray[2][1][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(18, 99, channel);  
-        setBlockColor(19,led_strip_2.Color(COLOR_19[0],COLOR_19[1],COLOR_19[2]));
+        setBlockColor(19,led_strip_2.Color(ColorArray[2][2][0],ColorArray[2][2][1],ColorArray[2][2][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(19, 99, channel);  
-        setBlockColor(20,led_strip_2.Color(COLOR_20[0],COLOR_20[1],COLOR_20[2]));
+        setBlockColor(20,led_strip_2.Color(ColorArray[2][3][0],ColorArray[2][3][1],ColorArray[2][3][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(20, 99, channel);  
-        setBlockColor(21,led_strip_2.Color(COLOR_21[0],COLOR_21[1],COLOR_21[2]));
+        setBlockColor(21,led_strip_2.Color(ColorArray[2][4][0],ColorArray[2][4][1],ColorArray[2][4][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(21, 99, channel);  
-        setBlockColor(22,led_strip_2.Color(COLOR_22[0],COLOR_22[1],COLOR_22[2]));
+        setBlockColor(22,led_strip_2.Color(ColorArray[2][5][0],ColorArray[2][5][1],ColorArray[2][5][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(22, 99, channel);  
-        setBlockColor(23,led_strip_2.Color(COLOR_23[0],COLOR_23[1],COLOR_23[2]));
+        setBlockColor(23,led_strip_2.Color(ColorArray[2][6][0],ColorArray[2][6][1],ColorArray[2][6][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(23, 99, channel);  
-        setBlockColor(24,led_strip_2.Color(COLOR_24[0],COLOR_24[1],COLOR_24[2]));
+        setBlockColor(24,led_strip_2.Color(ColorArray[2][7][0],ColorArray[2][7][1],ColorArray[2][7][2]));
       }
       Serial.print(i); Serial.println(" touched on MPR 1");
     }
@@ -962,51 +1567,51 @@ void loop() {
     if ((currtouched3 & _BV(i)) && !(lasttouched3 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(24, 99, channel);  // 60 = C4
-        setBlockColor(25,led_strip_2.Color(COLOR_25[0],COLOR_25[1],COLOR_25[2]));
+        setBlockColor(25,led_strip_2.Color(ColorArray[3][0][0],ColorArray[3][0][1],ColorArray[3][0][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(25, 99, channel);  
-        setBlockColor(26,led_strip_2.Color(COLOR_26[0],COLOR_26[1],COLOR_26[2]));
+        setBlockColor(26,led_strip_2.Color(ColorArray[3][1][0],ColorArray[3][1][1],ColorArray[3][1][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(26, 99, channel);  
-        setBlockColor(27,led_strip_2.Color(COLOR_27[0],COLOR_27[1],COLOR_27[2]));
+        setBlockColor(27,led_strip_2.Color(ColorArray[3][2][0],ColorArray[3][2][1],ColorArray[3][2][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(27, 99, channel);  
-        setBlockColor(28,led_strip_2.Color(COLOR_28[0],COLOR_28[1],COLOR_28[2]));
+        setBlockColor(28,led_strip_2.Color(ColorArray[3][3][0],ColorArray[3][3][1],ColorArray[3][3][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(28, 99, channel);
-        setBlockColor(29,led_strip_2.Color(COLOR_29[0],COLOR_29[1],COLOR_29[2])); 
+        setBlockColor(29,led_strip_2.Color(ColorArray[3][4][0],ColorArray[3][4][1],ColorArray[3][4][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(29, 99, channel);  
-        setBlockColor(30,led_strip_2.Color(COLOR_30[0],COLOR_30[1],COLOR_30[2]));
+        setBlockColor(30,led_strip_2.Color(ColorArray[3][5][0],ColorArray[3][5][1],ColorArray[3][5][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(30, 99, channel);  
-        setBlockColor(31,led_strip_2.Color(COLOR_31[0],COLOR_31[1],COLOR_31[2]));
+        setBlockColor(31,led_strip_2.Color(ColorArray[3][6][0],ColorArray[3][6][1],ColorArray[3][6][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(31, 99, channel);  
-        setBlockColor(32,led_strip_2.Color(COLOR_32[0],COLOR_32[1],COLOR_32[2]));
+        setBlockColor(32,led_strip_2.Color(ColorArray[3][7][0],ColorArray[3][7][1],ColorArray[3][7][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(32, 99, channel);  
-        setBlockColor(33,led_strip_3.Color(COLOR_33[0],COLOR_33[1],COLOR_33[2]));
+        setBlockColor(33,led_strip_3.Color(ColorArray[4][0][0],ColorArray[4][0][1],ColorArray[4][0][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(33, 99, channel);  
-        setBlockColor(34,led_strip_3.Color(COLOR_34[0],COLOR_34[1],COLOR_34[2]));
+        setBlockColor(34,led_strip_3.Color(ColorArray[4][1][0],ColorArray[4][1][1],ColorArray[4][1][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(34, 99, channel);  
-        setBlockColor(35,led_strip_3.Color(COLOR_35[0],COLOR_35[1],COLOR_35[2]));
+        setBlockColor(35,led_strip_3.Color(ColorArray[4][2][0],ColorArray[4][2][1],ColorArray[4][2][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(35, 99, channel);  
-        setBlockColor(36,led_strip_3.Color(COLOR_36[0],COLOR_36[1],COLOR_36[2]));
+        setBlockColor(36,led_strip_3.Color(ColorArray[4][3][0],ColorArray[4][3][1],ColorArray[4][3][2]));
       }
       Serial.print(i); Serial.println(" touched on MPR 2");
     }
@@ -1065,51 +1670,51 @@ void loop() {
     if ((currtouched4 & _BV(i)) && !(lasttouched4 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(36, 99, channel);  // 60 = C4
-        setBlockColor(37,led_strip_3.Color(COLOR_37[0],COLOR_37[1],COLOR_37[2]));
+        setBlockColor(37,led_strip_3.Color(ColorArray[4][4][0],ColorArray[4][4][1],ColorArray[4][4][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(37, 99, channel);  
-        setBlockColor(38,led_strip_3.Color(COLOR_38[0],COLOR_38[1],COLOR_38[2]));
+        setBlockColor(38,led_strip_3.Color(ColorArray[4][5][0],ColorArray[4][5][1],ColorArray[4][5][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(38, 99, channel);  
-        setBlockColor(39,led_strip_3.Color(COLOR_39[0],COLOR_39[1],COLOR_39[2]));
+        setBlockColor(39,led_strip_3.Color(ColorArray[4][6][0],ColorArray[4][6][1],ColorArray[4][6][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(39, 99, channel);  
-        setBlockColor(40,led_strip_3.Color(COLOR_40[0],COLOR_40[1],COLOR_40[2]));
+        setBlockColor(40,led_strip_3.Color(ColorArray[4][7][0],ColorArray[4][7][1],ColorArray[4][7][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(40, 99, channel);
-        setBlockColor(41,led_strip_3.Color(COLOR_41[0],COLOR_41[1],COLOR_41[2])); 
+        setBlockColor(41,led_strip_3.Color(ColorArray[5][0][0],ColorArray[5][0][1],ColorArray[5][0][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(41, 99, channel);  
-        setBlockColor(42,led_strip_3.Color(COLOR_42[0],COLOR_42[1],COLOR_42[2]));
+        setBlockColor(42,led_strip_3.Color(ColorArray[5][1][0],ColorArray[5][1][1],ColorArray[5][1][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(42, 99, channel);  
-        setBlockColor(43,led_strip_3.Color(COLOR_43[0],COLOR_43[1],COLOR_43[2]));
+        setBlockColor(43,led_strip_3.Color(ColorArray[5][2][0],ColorArray[5][2][1],ColorArray[5][2][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(43, 99, channel);  
-        setBlockColor(44,led_strip_3.Color(COLOR_44[0],COLOR_44[1],COLOR_44[2]));
+        setBlockColor(44,led_strip_3.Color(ColorArray[5][3][0],ColorArray[5][3][1],ColorArray[5][3][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(44, 99, channel);  
-        setBlockColor(45,led_strip_3.Color(COLOR_45[0],COLOR_45[1],COLOR_45[2]));
+        setBlockColor(45,led_strip_3.Color(ColorArray[5][4][0],ColorArray[5][4][1],ColorArray[5][4][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(45, 99, channel);  
-        setBlockColor(46,led_strip_3.Color(COLOR_46[0],COLOR_46[1],COLOR_46[2]));
+        setBlockColor(46,led_strip_3.Color(ColorArray[5][5][0],ColorArray[5][5][1],ColorArray[5][5][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(46, 99, channel);  
-        setBlockColor(47,led_strip_3.Color(COLOR_47[0],COLOR_47[1],COLOR_47[2]));
+        setBlockColor(47,led_strip_3.Color(ColorArray[5][6][0],ColorArray[5][6][1],ColorArray[5][6][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(47, 99, channel);  
-        setBlockColor(48,led_strip_3.Color(COLOR_48[0],COLOR_48[1],COLOR_48[2]));
+        setBlockColor(48,led_strip_3.Color(ColorArray[5][7][0],ColorArray[5][7][1],ColorArray[5][7][2]));
       }
       Serial.print(i); Serial.println(" touched on MPR 3");
     }
@@ -1168,51 +1773,51 @@ void loop() {
     if ((currtouched5 & _BV(i)) && !(lasttouched5 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(48, 99, channel);  // 60 = C4
-        setBlockColor(49,led_strip_4.Color(COLOR_49[0],COLOR_49[1],COLOR_49[2]));
+        setBlockColor(49,led_strip_4.Color(ColorArray[6][0][0],ColorArray[6][0][1],ColorArray[6][0][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(49, 99, channel);  
-        setBlockColor(50,led_strip_4.Color(COLOR_50[0],COLOR_50[1],COLOR_50[2]));
+        setBlockColor(50,led_strip_4.Color(ColorArray[6][1][0],ColorArray[6][1][1],ColorArray[6][1][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(50, 99, channel);  
-        setBlockColor(51,led_strip_4.Color(COLOR_51[0],COLOR_51[1],COLOR_51[2]));
+        setBlockColor(51,led_strip_4.Color(ColorArray[6][2][0],ColorArray[6][2][1],ColorArray[6][2][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(51, 99, channel);  
-        setBlockColor(52,led_strip_4.Color(COLOR_52[0],COLOR_52[1],COLOR_52[2]));
+        setBlockColor(52,led_strip_4.Color(ColorArray[6][3][0],ColorArray[6][3][1],ColorArray[6][3][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(52, 99, channel);
-        setBlockColor(53,led_strip_4.Color(COLOR_53[0],COLOR_53[1],COLOR_53[2])); 
+        setBlockColor(53,led_strip_4.Color(ColorArray[6][4][0],ColorArray[6][4][1],ColorArray[6][4][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(53, 99, channel);  
-        setBlockColor(54,led_strip_4.Color(COLOR_54[0],COLOR_54[1],COLOR_54[2]));
+        setBlockColor(54,led_strip_4.Color(ColorArray[6][5][0],ColorArray[6][5][1],ColorArray[6][5][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(54, 99, channel);  
-        setBlockColor(55,led_strip_4.Color(COLOR_55[0],COLOR_55[1],COLOR_55[2]));
+        setBlockColor(55,led_strip_4.Color(ColorArray[6][6][0],ColorArray[6][6][1],ColorArray[6][6][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(55, 99, channel);  
-        setBlockColor(56,led_strip_4.Color(COLOR_56[0],COLOR_56[1],COLOR_56[2]));
+        setBlockColor(56,led_strip_4.Color(ColorArray[6][7][0],ColorArray[6][7][1],ColorArray[6][7][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(56, 99, channel);  
-        setBlockColor(57,led_strip_4.Color(COLOR_57[0],COLOR_57[1],COLOR_57[2]));
+        setBlockColor(57,led_strip_4.Color(ColorArray[7][0][0],ColorArray[7][0][1],ColorArray[7][0][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(57, 99, channel);  
-        setBlockColor(58,led_strip_4.Color(COLOR_58[0],COLOR_58[1],COLOR_58[2]));
+        setBlockColor(58,led_strip_4.Color(ColorArray[7][1][0],ColorArray[7][1][1],ColorArray[7][1][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(58, 99, channel);  
-        setBlockColor(59,led_strip_4.Color(COLOR_59[0],COLOR_59[1],COLOR_59[2]));
+        setBlockColor(59,led_strip_4.Color(ColorArray[7][2][0],ColorArray[7][2][1],ColorArray[7][2][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(59, 99, channel);  
-        setBlockColor(60,led_strip_4.Color(COLOR_60[0],COLOR_60[1],COLOR_60[2]));
+        setBlockColor(60,led_strip_4.Color(ColorArray[7][3][0],ColorArray[7][3][1],ColorArray[7][3][2]));
       }
       Serial.print(i); Serial.println(" touched on MPR 4");
     }
@@ -1271,51 +1876,51 @@ void loop() {
     if ((currtouched6 & _BV(i)) && !(lasttouched6 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
-        setBlockColor(61,led_strip_4.Color(COLOR_61[0],COLOR_61[1],COLOR_61[2]));
+        setBlockColor(61,led_strip_4.Color(ColorArray[7][4][0],ColorArray[7][4][1],ColorArray[7][4][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(61, 99, channel);  
-        setBlockColor(62,led_strip_4.Color(COLOR_62[0],COLOR_62[1],COLOR_62[2]));
+        setBlockColor(62,led_strip_4.Color(ColorArray[7][5][0],ColorArray[7][5][1],ColorArray[7][5][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(62, 99, channel);  
-        setBlockColor(63,led_strip_4.Color(COLOR_63[0],COLOR_63[1],COLOR_63[2]));
+        setBlockColor(63,led_strip_4.Color(ColorArray[7][6][0],ColorArray[7][6][1],ColorArray[7][6][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(63, 99, channel);  
-        setBlockColor(64,led_strip_4.Color(COLOR_64[0],COLOR_64[1],COLOR_64[2]));
+        setBlockColor(64,led_strip_4.Color(ColorArray[7][7][0],ColorArray[7][7][1],ColorArray[7][7][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(64, 99, channel);
-        setBlockColor(65,led_strip_5.Color(COLOR_65[0],COLOR_65[1],COLOR_65[2])); 
+        setBlockColor(65,led_strip_5.Color(ColorArray[8][0][0],ColorArray[8][0][1],ColorArray[8][0][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(65, 99, channel);  
-        setBlockColor(66,led_strip_5.Color(COLOR_66[0],COLOR_66[1],COLOR_66[2]));
+        setBlockColor(66,led_strip_5.Color(ColorArray[8][1][0],ColorArray[8][1][1],ColorArray[8][1][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(66, 99, channel);  
-        setBlockColor(67,led_strip_5.Color(COLOR_67[0],COLOR_67[1],COLOR_67[2]));
+        setBlockColor(67,led_strip_5.Color(ColorArray[8][2][0],ColorArray[8][2][1],ColorArray[8][2][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(67, 99, channel);  
-        setBlockColor(68,led_strip_5.Color(COLOR_68[0],COLOR_68[1],COLOR_68[2]));
+        setBlockColor(68,led_strip_5.Color(ColorArray[8][3][0],ColorArray[8][3][1],ColorArray[8][3][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(68, 99, channel);  
-        setBlockColor(69,led_strip_5.Color(COLOR_69[0],COLOR_69[1],COLOR_69[2]));
+        setBlockColor(69,led_strip_5.Color(ColorArray[8][4][0],ColorArray[8][4][1],ColorArray[8][4][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(69, 99, channel);  
-        setBlockColor(70,led_strip_5.Color(COLOR_70[0],COLOR_70[1],COLOR_70[2]));
+        setBlockColor(70,led_strip_5.Color(ColorArray[8][5][0],ColorArray[8][5][1],ColorArray[8][5][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(70, 99, channel);  
-        setBlockColor(71,led_strip_5.Color(COLOR_71[0],COLOR_71[1],COLOR_71[2]));
+        setBlockColor(71,led_strip_5.Color(ColorArray[8][6][0],ColorArray[8][6][1],ColorArray[8][6][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(71, 99, channel);  
-        setBlockColor(72,led_strip_5.Color(COLOR_72[0],COLOR_72[1],COLOR_72[2]));
+        setBlockColor(72,led_strip_5.Color(ColorArray[8][7][0],ColorArray[8][7][1],ColorArray[8][7][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1374,51 +1979,51 @@ void loop() {
     if ((currtouched7 & _BV(i)) && !(lasttouched7 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(72, 99, channel);  // 60 = C4
-        setBlockColor(73,led_strip_5.Color(COLOR_73[0],COLOR_73[1],COLOR_73[2]));
+        setBlockColor(73,led_strip_5.Color(ColorArray[9][0][0],ColorArray[9][0][1],ColorArray[9][0][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(73, 99, channel);  
-        setBlockColor(74,led_strip_5.Color(COLOR_74[0],COLOR_74[1],COLOR_74[2]));
+        setBlockColor(74,led_strip_5.Color(ColorArray[9][1][0],ColorArray[9][1][1],ColorArray[9][1][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(74, 99, channel);  
-        setBlockColor(75,led_strip_5.Color(COLOR_75[0],COLOR_75[1],COLOR_75[2]));
+        setBlockColor(75,led_strip_5.Color(ColorArray[9][2][0],ColorArray[9][2][1],ColorArray[9][2][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(75, 99, channel);  
-        setBlockColor(76,led_strip_5.Color(COLOR_76[0],COLOR_76[1],COLOR_76[2]));
+        setBlockColor(76,led_strip_5.Color(ColorArray[9][3][0],ColorArray[9][3][1],ColorArray[9][3][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(76, 99, channel);
-        setBlockColor(77,led_strip_5.Color(COLOR_77[0],COLOR_77[1],COLOR_77[2])); 
+        setBlockColor(77,led_strip_5.Color(ColorArray[9][4][0],ColorArray[9][4][1],ColorArray[9][4][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(77, 99, channel);  
-        setBlockColor(78,led_strip_5.Color(COLOR_78[0],COLOR_78[1],COLOR_78[2]));
+        setBlockColor(78,led_strip_5.Color(ColorArray[9][5][0],ColorArray[9][5][1],ColorArray[9][5][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(78, 99, channel);  
-        setBlockColor(79,led_strip_5.Color(COLOR_79[0],COLOR_79[1],COLOR_79[2]));
+        setBlockColor(79,led_strip_5.Color(ColorArray[9][6][0],ColorArray[9][6][1],ColorArray[9][6][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(79, 99, channel);  
-        setBlockColor(80,led_strip_5.Color(COLOR_80[0],COLOR_80[1],COLOR_80[2]));
+        setBlockColor(80,led_strip_5.Color(ColorArray[9][7][0],ColorArray[9][7][1],ColorArray[9][7][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(80, 99, channel);  
-        setBlockColor(81,led_strip_5.Color(COLOR_81[0],COLOR_81[1],COLOR_81[2]));
+        setBlockColor(81,led_strip_5.Color(ColorArray[10][0][0],ColorArray[10][0][1],ColorArray[10][0][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(81, 99, channel);  
-        setBlockColor(82,led_strip_5.Color(COLOR_82[0],COLOR_82[1],COLOR_82[2]));
+        setBlockColor(82,led_strip_5.Color(ColorArray[10][1][0],ColorArray[10][1][1],ColorArray[10][1][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(82, 99, channel);  
-        setBlockColor(83,led_strip_5.Color(COLOR_83[0],COLOR_83[1],COLOR_83[2]));
+        setBlockColor(83,led_strip_5.Color(ColorArray[10][2][0],ColorArray[10][2][1],ColorArray[10][2][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(83, 99, channel);  
-        setBlockColor(84,led_strip_5.Color(COLOR_84[0],COLOR_84[1],COLOR_84[2]));
+        setBlockColor(84,led_strip_5.Color(ColorArray[10][3][0],ColorArray[10][3][1],ColorArray[10][3][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1477,51 +2082,51 @@ void loop() {
     if ((currtouched8 & _BV(i)) && !(lasttouched8 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(84, 99, channel);  // 60 = C4
-        setBlockColor(85,led_strip_5.Color(COLOR_85[0],COLOR_85[1],COLOR_85[2]));
+        setBlockColor(85,led_strip_5.Color(ColorArray[10][4][0],ColorArray[10][4][1],ColorArray[10][4][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(85, 99, channel);  
-        setBlockColor(86,led_strip_5.Color(COLOR_86[0],COLOR_86[1],COLOR_86[2]));
+        setBlockColor(86,led_strip_5.Color(ColorArray[10][5][0],ColorArray[10][5][1],ColorArray[10][5][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(86, 99, channel);  
-        setBlockColor(87,led_strip_5.Color(COLOR_87[0],COLOR_87[1],COLOR_87[2]));
+        setBlockColor(87,led_strip_5.Color(ColorArray[10][6][0],ColorArray[10][6][1],ColorArray[10][6][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(87, 99, channel);  
-        setBlockColor(88,led_strip_5.Color(COLOR_88[0],COLOR_88[1],COLOR_88[2]));
+        setBlockColor(88,led_strip_5.Color(ColorArray[10][7][0],ColorArray[10][7][1],ColorArray[10][7][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(88, 99, channel);
-        setBlockColor(89,led_strip_6.Color(COLOR_89[0],COLOR_89[1],COLOR_89[2])); 
+        setBlockColor(89,led_strip_6.Color(ColorArray[11][0][0],ColorArray[11][0][1],ColorArray[11][0][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(89, 99, channel);  
-        setBlockColor(90,led_strip_6.Color(COLOR_90[0],COLOR_90[1],COLOR_90[2]));
+        setBlockColor(90,led_strip_6.Color(ColorArray[11][1][0],ColorArray[11][1][1],ColorArray[11][1][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(90, 99, channel);  
-        setBlockColor(91,led_strip_6.Color(COLOR_91[0],COLOR_91[1],COLOR_91[2]));
+        setBlockColor(91,led_strip_6.Color(ColorArray[11][2][0],ColorArray[11][2][1],ColorArray[11][2][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(91, 99, channel);  
-        setBlockColor(92,led_strip_6.Color(COLOR_92[0],COLOR_92[1],COLOR_92[2]));
+        setBlockColor(92,led_strip_6.Color(ColorArray[11][3][0],ColorArray[11][3][1],ColorArray[11][3][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(92, 99, channel);  
-        setBlockColor(93,led_strip_6.Color(COLOR_93[0],COLOR_93[1],COLOR_93[2]));
+        setBlockColor(93,led_strip_6.Color(ColorArray[11][4][0],ColorArray[11][4][1],ColorArray[11][4][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(93, 99, channel);  
-        setBlockColor(94,led_strip_6.Color(COLOR_94[0],COLOR_94[1],COLOR_94[2]));
+        setBlockColor(94,led_strip_6.Color(ColorArray[11][5][0],ColorArray[11][5][1],ColorArray[11][5][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(94, 99, channel);  
-        setBlockColor(95,led_strip_6.Color(COLOR_95[0],COLOR_95[1],COLOR_95[2]));
+        setBlockColor(95,led_strip_6.Color(ColorArray[11][6][0],ColorArray[11][6][1],ColorArray[11][6][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(95, 99, channel);  
-        setBlockColor(96,led_strip_6.Color(COLOR_96[0],COLOR_96[1],COLOR_96[2]));
+        setBlockColor(96,led_strip_6.Color(ColorArray[11][7][0],ColorArray[11][7][1],ColorArray[11][7][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1580,47 +2185,47 @@ void loop() {
     if ((currtouched9 & _BV(i)) && !(lasttouched9 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(96, 99, channel);  // 60 = C4
-        setBlockColor(97,led_strip_6.Color(COLOR_97[0],COLOR_97[1],COLOR_97[2]));
+        setBlockColor(97,led_strip_6.Color(ColorArray[12][0][0],ColorArray[12][0][1],ColorArray[12][0][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(97, 99, channel);  
-        setBlockColor(98,led_strip_6.Color(COLOR_98[0],COLOR_98[1],COLOR_98[2]));
+        setBlockColor(98,led_strip_6.Color(ColorArray[12][1][0],ColorArray[12][1][1],ColorArray[12][1][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(98, 99, channel);  
-        setBlockColor(99,led_strip_6.Color(COLOR_99[0],COLOR_99[1],COLOR_99[2]));
+        setBlockColor(99,led_strip_6.Color(ColorArray[12][2][0],ColorArray[12][2][1],ColorArray[12][2][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(99, 99, channel);  
-        setBlockColor(100,led_strip_6.Color(COLOR_100[0],COLOR_100[1],COLOR_100[2]));
+        setBlockColor(100,led_strip_6.Color(ColorArray[12][3][0],ColorArray[12][3][1],ColorArray[12][3][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(100, 99, channel);
-        setBlockColor(101,led_strip_6.Color(COLOR_101[0],COLOR_101[1],COLOR_101[2])); 
+        setBlockColor(101,led_strip_6.Color(ColorArray[12][4][0],ColorArray[12][4][1],ColorArray[12][4][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(101, 99, channel);  
-        setBlockColor(102,led_strip_6.Color(COLOR_102[0],COLOR_102[1],COLOR_102[2]));
+        setBlockColor(102,led_strip_6.Color(ColorArray[12][5][0],ColorArray[12][5][1],ColorArray[12][5][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(102, 99, channel);  
-        setBlockColor(103,led_strip_6.Color(COLOR_103[0],COLOR_103[1],COLOR_103[2]));
+        setBlockColor(103,led_strip_6.Color(ColorArray[12][6][0],ColorArray[12][6][1],ColorArray[12][6][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(103, 99, channel);  
-        setBlockColor(104,led_strip_6.Color(COLOR_104[0],COLOR_104[1],COLOR_104[2]));
+        setBlockColor(104,led_strip_6.Color(ColorArray[12][7][0],ColorArray[12][7][1],ColorArray[12][7][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(104, 99, channel);  
-        setBlockColor(105,led_strip_7.Color(COLOR_105[0],COLOR_105[1],COLOR_105[2]));
+        setBlockColor(105,led_strip_7.Color(ColorArray[13][0][0],ColorArray[13][0][1],ColorArray[13][0][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(105, 99, channel);  
-        setBlockColor(106,led_strip_7.Color(COLOR_106[0],COLOR_106[1],COLOR_106[2]));
+        setBlockColor(106,led_strip_7.Color(ColorArray[13][1][0],ColorArray[13][1][1],ColorArray[13][1][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(106, 99, channel);  
-        setBlockColor(107,led_strip_7.Color(COLOR_107[0],COLOR_107[1],COLOR_107[2]));
+        setBlockColor(107,led_strip_7.Color(ColorArray[13][2][0],ColorArray[13][2][1],ColorArray[13][2][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1675,51 +2280,51 @@ void loop() {
     if ((currtouched10 & _BV(i)) && !(lasttouched10 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(107, 99, channel);  // 60 = C4
-        setBlockColor(108,led_strip_7.Color(COLOR_108[0],COLOR_108[1],COLOR_108[2]));
+        setBlockColor(108,led_strip_7.Color(ColorArray[13][3][0],ColorArray[13][3][1],ColorArray[13][3][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(108, 99, channel);  
-        setBlockColor(109,led_strip_7.Color(COLOR_109[0],COLOR_109[1],COLOR_109[2]));
+        setBlockColor(109,led_strip_7.Color(ColorArray[13][4][0],ColorArray[13][4][1],ColorArray[13][4][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(109, 99, channel);  
-        setBlockColor(110,led_strip_7.Color(COLOR_110[0],COLOR_110[1],COLOR_110[2]));
+        setBlockColor(110,led_strip_7.Color(ColorArray[13][5][0],ColorArray[13][5][1],ColorArray[13][5][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(110, 99, channel);  
-        setBlockColor(111,led_strip_7.Color(COLOR_111[0],COLOR_111[1],COLOR_111[2]));
+        setBlockColor(111,led_strip_7.Color(ColorArray[13][6][0],ColorArray[13][6][1],ColorArray[13][6][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(111, 99, channel);
-        setBlockColor(112,led_strip_7.Color(COLOR_112[0],COLOR_112[1],COLOR_112[2])); 
+        setBlockColor(112,led_strip_7.Color(ColorArray[13][7][0],ColorArray[13][7][1],ColorArray[13][7][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(112, 99, channel);  
-        setBlockColor(113,led_strip_7.Color(COLOR_113[0],COLOR_113[1],COLOR_113[2]));
+        setBlockColor(113,led_strip_7.Color(ColorArray[14][0][0],ColorArray[14][0][1],ColorArray[14][0][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(113, 99, channel);  
-        setBlockColor(114,led_strip_7.Color(COLOR_114[0],COLOR_114[1],COLOR_114[2]));
+        setBlockColor(114,led_strip_7.Color(ColorArray[14][1][0],ColorArray[14][1][1],ColorArray[14][1][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(114, 99, channel);  
-        setBlockColor(115,led_strip_7.Color(COLOR_115[0],COLOR_115[1],COLOR_115[2]));
+        setBlockColor(115,led_strip_7.Color(ColorArray[14][2][0],ColorArray[14][2][1],ColorArray[14][2][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(115, 99, channel);  
-        setBlockColor(116,led_strip_7.Color(COLOR_116[0],COLOR_116[1],COLOR_116[2]));
+        setBlockColor(116,led_strip_7.Color(ColorArray[14][3][0],ColorArray[14][3][1],ColorArray[14][3][2]));
       }
       if(i==2) {
         usbMIDI.sendNoteOn(116, 99, channel);  
-        setBlockColor(117,led_strip_7.Color(COLOR_117[0],COLOR_117[1],COLOR_117[2]));
+        setBlockColor(117,led_strip_7.Color(ColorArray[14][4][0],ColorArray[14][4][1],ColorArray[14][4][2]));
       }
       if(i==1) {
         usbMIDI.sendNoteOn(117, 99, channel);  
-        setBlockColor(118,led_strip_7.Color(COLOR_118[0],COLOR_118[1],COLOR_118[2]));
+        setBlockColor(118,led_strip_7.Color(ColorArray[14][5][0],ColorArray[14][5][1],ColorArray[14][5][2]));
       }
       if(i==0) {
         usbMIDI.sendNoteOn(118, 99, channel);  
-        setBlockColor(119,led_strip_7.Color(COLOR_119[0],COLOR_119[1],COLOR_119[2]));
+        setBlockColor(119,led_strip_7.Color(ColorArray[14][6][0],ColorArray[14][6][1],ColorArray[14][6][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1778,39 +2383,39 @@ void loop() {
     if ((currtouched11 & _BV(i)) && !(lasttouched11 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(119, 99, channel);  // 60 = C4
-        setBlockColor(120,led_strip_8.Color(COLOR_120[0],COLOR_120[1],COLOR_120[2]));
+        setBlockColor(120,led_strip_8.Color(ColorArray[14][7][0],ColorArray[14][7][1],ColorArray[14][7][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(120, 99, channel);  
-        setBlockColor(121,led_strip_8.Color(COLOR_121[0],COLOR_121[1],COLOR_121[2]));
+        setBlockColor(121,led_strip_8.Color(ColorArray[15][0][0],ColorArray[15][0][1],ColorArray[15][0][2]));
       }
       if(i==9) {
         usbMIDI.sendNoteOn(121, 99, channel);  
-        setBlockColor(122,led_strip_8.Color(COLOR_122[0],COLOR_122[1],COLOR_122[2]));
+        setBlockColor(122,led_strip_8.Color(ColorArray[15][1][0],ColorArray[15][1][1],ColorArray[15][1][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(122, 99, channel);  
-        setBlockColor(123,led_strip_8.Color(COLOR_123[0],COLOR_123[1],COLOR_123[2]));
+        setBlockColor(123,led_strip_8.Color(ColorArray[15][2][0],ColorArray[15][2][1],ColorArray[15][2][2]));
       }
       if(i==7) {
         usbMIDI.sendNoteOn(123, 99, channel);
-        setBlockColor(124,led_strip_8.Color(COLOR_124[0],COLOR_124[1],COLOR_124[2])); 
+        setBlockColor(124,led_strip_8.Color(ColorArray[15][3][0],ColorArray[15][3][1],ColorArray[15][3][2])); 
       }
       if(i==6) {
         usbMIDI.sendNoteOn(124, 99, channel);  
-        setBlockColor(125,led_strip_8.Color(COLOR_125[0],COLOR_125[1],COLOR_125[2]));
+        setBlockColor(125,led_strip_8.Color(ColorArray[15][4][0],ColorArray[15][4][1],ColorArray[15][4][2]));
       }
       if(i==5) {
         usbMIDI.sendNoteOn(125, 99, channel);  
-        setBlockColor(126,led_strip_8.Color(COLOR_126[0],COLOR_126[1],COLOR_126[2]));
+        setBlockColor(126,led_strip_8.Color(ColorArray[15][5][0],ColorArray[15][5][1],ColorArray[15][5][2]));
       }
       if(i==4) {
         usbMIDI.sendNoteOn(126, 99, channel);  
-        setBlockColor(127,led_strip_8.Color(COLOR_127[0],COLOR_127[1],COLOR_127[2]));
+        setBlockColor(127,led_strip_8.Color(ColorArray[15][6][0],ColorArray[15][6][1],ColorArray[15][6][2]));
       }
       if(i==3) {
         usbMIDI.sendNoteOn(127, 99, channel);  
-        setBlockColor(128,led_strip_8.Color(COLOR_128[0],COLOR_128[1],COLOR_128[2]));
+        setBlockColor(128,led_strip_8.Color(ColorArray[15][7][0],ColorArray[15][7][1],ColorArray[15][7][2]));
       }
       Serial.print(i); Serial.println(" touched");
     }
@@ -1885,8 +2490,6 @@ void loop() {
   }
   Serial.println();
   */
-  // put a delay so it isn't overwhelming
-  delay(5);
 }
 
 // this function is called whenever a MIDI note on is received
@@ -4155,6 +4758,7 @@ void testBluetoothLEDLoop() {
     setBlockColor(i,led_strip_1.Color(0,0,0));
   }
 }
+
 
 
 
