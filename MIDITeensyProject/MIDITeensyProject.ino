@@ -177,6 +177,8 @@ int COLOR_126[] = {255,0,255};
 int COLOR_127[] = {255,0,255};
 int COLOR_128[] = {255,0,255};
 
+int ColorArray[16][8][3];
+
 String readString;
 
 // 7 is the number of pixels on the strip
@@ -275,6 +277,92 @@ void setup() {
  pinMode (S2, OUTPUT);
  pinMode (S3, OUTPUT);
 
+ for(int i=0;i<16; i++) {
+  for(int j=0;j<8;j++) {
+    switch(i){
+      case 0:
+        ColorArray[i][j][0] = 255;
+        ColorArray[i][j][1] = 0;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 1:
+        ColorArray[i][j][0] = 255;
+        ColorArray[i][j][1] = 80;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 2:
+        ColorArray[i][j][0] = 255;
+        ColorArray[i][j][1] = 125;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 3:
+        ColorArray[i][j][0] = 255;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 4:
+        ColorArray[i][j][0] = 125;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 5:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 0;
+        break;
+      case 6:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 80;
+        break;
+      case 7:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 180;
+        break;
+      case 8:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 255;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 9:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 180;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 10:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 125;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 11:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 50;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 12:
+        ColorArray[i][j][0] = 0;
+        ColorArray[i][j][1] = 0;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 13:
+        ColorArray[i][j][0] = 80;
+        ColorArray[i][j][1] = 0;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 14:
+        ColorArray[i][j][0] = 130;
+        ColorArray[i][j][1] = 0;
+        ColorArray[i][j][2] = 255;
+        break;
+      case 15:
+        ColorArray[i][j][0] = 255;
+        ColorArray[i][j][1] = 0;
+        ColorArray[i][j][2] = 255;
+        break;
+    }
+  }
+ }
  
   usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
   usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
@@ -595,9 +683,66 @@ void loop() {
     int red = redValue.toInt();
     int green = greenValue.toInt();
     int blue = blueValue.toInt();
+
+    int divisor = numberVal/8;
+    int remainder = numberVal%8;
+
+    Serial.println(divisor);
+    Serial.println(remainder);
     
     if(controlValue=="a"){
-      testBluetoothLEDLoop();
+      for(int i=0;i<16;i++) {
+        for(int j=0;j<8;j++) {
+          ColorArray[i][numberVal][0] = red;
+          ColorArray[i][numberVal][1] = green;
+          ColorArray[i][numberVal][2] = blue;
+        }
+      }
+
+      for(int i=1;i<=128;i++) {
+        setBlockColor(i,led_strip_1.Color(red,green,blue));
+      }
+      delay(5000);
+      for(int i=1;i<=128;i++) {
+        setBlockColor(i,led_strip_1.Color(0,0,0));
+      }
+    }
+    
+    if(controlValue=="b"){
+      ColorArray[divisor][remainder][0] = red;
+      ColorArray[divisor][remainder][1] = green;
+      ColorArray[divisor][remainder][2] = blue;
+      setBlockColor(numberVal,led_strip_1.Color(red,green,blue));
+      delay(5000);
+      setBlockColor(numberVal,led_strip_1.Color(0,0,0));
+    }
+    if(controlValue=="r"){
+      for(int i=0;i<16;i++) {
+        ColorArray[i][numberVal][0] = red;
+        ColorArray[i][numberVal][1] = green;
+        ColorArray[i][numberVal][2] = blue;
+      }
+      for(int i=0;i<16;i++) {
+        setBlockColor(numberVal+(i*8),led_strip_1.Color(red,green,blue));
+      }
+      delay(5000);
+      for(int i=0;i<16;i++) {
+        setBlockColor(numberVal+(i*8),led_strip_1.Color(0,0,0));
+      }
+    }
+    if(controlValue=="c"){
+      for(int i=0;i<8;i++) {
+        ColorArray[numberVal][i][0] = red;
+        ColorArray[numberVal][i][1] = green;
+        ColorArray[numberVal][i][2] = blue;
+      }
+      for(int i=1;i<=8;i++) {
+        setBlockColor((numberVal-1)*8+i,led_strip_1.Color(red,green,blue));
+      }
+      delay(5000);
+      for(int i=1;i<=8;i++) {
+        setBlockColor((numberVal-1)*8+i,led_strip_1.Color(0,0,0));
+      }
     }
     readString="";
   } 
@@ -610,7 +755,7 @@ void loop() {
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(0, 99, channel);  // 60 = C4
-        setBlockColor(1,led_strip_1.Color(COLOR_1[0],COLOR_1[1],COLOR_1[2]));
+        setBlockColor(1,led_strip_1.Color(ColorArray[0][0][0],ColorArray[0][0][1],ColorArray[0][0][2]));
       }
       if(i==10) {
         usbMIDI.sendNoteOn(1, 99, channel);  
@@ -618,7 +763,7 @@ void loop() {
       }
       if(i==9) {
         usbMIDI.sendNoteOn(2, 99, channel);  
-        setBlockColor(3,led_strip_1.Color(COLOR_3[0],COLOR_3[1],COLOR_3[2]));
+        setBlockColor(3,led_strip_1.Color(ColorArray[0][2][0],ColorArray[0][2][1],ColorArray[0][2][2]));
       }
       if(i==8) {
         usbMIDI.sendNoteOn(3, 99, channel);  
@@ -3480,6 +3625,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
         led_strip_4.setPixelColor(i, color);
       }
       led_strip_4.show();
+      break;
     case 65:
       out65();
       for(int i=0;i<7;i++) {
@@ -3871,6 +4017,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
         led_strip_8.setPixelColor(i, color);
       }
       led_strip_8.show();
+      break;
     case 121:
       out121();
       for(int i=0;i<7;i++) {
