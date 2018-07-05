@@ -207,7 +207,7 @@ Adafruit_MPR121 cap11 = Adafruit_MPR121();
 
 
 // Declare Midi channel
-const int channel = 1;
+int channel = 1;
 
 // Keeps track of the last pins touched
 // so we know when buttons are 'released'
@@ -439,7 +439,7 @@ void setup() {
 
 /*                MIDI NOTE NUMBERS 
       C   C#  D   D#  E   F   F#  G   G#  A   A#  B
-   |------------------------------------------------
+   |------------------------------------------------ 
 -2 |   0   1   2   3   4   5   6   7   8   9  10  11
 -1 |  12  13  14  15  16  17  18  19  20  21  22  23
  0 |  24  25  26  27  28  29  30  31  32  33  34  35
@@ -454,6 +454,7 @@ void setup() {
 */
 
 void loop() {
+  /*
   for(int i=1;i<=128;i++) {
         setBlockColor(i,led_strip_1.Color(0,0,0));
       }
@@ -1249,8 +1250,14 @@ void loop() {
     }
   } // Comment out if you want more than just viewing
   }
-  
+  */
 
+
+  // Demo for the 4th
+
+  while(1) {
+    demo4th();
+  }
   currtouched1 = cap1.touched();
   currtouched2 = cap2.touched();
   currtouched3 = cap3.touched();
@@ -2405,6 +2412,14 @@ void loop() {
       }
       if(i==7) {
         usbMIDI.sendNoteOn(123, 99, channel);
+        // TODO
+        // Change this for after the demo
+        if(channel==1) {
+          channel = 2;
+        }
+        else {
+          channel = 1;
+        }
         setBlockColor(124,led_strip_8.Color(ColorArray[15][3][0],ColorArray[15][3][1],ColorArray[15][3][2])); 
       }
       if(i==6) {
@@ -4819,6 +4834,737 @@ void setMidiWord() {
   setBlockColor(110,led_strip_1.Color(255,92,0));
   setBlockColor(111,led_strip_1.Color(255,92,0));
   setBlockColor(112,led_strip_1.Color(255,92,0));
+}
+
+void demo4th() {
+  //H
+  
+  setBlockColor(49,led_strip_1.Color(255,255,255));
+  setBlockColor(50,led_strip_1.Color(255,255,255));
+  setBlockColor(51,led_strip_1.Color(255,255,255));
+  setBlockColor(52,led_strip_1.Color(255,255,255));
+  setBlockColor(53,led_strip_1.Color(255,255,255));
+  setBlockColor(54,led_strip_1.Color(255,255,255));
+  setBlockColor(55,led_strip_1.Color(255,255,255));
+  setBlockColor(56,led_strip_1.Color(255,255,255));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(61,led_strip_1.Color(255,255,255));
+  setBlockColor(68,led_strip_1.Color(255,255,255));
+  setBlockColor(69,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,255,255));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,255,255));
+  setBlockColor(76,led_strip_1.Color(255,255,255));
+  setBlockColor(77,led_strip_1.Color(255,255,255));
+  setBlockColor(78,led_strip_1.Color(255,255,255));
+  setBlockColor(79,led_strip_1.Color(255,255,255));
+  setBlockColor(80,led_strip_1.Color(255,255,255));
+  delay(800);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  //A
+  
+  setBlockColor(50,led_strip_1.Color(0,88,255));
+  setBlockColor(51,led_strip_1.Color(0,88,255));
+  setBlockColor(52,led_strip_1.Color(0,88,255));
+  setBlockColor(53,led_strip_1.Color(0,88,255));
+  setBlockColor(54,led_strip_1.Color(0,88,255));
+  setBlockColor(55,led_strip_1.Color(0,88,255));
+  setBlockColor(56,led_strip_1.Color(0,88,255));
+  setBlockColor(57,led_strip_1.Color(0,88,255));
+  setBlockColor(61,led_strip_1.Color(0,88,255));
+  setBlockColor(66,led_strip_1.Color(0,88,255));
+  setBlockColor(67,led_strip_1.Color(0,88,255));
+  setBlockColor(68,led_strip_1.Color(0,88,255));
+  setBlockColor(69,led_strip_1.Color(0,88,255));
+  setBlockColor(70,led_strip_1.Color(0,88,255));
+  setBlockColor(71,led_strip_1.Color(0,88,255));
+  setBlockColor(72,led_strip_1.Color(0,88,255));
+  delay(800);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // P
+  
+  setBlockColor(57,led_strip_1.Color(255,0,0));
+  setBlockColor(58,led_strip_1.Color(255,0,0));
+  setBlockColor(59,led_strip_1.Color(255,0,0));
+  setBlockColor(60,led_strip_1.Color(255,0,0));
+  setBlockColor(61,led_strip_1.Color(255,0,0));
+  setBlockColor(62,led_strip_1.Color(255,0,0));
+  setBlockColor(63,led_strip_1.Color(255,0,0));
+  setBlockColor(64,led_strip_1.Color(255,0,0));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(67,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(74,led_strip_1.Color(255,0,0));
+  setBlockColor(75,led_strip_1.Color(255,0,0));
+  delay(800);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // P
+  setBlockColor(57,led_strip_1.Color(255,255,255));
+  setBlockColor(58,led_strip_1.Color(255,255,255));
+  setBlockColor(59,led_strip_1.Color(255,255,255));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(61,led_strip_1.Color(255,255,255));
+  setBlockColor(62,led_strip_1.Color(255,255,255));
+  setBlockColor(63,led_strip_1.Color(255,255,255));
+  setBlockColor(64,led_strip_1.Color(255,255,255));
+  setBlockColor(65,led_strip_1.Color(255,255,255));
+  setBlockColor(67,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,255,255));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,255,255));
+  delay(800);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // Y
+  
+  setBlockColor(49,led_strip_1.Color(0,88,255));
+  setBlockColor(50,led_strip_1.Color(0,88,255));
+  setBlockColor(51,led_strip_1.Color(0,88,255));
+  setBlockColor(59,led_strip_1.Color(0,88,255));
+  setBlockColor(60,led_strip_1.Color(0,88,255));
+  setBlockColor(61,led_strip_1.Color(0,88,255));
+  setBlockColor(62,led_strip_1.Color(0,88,255));
+  setBlockColor(63,led_strip_1.Color(0,88,255));
+  setBlockColor(64,led_strip_1.Color(0,88,255));
+  setBlockColor(65,led_strip_1.Color(0,88,255));
+  setBlockColor(66,led_strip_1.Color(0,88,255));
+  setBlockColor(67,led_strip_1.Color(0,88,255));
+  delay(1000);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // 4th
+  
+  setBlockColor(33,led_strip_1.Color(255,0,0));
+  setBlockColor(34,led_strip_1.Color(255,0,0));
+  setBlockColor(35,led_strip_1.Color(255,0,0));
+  setBlockColor(43,led_strip_1.Color(255,0,0));
+  setBlockColor(49,led_strip_1.Color(255,0,0));
+  setBlockColor(50,led_strip_1.Color(255,0,0));
+  setBlockColor(51,led_strip_1.Color(255,0,0));
+  setBlockColor(52,led_strip_1.Color(255,0,0));
+  setBlockColor(53,led_strip_1.Color(255,0,0));
+  setBlockColor(54,led_strip_1.Color(255,0,0));
+  setBlockColor(55,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,0,0));
+  setBlockColor(66,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(74,led_strip_1.Color(255,0,0));
+  setBlockColor(75,led_strip_1.Color(255,0,0));
+  setBlockColor(76,led_strip_1.Color(255,0,0));
+  setBlockColor(82,led_strip_1.Color(255,0,0));
+  setBlockColor(97,led_strip_1.Color(255,0,0));
+  setBlockColor(98,led_strip_1.Color(255,0,0));
+  setBlockColor(99,led_strip_1.Color(255,0,0));
+  setBlockColor(100,led_strip_1.Color(255,0,0));
+  setBlockColor(107,led_strip_1.Color(255,0,0));
+  setBlockColor(115,led_strip_1.Color(255,0,0));
+  setBlockColor(116,led_strip_1.Color(255,0,0));
+  delay(2200);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  //From
+  
+  setBlockColor(1,led_strip_1.Color(255,255,255));
+  setBlockColor(2,led_strip_1.Color(255,255,255));
+  setBlockColor(3,led_strip_1.Color(255,255,255));
+  setBlockColor(4,led_strip_1.Color(255,255,255));
+  setBlockColor(5,led_strip_1.Color(255,255,255));
+  setBlockColor(6,led_strip_1.Color(255,255,255));
+  setBlockColor(7,led_strip_1.Color(255,255,255));
+  setBlockColor(8,led_strip_1.Color(255,255,255));
+  setBlockColor(9,led_strip_1.Color(255,255,255));
+  setBlockColor(11,led_strip_1.Color(255,255,255));
+  setBlockColor(17,led_strip_1.Color(255,255,255));
+  setBlockColor(19,led_strip_1.Color(255,255,255));
+  setBlockColor(33,led_strip_1.Color(255,255,255));
+  setBlockColor(34,led_strip_1.Color(255,255,255));
+  setBlockColor(35,led_strip_1.Color(255,255,255));
+  setBlockColor(36,led_strip_1.Color(255,255,255));
+  setBlockColor(37,led_strip_1.Color(255,255,255));
+  setBlockColor(38,led_strip_1.Color(255,255,255));
+  setBlockColor(39,led_strip_1.Color(255,255,255));
+  setBlockColor(40,led_strip_1.Color(255,255,255));
+  setBlockColor(41,led_strip_1.Color(255,255,255));
+  setBlockColor(44,led_strip_1.Color(255,255,255));
+  setBlockColor(45,led_strip_1.Color(255,255,255));
+  setBlockColor(49,led_strip_1.Color(255,255,255));
+  setBlockColor(52,led_strip_1.Color(255,255,255));
+  setBlockColor(54,led_strip_1.Color(255,255,255));
+  setBlockColor(57,led_strip_1.Color(255,255,255));
+  setBlockColor(58,led_strip_1.Color(255,255,255));
+  setBlockColor(59,led_strip_1.Color(255,255,255));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(63,led_strip_1.Color(255,255,255));
+  setBlockColor(64,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,255,255));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,255,255));
+  setBlockColor(76,led_strip_1.Color(255,255,255));
+  setBlockColor(77,led_strip_1.Color(255,255,255));
+  setBlockColor(78,led_strip_1.Color(255,255,255));
+  setBlockColor(79,led_strip_1.Color(255,255,255));
+  setBlockColor(80,led_strip_1.Color(255,255,255));
+  setBlockColor(81,led_strip_1.Color(255,255,255));
+  setBlockColor(88,led_strip_1.Color(255,255,255));
+  setBlockColor(89,led_strip_1.Color(255,255,255));
+  setBlockColor(90,led_strip_1.Color(255,255,255));
+  setBlockColor(91,led_strip_1.Color(255,255,255));
+  setBlockColor(92,led_strip_1.Color(255,255,255));
+  setBlockColor(93,led_strip_1.Color(255,255,255));
+  setBlockColor(94,led_strip_1.Color(255,255,255));
+  setBlockColor(95,led_strip_1.Color(255,255,255));
+  setBlockColor(96,led_strip_1.Color(255,255,255));
+  setBlockColor(105,led_strip_1.Color(255,255,255));
+  setBlockColor(106,led_strip_1.Color(255,255,255));
+  setBlockColor(107,led_strip_1.Color(255,255,255));
+  setBlockColor(108,led_strip_1.Color(255,255,255));
+  setBlockColor(109,led_strip_1.Color(255,255,255));
+  setBlockColor(110,led_strip_1.Color(255,255,255));
+  setBlockColor(111,led_strip_1.Color(255,255,255));
+  setBlockColor(112,led_strip_1.Color(255,255,255));
+  setBlockColor(114,led_strip_1.Color(255,255,255));
+  setBlockColor(121,led_strip_1.Color(255,255,255));
+  setBlockColor(122,led_strip_1.Color(255,255,255));
+  setBlockColor(123,led_strip_1.Color(255,255,255));
+  setBlockColor(124,led_strip_1.Color(255,255,255));
+  setBlockColor(125,led_strip_1.Color(255,255,255));
+  setBlockColor(126,led_strip_1.Color(255,255,255));
+  setBlockColor(127,led_strip_1.Color(255,255,255));
+  setBlockColor(128,led_strip_1.Color(255,255,255));
+  delay(2500);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // THE
+  setBlockColor(9,led_strip_1.Color(0,88,255));
+  setBlockColor(17,led_strip_1.Color(0,88,255));
+  setBlockColor(25,led_strip_1.Color(0,88,255));
+  setBlockColor(26,led_strip_1.Color(0,88,255));
+  setBlockColor(27,led_strip_1.Color(0,88,255));
+  setBlockColor(28,led_strip_1.Color(0,88,255));
+  setBlockColor(29,led_strip_1.Color(0,88,255));
+  setBlockColor(30,led_strip_1.Color(0,88,255));
+  setBlockColor(31,led_strip_1.Color(0,88,255));
+  setBlockColor(32,led_strip_1.Color(0,88,255));
+  setBlockColor(33,led_strip_1.Color(0,88,255));
+  setBlockColor(49,led_strip_1.Color(0,88,255));
+  setBlockColor(50,led_strip_1.Color(0,88,255));
+  setBlockColor(51,led_strip_1.Color(0,88,255));
+  setBlockColor(52,led_strip_1.Color(0,88,255));
+  setBlockColor(53,led_strip_1.Color(0,88,255));
+  setBlockColor(54,led_strip_1.Color(0,88,255));
+  setBlockColor(55,led_strip_1.Color(0,88,255));
+  setBlockColor(56,led_strip_1.Color(0,88,255));
+  setBlockColor(61,led_strip_1.Color(0,88,255));
+  setBlockColor(69,led_strip_1.Color(0,88,255));
+  setBlockColor(73,led_strip_1.Color(0,88,255));
+  setBlockColor(74,led_strip_1.Color(0,88,255));
+  setBlockColor(75,led_strip_1.Color(0,88,255));
+  setBlockColor(76,led_strip_1.Color(0,88,255));
+  setBlockColor(77,led_strip_1.Color(0,88,255));
+  setBlockColor(78,led_strip_1.Color(0,88,255));
+  setBlockColor(79,led_strip_1.Color(0,88,255));
+  setBlockColor(80,led_strip_1.Color(0,88,255));
+  setBlockColor(89,led_strip_1.Color(0,88,255));
+  setBlockColor(90,led_strip_1.Color(0,88,255));
+  setBlockColor(91,led_strip_1.Color(0,88,255));
+  setBlockColor(92,led_strip_1.Color(0,88,255));
+  setBlockColor(93,led_strip_1.Color(0,88,255));
+  setBlockColor(94,led_strip_1.Color(0,88,255));
+  setBlockColor(95,led_strip_1.Color(0,88,255));
+  setBlockColor(96,led_strip_1.Color(0,88,255));
+  setBlockColor(97,led_strip_1.Color(0,88,255));
+  setBlockColor(101,led_strip_1.Color(0,88,255));
+  setBlockColor(104,led_strip_1.Color(0,88,255));
+  setBlockColor(105,led_strip_1.Color(0,88,255));
+  setBlockColor(109,led_strip_1.Color(0,88,255));
+  setBlockColor(112,led_strip_1.Color(0,88,255));
+  setBlockColor(113,led_strip_1.Color(0,88,255));
+  setBlockColor(120,led_strip_1.Color(0,88,255));
+  delay(2000);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // MIDI
+  setBlockColor(1,led_strip_1.Color(255,0,0));
+  setBlockColor(2,led_strip_1.Color(255,0,0));
+  setBlockColor(3,led_strip_1.Color(255,0,0));
+  setBlockColor(4,led_strip_1.Color(255,0,0));
+  setBlockColor(5,led_strip_1.Color(255,0,0));
+  setBlockColor(6,led_strip_1.Color(255,0,0));
+  setBlockColor(7,led_strip_1.Color(255,0,0));
+  setBlockColor(8,led_strip_1.Color(255,0,0));
+  setBlockColor(10,led_strip_1.Color(255,0,0));
+  setBlockColor(19,led_strip_1.Color(255,0,0));
+  setBlockColor(20,led_strip_1.Color(255,0,0));
+  setBlockColor(26,led_strip_1.Color(255,0,0));
+  setBlockColor(33,led_strip_1.Color(255,0,0));
+  setBlockColor(34,led_strip_1.Color(255,0,0));
+  setBlockColor(35,led_strip_1.Color(255,0,0));
+  setBlockColor(36,led_strip_1.Color(255,0,0));
+  setBlockColor(37,led_strip_1.Color(255,0,0));
+  setBlockColor(38,led_strip_1.Color(255,0,0));
+  setBlockColor(39,led_strip_1.Color(255,0,0));
+  setBlockColor(40,led_strip_1.Color(255,0,0));
+  setBlockColor(49,led_strip_1.Color(255,0,0));
+  setBlockColor(50,led_strip_1.Color(255,0,0));
+  setBlockColor(51,led_strip_1.Color(255,0,0));
+  setBlockColor(52,led_strip_1.Color(255,0,0));
+  setBlockColor(53,led_strip_1.Color(255,0,0));
+  setBlockColor(54,led_strip_1.Color(255,0,0));
+  setBlockColor(55,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,0,0));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(66,led_strip_1.Color(255,0,0));
+  setBlockColor(67,led_strip_1.Color(255,0,0));
+  setBlockColor(68,led_strip_1.Color(255,0,0));
+  setBlockColor(69,led_strip_1.Color(255,0,0));
+  setBlockColor(70,led_strip_1.Color(255,0,0));
+  setBlockColor(71,led_strip_1.Color(255,0,0));
+  setBlockColor(72,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(80,led_strip_1.Color(255,0,0));
+  setBlockColor(82,led_strip_1.Color(255,0,0));
+  setBlockColor(87,led_strip_1.Color(255,0,0));
+  setBlockColor(91,led_strip_1.Color(255,0,0));
+  setBlockColor(92,led_strip_1.Color(255,0,0));
+  setBlockColor(93,led_strip_1.Color(255,0,0));
+  setBlockColor(94,led_strip_1.Color(255,0,0));
+  setBlockColor(105,led_strip_1.Color(255,0,0));
+  setBlockColor(106,led_strip_1.Color(255,0,0));
+  setBlockColor(107,led_strip_1.Color(255,0,0));
+  setBlockColor(108,led_strip_1.Color(255,0,0));
+  setBlockColor(109,led_strip_1.Color(255,0,0));
+  setBlockColor(110,led_strip_1.Color(255,0,0));
+  setBlockColor(111,led_strip_1.Color(255,0,0));
+  setBlockColor(112,led_strip_1.Color(255,0,0));
+  delay(2300);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // M
+  setBlockColor(41,led_strip_1.Color(255,255,255));
+  setBlockColor(42,led_strip_1.Color(255,255,255));
+  setBlockColor(43,led_strip_1.Color(255,255,255));
+  setBlockColor(44,led_strip_1.Color(255,255,255));
+  setBlockColor(45,led_strip_1.Color(255,255,255));
+  setBlockColor(46,led_strip_1.Color(255,255,255));
+  setBlockColor(47,led_strip_1.Color(255,255,255));
+  setBlockColor(48,led_strip_1.Color(255,255,255));
+  setBlockColor(50,led_strip_1.Color(255,255,255));
+  setBlockColor(59,led_strip_1.Color(255,255,255));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(66,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,255,255));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,255,255));
+  setBlockColor(76,led_strip_1.Color(255,255,255));
+  setBlockColor(77,led_strip_1.Color(255,255,255));
+  setBlockColor(78,led_strip_1.Color(255,255,255));
+  setBlockColor(79,led_strip_1.Color(255,255,255));
+  setBlockColor(80,led_strip_1.Color(255,255,255));
+  delay(600);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // O
+  setBlockColor(49,led_strip_1.Color(0,88,255));
+  setBlockColor(50,led_strip_1.Color(0,88,255));
+  setBlockColor(51,led_strip_1.Color(0,88,255));
+  setBlockColor(52,led_strip_1.Color(0,88,255));
+  setBlockColor(53,led_strip_1.Color(0,88,255));
+  setBlockColor(54,led_strip_1.Color(0,88,255));
+  setBlockColor(55,led_strip_1.Color(0,88,255));
+  setBlockColor(56,led_strip_1.Color(0,88,255));
+  setBlockColor(57,led_strip_1.Color(0,88,255));
+  setBlockColor(64,led_strip_1.Color(0,88,255));
+  setBlockColor(65,led_strip_1.Color(0,88,255));
+  setBlockColor(72,led_strip_1.Color(0,88,255));
+  setBlockColor(73,led_strip_1.Color(0,88,255));
+  setBlockColor(74,led_strip_1.Color(0,88,255));
+  setBlockColor(75,led_strip_1.Color(0,88,255));
+  setBlockColor(76,led_strip_1.Color(0,88,255));
+  setBlockColor(77,led_strip_1.Color(0,88,255));
+  setBlockColor(78,led_strip_1.Color(0,88,255));
+  setBlockColor(79,led_strip_1.Color(0,88,255));
+  setBlockColor(80,led_strip_1.Color(0,88,255));
+  delay(600);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // S
+  setBlockColor(49,led_strip_1.Color(255,0,0));
+  setBlockColor(50,led_strip_1.Color(255,0,0));
+  setBlockColor(51,led_strip_1.Color(255,0,0));
+  setBlockColor(52,led_strip_1.Color(255,0,0));
+  setBlockColor(53,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,0,0));
+  setBlockColor(57,led_strip_1.Color(255,0,0));
+  setBlockColor(61,led_strip_1.Color(255,0,0));
+  setBlockColor(64,led_strip_1.Color(255,0,0));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(69,led_strip_1.Color(255,0,0));
+  setBlockColor(72,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(77,led_strip_1.Color(255,0,0));
+  setBlockColor(78,led_strip_1.Color(255,0,0));
+  setBlockColor(79,led_strip_1.Color(255,0,0));
+  setBlockColor(80,led_strip_1.Color(255,0,0));
+  
+  delay(600);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // A
+  setBlockColor(50,led_strip_1.Color(255,255,255));
+  setBlockColor(51,led_strip_1.Color(255,255,255));
+  setBlockColor(52,led_strip_1.Color(255,255,255));
+  setBlockColor(53,led_strip_1.Color(255,255,255));
+  setBlockColor(54,led_strip_1.Color(255,255,255));
+  setBlockColor(55,led_strip_1.Color(255,255,255));
+  setBlockColor(56,led_strip_1.Color(255,255,255));
+  setBlockColor(57,led_strip_1.Color(255,255,255));
+  setBlockColor(61,led_strip_1.Color(255,255,255));
+  setBlockColor(66,led_strip_1.Color(255,255,255));
+  setBlockColor(67,led_strip_1.Color(255,255,255));
+  setBlockColor(68,led_strip_1.Color(255,255,255));
+  setBlockColor(69,led_strip_1.Color(255,255,255));
+  setBlockColor(70,led_strip_1.Color(255,255,255));
+  setBlockColor(71,led_strip_1.Color(255,255,255));
+  setBlockColor(72,led_strip_1.Color(255,255,255));
+  delay(600);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // I
+  
+  setBlockColor(57,led_strip_1.Color(0,88,255));
+  setBlockColor(58,led_strip_1.Color(0,88,255));
+  setBlockColor(59,led_strip_1.Color(0,88,255));
+  setBlockColor(60,led_strip_1.Color(0,88,255));
+  setBlockColor(61,led_strip_1.Color(0,88,255));
+  setBlockColor(62,led_strip_1.Color(0,88,255));
+  setBlockColor(63,led_strip_1.Color(0,88,255));
+  setBlockColor(64,led_strip_1.Color(0,88,255));
+  delay(600);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // C
+  setBlockColor(49,led_strip_1.Color(255,0,0));
+  setBlockColor(50,led_strip_1.Color(255,0,0));
+  setBlockColor(51,led_strip_1.Color(255,0,0));
+  setBlockColor(52,led_strip_1.Color(255,0,0));
+  setBlockColor(53,led_strip_1.Color(255,0,0));
+  setBlockColor(54,led_strip_1.Color(255,0,0));
+  setBlockColor(55,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,0,0));
+  setBlockColor(57,led_strip_1.Color(255,0,0));
+  setBlockColor(64,led_strip_1.Color(255,0,0));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(72,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(80,led_strip_1.Color(255,0,0));
+delay(800);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  // AND
+  
+  setBlockColor(10,led_strip_1.Color(255,255,255));
+  setBlockColor(11,led_strip_1.Color(255,255,255));
+  setBlockColor(12,led_strip_1.Color(255,255,255));
+  setBlockColor(13,led_strip_1.Color(255,255,255));
+  setBlockColor(14,led_strip_1.Color(255,255,255));
+  setBlockColor(15,led_strip_1.Color(255,255,255));
+  setBlockColor(16,led_strip_1.Color(255,255,255));
+  setBlockColor(17,led_strip_1.Color(255,255,255));
+  setBlockColor(21,led_strip_1.Color(255,255,255));
+  setBlockColor(26,led_strip_1.Color(255,255,255));
+  setBlockColor(27,led_strip_1.Color(255,255,255));
+  setBlockColor(28,led_strip_1.Color(255,255,255));
+  setBlockColor(29,led_strip_1.Color(255,255,255));
+  setBlockColor(30,led_strip_1.Color(255,255,255));
+  setBlockColor(31,led_strip_1.Color(255,255,255));
+  setBlockColor(32,led_strip_1.Color(255,255,255));
+  setBlockColor(41,led_strip_1.Color(255,255,255));
+  setBlockColor(42,led_strip_1.Color(255,255,255));
+  setBlockColor(43,led_strip_1.Color(255,255,255));
+  setBlockColor(44,led_strip_1.Color(255,255,255));
+  setBlockColor(45,led_strip_1.Color(255,255,255));
+  setBlockColor(46,led_strip_1.Color(255,255,255));
+  setBlockColor(47,led_strip_1.Color(255,255,255));
+  setBlockColor(48,led_strip_1.Color(255,255,255));
+  setBlockColor(51,led_strip_1.Color(255,255,255));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(69,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,255,255));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,255,255));
+  setBlockColor(76,led_strip_1.Color(255,255,255));
+  setBlockColor(77,led_strip_1.Color(255,255,255));
+  setBlockColor(78,led_strip_1.Color(255,255,255));
+  setBlockColor(79,led_strip_1.Color(255,255,255));
+  setBlockColor(80,led_strip_1.Color(255,255,255));
+  setBlockColor(89,led_strip_1.Color(255,255,255));
+  setBlockColor(90,led_strip_1.Color(255,255,255));
+  setBlockColor(91,led_strip_1.Color(255,255,255));
+  setBlockColor(92,led_strip_1.Color(255,255,255));
+  setBlockColor(93,led_strip_1.Color(255,255,255));
+  setBlockColor(94,led_strip_1.Color(255,255,255));
+  setBlockColor(95,led_strip_1.Color(255,255,255));
+  setBlockColor(96,led_strip_1.Color(255,255,255));
+  setBlockColor(97,led_strip_1.Color(255,255,255));
+  setBlockColor(104,led_strip_1.Color(255,255,255));
+  setBlockColor(106,led_strip_1.Color(255,255,255));
+  setBlockColor(111,led_strip_1.Color(255,255,255));
+  setBlockColor(115,led_strip_1.Color(255,255,255));
+  setBlockColor(116,led_strip_1.Color(255,255,255));
+  setBlockColor(117,led_strip_1.Color(255,255,255));
+  setBlockColor(118,led_strip_1.Color(255,255,255));
+  
+  delay(2200);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // M
+  
+  setBlockColor(41,led_strip_1.Color(0,88,255));
+  setBlockColor(42,led_strip_1.Color(0,88,255));
+  setBlockColor(43,led_strip_1.Color(0,88,255));
+  setBlockColor(44,led_strip_1.Color(0,88,255));
+  setBlockColor(45,led_strip_1.Color(0,88,255));
+  setBlockColor(46,led_strip_1.Color(0,88,255));
+  setBlockColor(47,led_strip_1.Color(0,88,255));
+  setBlockColor(48,led_strip_1.Color(0,88,255));
+  setBlockColor(50,led_strip_1.Color(0,88,255));
+  setBlockColor(59,led_strip_1.Color(0,88,255));
+  setBlockColor(60,led_strip_1.Color(0,88,255));
+  setBlockColor(66,led_strip_1.Color(0,88,255));
+  setBlockColor(73,led_strip_1.Color(0,88,255));
+  setBlockColor(74,led_strip_1.Color(0,88,255));
+  setBlockColor(75,led_strip_1.Color(0,88,255));
+  setBlockColor(76,led_strip_1.Color(0,88,255));
+  setBlockColor(77,led_strip_1.Color(0,88,255));
+  setBlockColor(78,led_strip_1.Color(0,88,255));
+  setBlockColor(79,led_strip_1.Color(0,88,255));
+  setBlockColor(80,led_strip_1.Color(0,88,255));
+  delay(1000);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+
+  // CLEM
+  
+  setBlockColor(1,led_strip_1.Color(255,0,0));
+  setBlockColor(2,led_strip_1.Color(255,0,0));
+  setBlockColor(3,led_strip_1.Color(255,0,0));
+  setBlockColor(4,led_strip_1.Color(255,0,0));
+  setBlockColor(5,led_strip_1.Color(255,0,0));
+  setBlockColor(6,led_strip_1.Color(255,0,0));
+  setBlockColor(7,led_strip_1.Color(255,0,0));
+  setBlockColor(8,led_strip_1.Color(255,0,0));
+  setBlockColor(9,led_strip_1.Color(255,0,0));
+  setBlockColor(16,led_strip_1.Color(255,0,0));
+  setBlockColor(17,led_strip_1.Color(255,0,0));
+  setBlockColor(24,led_strip_1.Color(255,0,0));
+  setBlockColor(33,led_strip_1.Color(255,0,0));
+  setBlockColor(34,led_strip_1.Color(255,0,0));
+  setBlockColor(35,led_strip_1.Color(255,0,0));
+  setBlockColor(36,led_strip_1.Color(255,0,0));
+  setBlockColor(37,led_strip_1.Color(255,0,0));
+  setBlockColor(38,led_strip_1.Color(255,0,0));
+  setBlockColor(39,led_strip_1.Color(255,0,0));
+  setBlockColor(40,led_strip_1.Color(255,0,0));
+  setBlockColor(48,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,0,0));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(66,led_strip_1.Color(255,0,0));
+  setBlockColor(67,led_strip_1.Color(255,0,0));
+  setBlockColor(68,led_strip_1.Color(255,0,0));
+  setBlockColor(69,led_strip_1.Color(255,0,0));
+  setBlockColor(70,led_strip_1.Color(255,0,0));
+  setBlockColor(71,led_strip_1.Color(255,0,0));
+  setBlockColor(72,led_strip_1.Color(255,0,0));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(77,led_strip_1.Color(255,0,0));
+  setBlockColor(80,led_strip_1.Color(255,0,0));
+  setBlockColor(81,led_strip_1.Color(255,0,0));
+  setBlockColor(85,led_strip_1.Color(255,0,0));
+  setBlockColor(88,led_strip_1.Color(255,0,0));
+  setBlockColor(97,led_strip_1.Color(255,0,0));
+  setBlockColor(98,led_strip_1.Color(255,0,0));
+  setBlockColor(99,led_strip_1.Color(255,0,0));
+  setBlockColor(100,led_strip_1.Color(255,0,0));
+  setBlockColor(101,led_strip_1.Color(255,0,0));
+  setBlockColor(102,led_strip_1.Color(255,0,0));
+  setBlockColor(103,led_strip_1.Color(255,0,0));
+  setBlockColor(104,led_strip_1.Color(255,0,0));
+  setBlockColor(106,led_strip_1.Color(255,0,0));
+  setBlockColor(114,led_strip_1.Color(255,0,0));
+  setBlockColor(121,led_strip_1.Color(255,0,0));
+  setBlockColor(122,led_strip_1.Color(255,0,0));
+  setBlockColor(123,led_strip_1.Color(255,0,0));
+  setBlockColor(124,led_strip_1.Color(255,0,0));
+  setBlockColor(125,led_strip_1.Color(255,0,0));
+  setBlockColor(126,led_strip_1.Color(255,0,0));
+  setBlockColor(127,led_strip_1.Color(255,0,0));
+  setBlockColor(128,led_strip_1.Color(255,0,0));
+  delay(2500);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
+  //FLAG  
+  
+  setBlockColor(1,led_strip_1.Color(0,88,255));
+  setBlockColor(2,led_strip_1.Color(0,88,255));
+  setBlockColor(3,led_strip_1.Color(0,88,255));
+  setBlockColor(4,led_strip_1.Color(0,88,255));
+  setBlockColor(5,led_strip_1.Color(255,0,0));
+  setBlockColor(6,led_strip_1.Color(255,255,255));
+  setBlockColor(7,led_strip_1.Color(255,0,0));
+  setBlockColor(8,led_strip_1.Color(255,255,255));
+  setBlockColor(9,led_strip_1.Color(0,88,255));
+  setBlockColor(10,led_strip_1.Color(0,88,255));
+  setBlockColor(11,led_strip_1.Color(0,88,255));
+  setBlockColor(12,led_strip_1.Color(0,88,255));
+  setBlockColor(13,led_strip_1.Color(255,0,0));
+  setBlockColor(14,led_strip_1.Color(255,255,255));
+  setBlockColor(15,led_strip_1.Color(255,0,0));
+  setBlockColor(16,led_strip_1.Color(255,255,255));
+  setBlockColor(17,led_strip_1.Color(0,88,255));
+  setBlockColor(18,led_strip_1.Color(0,88,255));
+  setBlockColor(19,led_strip_1.Color(0,88,255));
+  setBlockColor(20,led_strip_1.Color(0,88,255));
+  setBlockColor(21,led_strip_1.Color(255,0,0));
+  setBlockColor(22,led_strip_1.Color(255,255,255));
+  setBlockColor(23,led_strip_1.Color(255,0,0));
+  setBlockColor(24,led_strip_1.Color(255,255,255));
+  setBlockColor(25,led_strip_1.Color(0,88,255));
+  setBlockColor(26,led_strip_1.Color(0,88,255));
+  setBlockColor(27,led_strip_1.Color(0,88,255));
+  setBlockColor(28,led_strip_1.Color(0,88,255));
+  setBlockColor(29,led_strip_1.Color(255,0,0));
+  setBlockColor(30,led_strip_1.Color(255,255,255));
+  setBlockColor(31,led_strip_1.Color(255,0,0));
+  setBlockColor(32,led_strip_1.Color(255,255,255));
+  setBlockColor(33,led_strip_1.Color(0,88,255));
+  setBlockColor(34,led_strip_1.Color(0,88,255));
+  setBlockColor(35,led_strip_1.Color(0,88,255));
+  setBlockColor(36,led_strip_1.Color(0,88,255));
+  setBlockColor(37,led_strip_1.Color(255,0,0));
+  setBlockColor(38,led_strip_1.Color(255,255,255));
+  setBlockColor(39,led_strip_1.Color(255,0,0));
+  setBlockColor(40,led_strip_1.Color(255,255,255));
+  setBlockColor(41,led_strip_1.Color(255,0,0));
+  setBlockColor(42,led_strip_1.Color(255,255,255));
+  setBlockColor(43,led_strip_1.Color(255,0,0));
+  setBlockColor(44,led_strip_1.Color(255,255,255));
+  setBlockColor(45,led_strip_1.Color(255,0,0));
+  setBlockColor(46,led_strip_1.Color(255,255,255));
+  setBlockColor(47,led_strip_1.Color(255,0,0));
+  setBlockColor(48,led_strip_1.Color(255,255,255));
+  setBlockColor(49,led_strip_1.Color(255,0,0));
+  setBlockColor(50,led_strip_1.Color(255,255,255));
+  setBlockColor(51,led_strip_1.Color(255,0,0));
+  setBlockColor(52,led_strip_1.Color(255,255,255));
+  setBlockColor(53,led_strip_1.Color(255,0,0));
+  setBlockColor(54,led_strip_1.Color(255,255,255));
+  setBlockColor(55,led_strip_1.Color(255,0,0));
+  setBlockColor(56,led_strip_1.Color(255,255,255));
+  setBlockColor(57,led_strip_1.Color(255,0,0));
+  setBlockColor(58,led_strip_1.Color(255,255,255));
+  setBlockColor(59,led_strip_1.Color(255,0,0));
+  setBlockColor(60,led_strip_1.Color(255,255,255));
+  setBlockColor(61,led_strip_1.Color(255,0,0));
+  setBlockColor(62,led_strip_1.Color(255,255,255));
+  setBlockColor(63,led_strip_1.Color(255,0,0));
+  setBlockColor(64,led_strip_1.Color(255,255,255));
+  setBlockColor(65,led_strip_1.Color(255,0,0));
+  setBlockColor(66,led_strip_1.Color(255,255,255));
+  setBlockColor(67,led_strip_1.Color(255,0,0));
+  setBlockColor(68,led_strip_1.Color(255,255,255));
+  setBlockColor(69,led_strip_1.Color(255,0,0));
+  setBlockColor(70,led_strip_1.Color(255,255,255));
+  setBlockColor(71,led_strip_1.Color(255,0,0));
+  setBlockColor(72,led_strip_1.Color(255,255,255));
+  setBlockColor(73,led_strip_1.Color(255,0,0));
+  setBlockColor(74,led_strip_1.Color(255,255,255));
+  setBlockColor(75,led_strip_1.Color(255,0,0));
+  setBlockColor(76,led_strip_1.Color(255,255,255));
+  setBlockColor(77,led_strip_1.Color(255,0,0));
+  setBlockColor(78,led_strip_1.Color(255,255,255));
+  setBlockColor(79,led_strip_1.Color(255,0,0));
+  setBlockColor(80,led_strip_1.Color(255,255,255));
+  setBlockColor(81,led_strip_1.Color(255,0,0));
+  setBlockColor(82,led_strip_1.Color(255,255,255));
+  setBlockColor(83,led_strip_1.Color(255,0,0));
+  setBlockColor(84,led_strip_1.Color(255,255,255));
+  setBlockColor(85,led_strip_1.Color(255,0,0));
+  setBlockColor(86,led_strip_1.Color(255,255,255));
+  setBlockColor(87,led_strip_1.Color(255,0,0));
+  setBlockColor(88,led_strip_1.Color(255,255,255));
+  setBlockColor(89,led_strip_1.Color(255,0,0));
+  setBlockColor(90,led_strip_1.Color(255,255,255));
+  setBlockColor(91,led_strip_1.Color(255,0,0));
+  setBlockColor(92,led_strip_1.Color(255,255,255));
+  setBlockColor(93,led_strip_1.Color(255,0,0));
+  setBlockColor(94,led_strip_1.Color(255,255,255));
+  setBlockColor(95,led_strip_1.Color(255,0,0));
+  setBlockColor(96,led_strip_1.Color(255,255,255));
+  setBlockColor(97,led_strip_1.Color(255,0,0));
+  setBlockColor(98,led_strip_1.Color(255,255,255));
+  setBlockColor(99,led_strip_1.Color(255,0,0));
+  setBlockColor(100,led_strip_1.Color(255,255,255));
+  setBlockColor(101,led_strip_1.Color(255,0,0));
+  setBlockColor(102,led_strip_1.Color(255,255,255));
+  setBlockColor(103,led_strip_1.Color(255,0,0));
+  setBlockColor(104,led_strip_1.Color(255,255,255));
+  setBlockColor(105,led_strip_1.Color(255,0,0));
+  setBlockColor(106,led_strip_1.Color(255,255,255));
+  setBlockColor(107,led_strip_1.Color(255,0,0));
+  setBlockColor(108,led_strip_1.Color(255,255,255));
+  setBlockColor(109,led_strip_1.Color(255,0,0));
+  setBlockColor(110,led_strip_1.Color(255,255,255));
+  setBlockColor(111,led_strip_1.Color(255,0,0));
+  setBlockColor(112,led_strip_1.Color(255,255,255));
+  setBlockColor(113,led_strip_1.Color(255,0,0));
+  setBlockColor(114,led_strip_1.Color(255,255,255));
+  setBlockColor(115,led_strip_1.Color(255,0,0));
+  setBlockColor(116,led_strip_1.Color(255,255,255));
+  setBlockColor(117,led_strip_1.Color(255,0,0));
+  setBlockColor(118,led_strip_1.Color(255,255,255));
+  setBlockColor(119,led_strip_1.Color(255,0,0));
+  setBlockColor(120,led_strip_1.Color(255,255,255));
+  setBlockColor(121,led_strip_1.Color(255,0,0));
+  setBlockColor(122,led_strip_1.Color(255,255,255));
+  setBlockColor(123,led_strip_1.Color(255,0,0));
+  setBlockColor(124,led_strip_1.Color(255,255,255));
+  setBlockColor(125,led_strip_1.Color(255,0,0));
+  setBlockColor(126,led_strip_1.Color(255,255,255));
+  setBlockColor(127,led_strip_1.Color(255,0,0));
+  setBlockColor(128,led_strip_1.Color(255,255,255));
+  delay(5000);
+  for(int i=1;i<=128;i++) {
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
 }
 
 void demo() {
