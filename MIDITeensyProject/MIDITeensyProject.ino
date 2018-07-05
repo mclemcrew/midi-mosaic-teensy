@@ -454,7 +454,7 @@ void setup() {
 */
 
 void loop() {
-  /*
+  
   for(int i=1;i<=128;i++) {
         setBlockColor(i,led_strip_1.Color(0,0,0));
       }
@@ -469,6 +469,7 @@ void loop() {
         note = usbMIDI.getData1();
         channel_observe = usbMIDI.getChannel();
 //        Serial.println(String("Note On:  ch=") + channel_observe + ", note=" + note);
+    if(channel_observe==1) {
         if(note==0) {
           setBlockColor(1,led_strip_4.Color(0,80,250));
           break;
@@ -855,6 +856,2723 @@ void loop() {
           setBlockColor(128,led_strip_4.Color(0,80,250));
         }
         break;
+    }
+    if(channel_observe==2) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(255,0,0));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(255,0,0));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(255,0,0));
+        }
+        break;
+    }
+    if(channel_observe==3) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(110,255,0));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(110,255,0));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(110,255,0));
+        }
+        break;
+    }
+if(channel_observe==4) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(0,255,0));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(0,255,0));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(0,255,0));
+        }
+        break;
+    }
+    if(channel_observe==5) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(0,255,80));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(0,255,80));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(0,255,80));
+        }
+        break;
+    }
+    if(channel_observe==6) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(0,0,255));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(0,0,255));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(0,0,255));
+        }
+        break;
+    }
+    if(channel_observe==7) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(130,0,255));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(130,0,255));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(130,0,255));
+        }
+        break;
+    }
+    if(channel_observe==8) {
+        if(note==0) {
+          setBlockColor(1,led_strip_4.Color(255,0,255));
+          break;
+        }
+        if(note==1) {
+          setBlockColor(2,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==2) {
+          setBlockColor(3,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==3) {
+          setBlockColor(4,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==4) {
+          setBlockColor(5,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==5) {
+          setBlockColor(6,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==6) {
+          setBlockColor(7,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==7) {
+          setBlockColor(8,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==8) {
+          setBlockColor(9,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==9) {
+          setBlockColor(10,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==10) {
+          setBlockColor(11,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==11) {
+          setBlockColor(12,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==12) {
+          setBlockColor(13,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==13) {
+          setBlockColor(14,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==14) {
+          setBlockColor(15,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==15) {
+          setBlockColor(16,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==16) {
+          setBlockColor(17,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==17) {
+          setBlockColor(18,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==18) {
+          setBlockColor(19,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==19) {
+          setBlockColor(20,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==20) {
+          setBlockColor(21,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==21) {
+          setBlockColor(22,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==22) {
+          setBlockColor(23,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==23) {
+          setBlockColor(24,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==24) {
+          setBlockColor(25,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==25) {
+          setBlockColor(26,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==26) {
+          setBlockColor(27,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==27) {
+          setBlockColor(28,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==28) {
+          setBlockColor(29,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==29) {
+          setBlockColor(30,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==30) {
+          setBlockColor(31,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==31) {
+          setBlockColor(32,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==32) {
+          setBlockColor(33,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==33) {
+          setBlockColor(34,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==34) {
+          setBlockColor(35,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==35) {
+          setBlockColor(36,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==36) {
+          setBlockColor(37,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==37) {
+          setBlockColor(38,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==38) {
+          setBlockColor(39,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==39) {
+          setBlockColor(40,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==40) {
+          setBlockColor(41,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==41) {
+          setBlockColor(42,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==42) {
+          setBlockColor(43,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==43) {
+          setBlockColor(44,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==44) {
+          setBlockColor(45,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==45) {
+          setBlockColor(46,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==46) {
+          setBlockColor(47,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==47) {
+          setBlockColor(48,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==48) {
+          setBlockColor(49,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==49) {
+          setBlockColor(50,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==50) {
+          setBlockColor(51,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==51) {
+          setBlockColor(52,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==52) {
+          setBlockColor(53,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==53) {
+          setBlockColor(54,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==54) {
+          setBlockColor(55,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==55) {
+          setBlockColor(56,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==56) {
+          setBlockColor(57,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==57) {
+          setBlockColor(58,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==58) {
+          setBlockColor(59,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==59) {
+          setBlockColor(60,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==60) {
+          setBlockColor(61,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==61) {
+          setBlockColor(62,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==62) {
+          setBlockColor(63,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==63) {
+          setBlockColor(64,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==64) {
+          setBlockColor(65,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==65) {
+          setBlockColor(66,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==66) {
+          setBlockColor(67,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==67) {
+          setBlockColor(68,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==68) {
+          setBlockColor(69,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==69) {
+          setBlockColor(70,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==70) {
+          setBlockColor(71,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==71) {
+          setBlockColor(72,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==72) {
+          setBlockColor(73,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==73) {
+          setBlockColor(74,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==74) {
+          setBlockColor(75,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==75) {
+          setBlockColor(76,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==76) {
+          setBlockColor(77,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==77) {
+          setBlockColor(78,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==78) {
+          setBlockColor(79,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==79) {
+          setBlockColor(80,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==80) {
+          setBlockColor(81,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==81) {
+          setBlockColor(82,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==82) {
+          setBlockColor(83,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==83) {
+          setBlockColor(84,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==84) {
+          setBlockColor(85,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==85) {
+          setBlockColor(86,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==86) {
+          setBlockColor(87,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==87) {
+          setBlockColor(88,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==88) {
+          setBlockColor(89,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==89) {
+          setBlockColor(90,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==90) {
+          setBlockColor(91,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==91) {
+          setBlockColor(92,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==92) {
+          setBlockColor(93,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==93) {
+          setBlockColor(94,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==94) {
+          setBlockColor(95,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==95) {
+          setBlockColor(96,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==96) {
+          setBlockColor(97,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==97) {
+          setBlockColor(98,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==98) {
+          setBlockColor(99,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==99) {
+          setBlockColor(100,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==100) {
+          setBlockColor(101,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==101) {
+          setBlockColor(102,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==102) {
+          setBlockColor(103,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==103) {
+          setBlockColor(104,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==104) {
+          setBlockColor(105,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==105) {
+          setBlockColor(106,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==106) {
+          setBlockColor(107,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==107) {
+          setBlockColor(108,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==108) {
+          setBlockColor(109,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==109) {
+          setBlockColor(110,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==110) {
+          setBlockColor(111,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==111) {
+          setBlockColor(112,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==112) {
+          setBlockColor(113,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==113) {
+          setBlockColor(114,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==114) {
+          setBlockColor(115,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==115) {
+          setBlockColor(116,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==116) {
+          setBlockColor(117,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==117) {
+          setBlockColor(118,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==118) {
+          setBlockColor(119,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==119) {
+          setBlockColor(120,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==120) {
+          setBlockColor(121,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==121) {
+          setBlockColor(122,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==122) {
+          setBlockColor(123,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==123) {
+          setBlockColor(124,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==124) {
+          setBlockColor(125,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==125) {
+          setBlockColor(126,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==126) {
+          setBlockColor(127,led_strip_4.Color(255,0,255));break;
+        }
+        if(note==127) {
+          setBlockColor(128,led_strip_4.Color(255,0,255));
+        }
+        break;
+    }
       case midi::NoteOff:
         note = usbMIDI.getData1();
         channel_observe = usbMIDI.getChannel();
@@ -1250,7 +3968,7 @@ void loop() {
     }
   } // Comment out if you want more than just viewing
   }
-  */
+  
 
 
   // Demo for the 4th
@@ -6155,6 +8873,7 @@ void demo() {
   delay(1000);
   usbMIDI.sendNoteOn(0, 120, 8); 
 }
+
 
 
 
