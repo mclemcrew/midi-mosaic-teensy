@@ -1,12 +1,18 @@
-#include <i2c_t3.h>
-#include <Bounce.h>  // Bounce library makes button change detection easy
+/*  Midi Mosaic Teensy 3.6 Code 
+ *  Created by: Michael Clemens
+ *  Last Updated: 7/19/18
+ */
+ #include <i2c_t3.h>
+#include <Bounce.h>
 #include "Adafruit_MPR121.h"
+#include "MillisTimer.h"
 #include <Adafruit_NeoPixel.h>
 #include <MIDI.h>
 #ifdef __AVR__
   #include <avr/power.h>
 #endif
 
+// Defined to handle different multiplexers
 #define LED_SIGNAL_1 5
 #define LED_SIGNAL_2 6
 #define LED_SIGNAL_3 7
@@ -15,6 +21,8 @@
 #define LED_SIGNAL_6 10
 #define LED_SIGNAL_7 11
 #define LED_SIGNAL_8 12
+
+MillisTimer timer1 = MillisTimer(10000);
 
 // Define colors for each box
 // Colors for 1st column (red)
@@ -181,7 +189,7 @@ int ColorArray[16][8][3];
 
 String readString;
 
-// 7 is the number of pixels on the strip
+// Define different NeoPixel strands for each multiplexer
 Adafruit_NeoPixel led_strip_1 = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip_2 = Adafruit_NeoPixel(7, LED_SIGNAL_2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip_3 = Adafruit_NeoPixel(7, LED_SIGNAL_3, NEO_GRB + NEO_KHZ800);
@@ -192,7 +200,7 @@ Adafruit_NeoPixel led_strip_7 = Adafruit_NeoPixel(7, LED_SIGNAL_7, NEO_GRB + NEO
 Adafruit_NeoPixel led_strip_8 = Adafruit_NeoPixel(7, LED_SIGNAL_8, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_strip = Adafruit_NeoPixel(7, LED_SIGNAL_1, NEO_GRB + NEO_KHZ800);
 
-// You can have up to 4 on one i2c bus but one is enough for testing!
+// Setup the 11 different capacitive touch modules
 Adafruit_MPR121 cap1 = Adafruit_MPR121();
 Adafruit_MPR121 cap2 = Adafruit_MPR121();
 Adafruit_MPR121 cap3 = Adafruit_MPR121();
@@ -207,10 +215,9 @@ Adafruit_MPR121 cap11 = Adafruit_MPR121();
 
 
 // Declare Midi channel
-int channel = 1;
+int channel = 3;
 
-// Keeps track of the last pins touched
-// so we know when buttons are 'released'
+// Keeps track of last and current touch to tell when one has been released
 uint16_t lasttouched1 = 0;
 uint16_t currtouched1 = 0;
 uint16_t lasttouched2 = 0;
@@ -234,6 +241,7 @@ uint16_t currtouched10 = 0;
 uint16_t lasttouched11 = 0;
 uint16_t currtouched11 = 0;
 
+// Setup enable pins for each multiplexer
 int EN_1  = 1;
 int EN_2  = 24;
 int EN_3  = 25;
@@ -243,16 +251,23 @@ int EN_6  = 28;
 int EN_7  = 29;
 int EN_8  = 30;
 
+// Select lines for multiplexer (S1)
 int S0 = 20;
 int S1 = 21;
 int S2 = 22;
 int S3 = 23;
+
+// Enable pin setup
 int EN_MAIN = 2;
 
+// Select lines for multiplexer (S0)
 int S0_MAIN = 8;
 int S1_MAIN = 7;
 int S2_MAIN = 6;
 int S3_MAIN = 5;
+
+// Used to determine if reading Midi notes or writing ones
+bool readMidiNote = false;
 
 
 void setup() {
@@ -277,6 +292,8 @@ void setup() {
  pinMode (S2, OUTPUT);
  pinMode (S3, OUTPUT);
 
+
+// Setup initial colors for boxes
  for(int i=0;i<16; i++) {
   for(int j=0;j<8;j++) {
     switch(i){
@@ -363,16 +380,16 @@ void setup() {
     }
   }
  }
- 
-  usbMIDI.setHandleNoteOn(OnNoteOn); // set handle for Note On message as function named "OnNoteOn"
-  usbMIDI.setHandleNoteOff(OnNoteOff); // set handle for Note Off message as function named "OnNoteOff"
+
+  // set handle for Note On message as function named "OnNoteOn"
+  usbMIDI.setHandleNoteOn(OnNoteOn);
+  // set handle for Note Off message as function named "OnNoteOff"
+  usbMIDI.setHandleNoteOff(OnNoteOff); 
+  // Setup communication for bluetooth module
   Serial4.begin(115200);
   Serial.begin(9600);
+  // Initialize all the LED strips
   setUpLEDStrips();
-
-  while (!Serial) { // needed to keep leonardo/micro from starting too fast!
-    //delay(10);
-  }
   
   Serial.println("Adafruit MPR121 cap1acitive Touch sensor test"); 
   
@@ -435,6 +452,10 @@ void setup() {
  }
 
   Serial.println("All MPR121S have been found and you're good to go!  Enjoy the Midi Mosaic! :D");
+  for(int i=1;i<=128;i++) {
+    // Set all blocks to show no lights
+    setBlockColor(i,led_strip_1.Color(0,0,0));
+  }
 }
 
 /*                MIDI NOTE NUMBERS 
@@ -454,21 +475,21 @@ void setup() {
 */
 
 void loop() {
-  
-  for(int i=1;i<=128;i++) {
-        setBlockColor(i,led_strip_1.Color(0,0,0));
-      }
-    delay(2000);
-    demo();
+
+  timer1.run();
+      
   int type, note, channel_observe;
-  while(1) {
-  if (usbMIDI.read()) {                    // Is there a MIDI message incoming ?
+  // If the mode is reading incoming messages
+  while(readMidiNote==true) {
+  // Test if a Midi message is incoming
+  if (usbMIDI.read()) {          
     byte type = usbMIDI.getType();
     switch (type) {
       case midi::NoteOn:
         note = usbMIDI.getData1();
         channel_observe = usbMIDI.getChannel();
-//        Serial.println(String("Note On:  ch=") + channel_observe + ", note=" + note);
+        //  Serial.println(String("Note On:  ch=") + channel_observe + ", note=" + note);
+    // Determine the channel and note of the incoming message and send a certain color light to a specific box number
     if(channel_observe==1) {
         if(note==0) {
           setBlockColor(1,led_strip_4.Color(0,80,250));
@@ -2799,389 +2820,389 @@ if(channel_observe==4) {
     }
     if(channel_observe==7) {
         if(note==0) {
-          setBlockColor(1,led_strip_4.Color(130,0,255));
+          setBlockColor(1,led_strip_4.Color(255,30,0));
           break;
         }
         if(note==1) {
-          setBlockColor(2,led_strip_4.Color(130,0,255));break;
+          setBlockColor(2,led_strip_4.Color(255,30,0));break;
         }
         if(note==2) {
-          setBlockColor(3,led_strip_4.Color(130,0,255));break;
+          setBlockColor(3,led_strip_4.Color(255,30,0));break;
         }
         if(note==3) {
-          setBlockColor(4,led_strip_4.Color(130,0,255));break;
+          setBlockColor(4,led_strip_4.Color(255,30,0));break;
         }
         if(note==4) {
-          setBlockColor(5,led_strip_4.Color(130,0,255));break;
+          setBlockColor(5,led_strip_4.Color(255,30,0));break;
         }
         if(note==5) {
-          setBlockColor(6,led_strip_4.Color(130,0,255));break;
+          setBlockColor(6,led_strip_4.Color(255,30,0));break;
         }
         if(note==6) {
-          setBlockColor(7,led_strip_4.Color(130,0,255));break;
+          setBlockColor(7,led_strip_4.Color(255,30,0));break;
         }
         if(note==7) {
-          setBlockColor(8,led_strip_4.Color(130,0,255));break;
+          setBlockColor(8,led_strip_4.Color(255,30,0));break;
         }
         if(note==8) {
-          setBlockColor(9,led_strip_4.Color(130,0,255));break;
+          setBlockColor(9,led_strip_4.Color(255,30,0));break;
         }
         if(note==9) {
-          setBlockColor(10,led_strip_4.Color(130,0,255));break;
+          setBlockColor(10,led_strip_4.Color(255,30,0));break;
         }
         if(note==10) {
-          setBlockColor(11,led_strip_4.Color(130,0,255));break;
+          setBlockColor(11,led_strip_4.Color(255,30,0));break;
         }
         if(note==11) {
-          setBlockColor(12,led_strip_4.Color(130,0,255));break;
+          setBlockColor(12,led_strip_4.Color(255,30,0));break;
         }
         if(note==12) {
-          setBlockColor(13,led_strip_4.Color(130,0,255));break;
+          setBlockColor(13,led_strip_4.Color(255,30,0));break;
         }
         if(note==13) {
-          setBlockColor(14,led_strip_4.Color(130,0,255));break;
+          setBlockColor(14,led_strip_4.Color(255,30,0));break;
         }
         if(note==14) {
-          setBlockColor(15,led_strip_4.Color(130,0,255));break;
+          setBlockColor(15,led_strip_4.Color(255,30,0));break;
         }
         if(note==15) {
-          setBlockColor(16,led_strip_4.Color(130,0,255));break;
+          setBlockColor(16,led_strip_4.Color(255,30,0));break;
         }
         if(note==16) {
-          setBlockColor(17,led_strip_4.Color(130,0,255));break;
+          setBlockColor(17,led_strip_4.Color(255,30,0));break;
         }
         if(note==17) {
-          setBlockColor(18,led_strip_4.Color(130,0,255));break;
+          setBlockColor(18,led_strip_4.Color(255,30,0));break;
         }
         if(note==18) {
-          setBlockColor(19,led_strip_4.Color(130,0,255));break;
+          setBlockColor(19,led_strip_4.Color(255,30,0));break;
         }
         if(note==19) {
-          setBlockColor(20,led_strip_4.Color(130,0,255));break;
+          setBlockColor(20,led_strip_4.Color(255,30,0));break;
         }
         if(note==20) {
-          setBlockColor(21,led_strip_4.Color(130,0,255));break;
+          setBlockColor(21,led_strip_4.Color(255,30,0));break;
         }
         if(note==21) {
-          setBlockColor(22,led_strip_4.Color(130,0,255));break;
+          setBlockColor(22,led_strip_4.Color(255,30,0));break;
         }
         if(note==22) {
-          setBlockColor(23,led_strip_4.Color(130,0,255));break;
+          setBlockColor(23,led_strip_4.Color(255,30,0));break;
         }
         if(note==23) {
-          setBlockColor(24,led_strip_4.Color(130,0,255));break;
+          setBlockColor(24,led_strip_4.Color(255,30,0));break;
         }
         if(note==24) {
-          setBlockColor(25,led_strip_4.Color(130,0,255));break;
+          setBlockColor(25,led_strip_4.Color(255,30,0));break;
         }
         if(note==25) {
-          setBlockColor(26,led_strip_4.Color(130,0,255));break;
+          setBlockColor(26,led_strip_4.Color(255,30,0));break;
         }
         if(note==26) {
-          setBlockColor(27,led_strip_4.Color(130,0,255));break;
+          setBlockColor(27,led_strip_4.Color(255,30,0));break;
         }
         if(note==27) {
-          setBlockColor(28,led_strip_4.Color(130,0,255));break;
+          setBlockColor(28,led_strip_4.Color(255,30,0));break;
         }
         if(note==28) {
-          setBlockColor(29,led_strip_4.Color(130,0,255));break;
+          setBlockColor(29,led_strip_4.Color(255,30,0));break;
         }
         if(note==29) {
-          setBlockColor(30,led_strip_4.Color(130,0,255));break;
+          setBlockColor(30,led_strip_4.Color(255,30,0));break;
         }
         if(note==30) {
-          setBlockColor(31,led_strip_4.Color(130,0,255));break;
+          setBlockColor(31,led_strip_4.Color(255,30,0));break;
         }
         if(note==31) {
-          setBlockColor(32,led_strip_4.Color(130,0,255));break;
+          setBlockColor(32,led_strip_4.Color(255,30,0));break;
         }
         if(note==32) {
-          setBlockColor(33,led_strip_4.Color(130,0,255));break;
+          setBlockColor(33,led_strip_4.Color(255,30,0));break;
         }
         if(note==33) {
-          setBlockColor(34,led_strip_4.Color(130,0,255));break;
+          setBlockColor(34,led_strip_4.Color(255,30,0));break;
         }
         if(note==34) {
-          setBlockColor(35,led_strip_4.Color(130,0,255));break;
+          setBlockColor(35,led_strip_4.Color(255,30,0));break;
         }
         if(note==35) {
-          setBlockColor(36,led_strip_4.Color(130,0,255));break;
+          setBlockColor(36,led_strip_4.Color(255,30,0));break;
         }
         if(note==36) {
-          setBlockColor(37,led_strip_4.Color(130,0,255));break;
+          setBlockColor(37,led_strip_4.Color(255,30,0));break;
         }
         if(note==37) {
-          setBlockColor(38,led_strip_4.Color(130,0,255));break;
+          setBlockColor(38,led_strip_4.Color(255,30,0));break;
         }
         if(note==38) {
-          setBlockColor(39,led_strip_4.Color(130,0,255));break;
+          setBlockColor(39,led_strip_4.Color(255,30,0));break;
         }
         if(note==39) {
-          setBlockColor(40,led_strip_4.Color(130,0,255));break;
+          setBlockColor(40,led_strip_4.Color(255,30,0));break;
         }
         if(note==40) {
-          setBlockColor(41,led_strip_4.Color(130,0,255));break;
+          setBlockColor(41,led_strip_4.Color(255,30,0));break;
         }
         if(note==41) {
-          setBlockColor(42,led_strip_4.Color(130,0,255));break;
+          setBlockColor(42,led_strip_4.Color(255,30,0));break;
         }
         if(note==42) {
-          setBlockColor(43,led_strip_4.Color(130,0,255));break;
+          setBlockColor(43,led_strip_4.Color(255,30,0));break;
         }
         if(note==43) {
-          setBlockColor(44,led_strip_4.Color(130,0,255));break;
+          setBlockColor(44,led_strip_4.Color(255,30,0));break;
         }
         if(note==44) {
-          setBlockColor(45,led_strip_4.Color(130,0,255));break;
+          setBlockColor(45,led_strip_4.Color(255,30,0));break;
         }
         if(note==45) {
-          setBlockColor(46,led_strip_4.Color(130,0,255));break;
+          setBlockColor(46,led_strip_4.Color(255,30,0));break;
         }
         if(note==46) {
-          setBlockColor(47,led_strip_4.Color(130,0,255));break;
+          setBlockColor(47,led_strip_4.Color(255,30,0));break;
         }
         if(note==47) {
-          setBlockColor(48,led_strip_4.Color(130,0,255));break;
+          setBlockColor(48,led_strip_4.Color(255,30,0));break;
         }
         if(note==48) {
-          setBlockColor(49,led_strip_4.Color(130,0,255));break;
+          setBlockColor(49,led_strip_4.Color(255,30,0));break;
         }
         if(note==49) {
-          setBlockColor(50,led_strip_4.Color(130,0,255));break;
+          setBlockColor(50,led_strip_4.Color(255,30,0));break;
         }
         if(note==50) {
-          setBlockColor(51,led_strip_4.Color(130,0,255));break;
+          setBlockColor(51,led_strip_4.Color(255,30,0));break;
         }
         if(note==51) {
-          setBlockColor(52,led_strip_4.Color(130,0,255));break;
+          setBlockColor(52,led_strip_4.Color(255,30,0));break;
         }
         if(note==52) {
-          setBlockColor(53,led_strip_4.Color(130,0,255));break;
+          setBlockColor(53,led_strip_4.Color(255,30,0));break;
         }
         if(note==53) {
-          setBlockColor(54,led_strip_4.Color(130,0,255));break;
+          setBlockColor(54,led_strip_4.Color(255,30,0));break;
         }
         if(note==54) {
-          setBlockColor(55,led_strip_4.Color(130,0,255));break;
+          setBlockColor(55,led_strip_4.Color(255,30,0));break;
         }
         if(note==55) {
-          setBlockColor(56,led_strip_4.Color(130,0,255));break;
+          setBlockColor(56,led_strip_4.Color(255,30,0));break;
         }
         if(note==56) {
-          setBlockColor(57,led_strip_4.Color(130,0,255));break;
+          setBlockColor(57,led_strip_4.Color(255,30,0));break;
         }
         if(note==57) {
-          setBlockColor(58,led_strip_4.Color(130,0,255));break;
+          setBlockColor(58,led_strip_4.Color(255,30,0));break;
         }
         if(note==58) {
-          setBlockColor(59,led_strip_4.Color(130,0,255));break;
+          setBlockColor(59,led_strip_4.Color(255,30,0));break;
         }
         if(note==59) {
-          setBlockColor(60,led_strip_4.Color(130,0,255));break;
+          setBlockColor(60,led_strip_4.Color(255,30,0));break;
         }
         if(note==60) {
-          setBlockColor(61,led_strip_4.Color(130,0,255));break;
+          setBlockColor(61,led_strip_4.Color(255,30,0));break;
         }
         if(note==61) {
-          setBlockColor(62,led_strip_4.Color(130,0,255));break;
+          setBlockColor(62,led_strip_4.Color(255,30,0));break;
         }
         if(note==62) {
-          setBlockColor(63,led_strip_4.Color(130,0,255));break;
+          setBlockColor(63,led_strip_4.Color(255,30,0));break;
         }
         if(note==63) {
-          setBlockColor(64,led_strip_4.Color(130,0,255));break;
+          setBlockColor(64,led_strip_4.Color(255,30,0));break;
         }
         if(note==64) {
-          setBlockColor(65,led_strip_4.Color(130,0,255));break;
+          setBlockColor(65,led_strip_4.Color(255,30,0));break;
         }
         if(note==65) {
-          setBlockColor(66,led_strip_4.Color(130,0,255));break;
+          setBlockColor(66,led_strip_4.Color(255,30,0));break;
         }
         if(note==66) {
-          setBlockColor(67,led_strip_4.Color(130,0,255));break;
+          setBlockColor(67,led_strip_4.Color(255,30,0));break;
         }
         if(note==67) {
-          setBlockColor(68,led_strip_4.Color(130,0,255));break;
+          setBlockColor(68,led_strip_4.Color(255,30,0));break;
         }
         if(note==68) {
-          setBlockColor(69,led_strip_4.Color(130,0,255));break;
+          setBlockColor(69,led_strip_4.Color(255,30,0));break;
         }
         if(note==69) {
-          setBlockColor(70,led_strip_4.Color(130,0,255));break;
+          setBlockColor(70,led_strip_4.Color(255,30,0));break;
         }
         if(note==70) {
-          setBlockColor(71,led_strip_4.Color(130,0,255));break;
+          setBlockColor(71,led_strip_4.Color(255,30,0));break;
         }
         if(note==71) {
-          setBlockColor(72,led_strip_4.Color(130,0,255));break;
+          setBlockColor(72,led_strip_4.Color(255,30,0));break;
         }
         if(note==72) {
-          setBlockColor(73,led_strip_4.Color(130,0,255));break;
+          setBlockColor(73,led_strip_4.Color(255,30,0));break;
         }
         if(note==73) {
-          setBlockColor(74,led_strip_4.Color(130,0,255));break;
+          setBlockColor(74,led_strip_4.Color(255,30,0));break;
         }
         if(note==74) {
-          setBlockColor(75,led_strip_4.Color(130,0,255));break;
+          setBlockColor(75,led_strip_4.Color(255,30,0));break;
         }
         if(note==75) {
-          setBlockColor(76,led_strip_4.Color(130,0,255));break;
+          setBlockColor(76,led_strip_4.Color(255,30,0));break;
         }
         if(note==76) {
-          setBlockColor(77,led_strip_4.Color(130,0,255));break;
+          setBlockColor(77,led_strip_4.Color(255,30,0));break;
         }
         if(note==77) {
-          setBlockColor(78,led_strip_4.Color(130,0,255));break;
+          setBlockColor(78,led_strip_4.Color(255,30,0));break;
         }
         if(note==78) {
-          setBlockColor(79,led_strip_4.Color(130,0,255));break;
+          setBlockColor(79,led_strip_4.Color(255,30,0));break;
         }
         if(note==79) {
-          setBlockColor(80,led_strip_4.Color(130,0,255));break;
+          setBlockColor(80,led_strip_4.Color(255,30,0));break;
         }
         if(note==80) {
-          setBlockColor(81,led_strip_4.Color(130,0,255));break;
+          setBlockColor(81,led_strip_4.Color(255,30,0));break;
         }
         if(note==81) {
-          setBlockColor(82,led_strip_4.Color(130,0,255));break;
+          setBlockColor(82,led_strip_4.Color(255,30,0));break;
         }
         if(note==82) {
-          setBlockColor(83,led_strip_4.Color(130,0,255));break;
+          setBlockColor(83,led_strip_4.Color(255,30,0));break;
         }
         if(note==83) {
-          setBlockColor(84,led_strip_4.Color(130,0,255));break;
+          setBlockColor(84,led_strip_4.Color(255,30,0));break;
         }
         if(note==84) {
-          setBlockColor(85,led_strip_4.Color(130,0,255));break;
+          setBlockColor(85,led_strip_4.Color(255,30,0));break;
         }
         if(note==85) {
-          setBlockColor(86,led_strip_4.Color(130,0,255));break;
+          setBlockColor(86,led_strip_4.Color(255,30,0));break;
         }
         if(note==86) {
-          setBlockColor(87,led_strip_4.Color(130,0,255));break;
+          setBlockColor(87,led_strip_4.Color(255,30,0));break;
         }
         if(note==87) {
-          setBlockColor(88,led_strip_4.Color(130,0,255));break;
+          setBlockColor(88,led_strip_4.Color(255,30,0));break;
         }
         if(note==88) {
-          setBlockColor(89,led_strip_4.Color(130,0,255));break;
+          setBlockColor(89,led_strip_4.Color(255,30,0));break;
         }
         if(note==89) {
-          setBlockColor(90,led_strip_4.Color(130,0,255));break;
+          setBlockColor(90,led_strip_4.Color(255,30,0));break;
         }
         if(note==90) {
-          setBlockColor(91,led_strip_4.Color(130,0,255));break;
+          setBlockColor(91,led_strip_4.Color(255,30,0));break;
         }
         if(note==91) {
-          setBlockColor(92,led_strip_4.Color(130,0,255));break;
+          setBlockColor(92,led_strip_4.Color(255,30,0));break;
         }
         if(note==92) {
-          setBlockColor(93,led_strip_4.Color(130,0,255));break;
+          setBlockColor(93,led_strip_4.Color(255,30,0));break;
         }
         if(note==93) {
-          setBlockColor(94,led_strip_4.Color(130,0,255));break;
+          setBlockColor(94,led_strip_4.Color(255,30,0));break;
         }
         if(note==94) {
-          setBlockColor(95,led_strip_4.Color(130,0,255));break;
+          setBlockColor(95,led_strip_4.Color(255,30,0));break;
         }
         if(note==95) {
-          setBlockColor(96,led_strip_4.Color(130,0,255));break;
+          setBlockColor(96,led_strip_4.Color(255,30,0));break;
         }
         if(note==96) {
-          setBlockColor(97,led_strip_4.Color(130,0,255));break;
+          setBlockColor(97,led_strip_4.Color(255,30,0));break;
         }
         if(note==97) {
-          setBlockColor(98,led_strip_4.Color(130,0,255));break;
+          setBlockColor(98,led_strip_4.Color(255,30,0));break;
         }
         if(note==98) {
-          setBlockColor(99,led_strip_4.Color(130,0,255));break;
+          setBlockColor(99,led_strip_4.Color(255,30,0));break;
         }
         if(note==99) {
-          setBlockColor(100,led_strip_4.Color(130,0,255));break;
+          setBlockColor(100,led_strip_4.Color(255,30,0));break;
         }
         if(note==100) {
-          setBlockColor(101,led_strip_4.Color(130,0,255));break;
+          setBlockColor(101,led_strip_4.Color(255,30,0));break;
         }
         if(note==101) {
-          setBlockColor(102,led_strip_4.Color(130,0,255));break;
+          setBlockColor(102,led_strip_4.Color(255,30,0));break;
         }
         if(note==102) {
-          setBlockColor(103,led_strip_4.Color(130,0,255));break;
+          setBlockColor(103,led_strip_4.Color(255,30,0));break;
         }
         if(note==103) {
-          setBlockColor(104,led_strip_4.Color(130,0,255));break;
+          setBlockColor(104,led_strip_4.Color(255,30,0));break;
         }
         if(note==104) {
-          setBlockColor(105,led_strip_4.Color(130,0,255));break;
+          setBlockColor(105,led_strip_4.Color(255,30,0));break;
         }
         if(note==105) {
-          setBlockColor(106,led_strip_4.Color(130,0,255));break;
+          setBlockColor(106,led_strip_4.Color(255,30,0));break;
         }
         if(note==106) {
-          setBlockColor(107,led_strip_4.Color(130,0,255));break;
+          setBlockColor(107,led_strip_4.Color(255,30,0));break;
         }
         if(note==107) {
-          setBlockColor(108,led_strip_4.Color(130,0,255));break;
+          setBlockColor(108,led_strip_4.Color(255,30,0));break;
         }
         if(note==108) {
-          setBlockColor(109,led_strip_4.Color(130,0,255));break;
+          setBlockColor(109,led_strip_4.Color(255,30,0));break;
         }
         if(note==109) {
-          setBlockColor(110,led_strip_4.Color(130,0,255));break;
+          setBlockColor(110,led_strip_4.Color(255,30,0));break;
         }
         if(note==110) {
-          setBlockColor(111,led_strip_4.Color(130,0,255));break;
+          setBlockColor(111,led_strip_4.Color(255,30,0));break;
         }
         if(note==111) {
-          setBlockColor(112,led_strip_4.Color(130,0,255));break;
+          setBlockColor(112,led_strip_4.Color(255,30,0));break;
         }
         if(note==112) {
-          setBlockColor(113,led_strip_4.Color(130,0,255));break;
+          setBlockColor(113,led_strip_4.Color(255,30,0));break;
         }
         if(note==113) {
-          setBlockColor(114,led_strip_4.Color(130,0,255));break;
+          setBlockColor(114,led_strip_4.Color(255,30,0));break;
         }
         if(note==114) {
-          setBlockColor(115,led_strip_4.Color(130,0,255));break;
+          setBlockColor(115,led_strip_4.Color(255,30,0));break;
         }
         if(note==115) {
-          setBlockColor(116,led_strip_4.Color(130,0,255));break;
+          setBlockColor(116,led_strip_4.Color(255,30,0));break;
         }
         if(note==116) {
-          setBlockColor(117,led_strip_4.Color(130,0,255));break;
+          setBlockColor(117,led_strip_4.Color(255,30,0));break;
         }
         if(note==117) {
-          setBlockColor(118,led_strip_4.Color(130,0,255));break;
+          setBlockColor(118,led_strip_4.Color(255,30,0));break;
         }
         if(note==118) {
-          setBlockColor(119,led_strip_4.Color(130,0,255));break;
+          setBlockColor(119,led_strip_4.Color(255,30,0));break;
         }
         if(note==119) {
-          setBlockColor(120,led_strip_4.Color(130,0,255));break;
+          setBlockColor(120,led_strip_4.Color(255,30,0));break;
         }
         if(note==120) {
-          setBlockColor(121,led_strip_4.Color(130,0,255));break;
+          setBlockColor(121,led_strip_4.Color(255,30,0));break;
         }
         if(note==121) {
-          setBlockColor(122,led_strip_4.Color(130,0,255));break;
+          setBlockColor(122,led_strip_4.Color(255,30,0));break;
         }
         if(note==122) {
-          setBlockColor(123,led_strip_4.Color(130,0,255));break;
+          setBlockColor(123,led_strip_4.Color(255,30,0));break;
         }
         if(note==123) {
-          setBlockColor(124,led_strip_4.Color(130,0,255));break;
+          setBlockColor(124,led_strip_4.Color(255,30,0));break;
         }
         if(note==124) {
-          setBlockColor(125,led_strip_4.Color(130,0,255));break;
+          setBlockColor(125,led_strip_4.Color(255,30,0));break;
         }
         if(note==125) {
-          setBlockColor(126,led_strip_4.Color(130,0,255));break;
+          setBlockColor(126,led_strip_4.Color(255,30,0));break;
         }
         if(note==126) {
-          setBlockColor(127,led_strip_4.Color(130,0,255));break;
+          setBlockColor(127,led_strip_4.Color(255,30,0));break;
         }
         if(note==127) {
-          setBlockColor(128,led_strip_4.Color(130,0,255));
+          setBlockColor(128,led_strip_4.Color(255,30,0));
         }
         break;
     }
@@ -3966,16 +3987,70 @@ if(channel_observe==4) {
       default:
         Serial.println("Something else was received");
     }
-  } // Comment out if you want more than just viewing
   }
-  
 
-
-  // Demo for the 4th
-
-  while(1) {
-    demo4th();
+  // Used for Bluetooth communcation
+  while (Serial4.available()) {
+    delay(1);  //delay to allow byte to arrive in input buffer
+    char c = (char)Serial4.read();
+    readString += c;
   }
+
+  // Obtain message and separate out values 
+  if (readString.length() >0) {
+    int commaIndex = readString.indexOf(',');
+    int secondCommaIndex = readString.indexOf(',', commaIndex + 1);
+    int thirdCommaIndex = readString.indexOf(',', secondCommaIndex + 1);
+    int fourthCommaIndex = readString.indexOf(',', thirdCommaIndex + 1);
+
+    String controlValue = readString.substring(0, commaIndex);
+    String numberValue = readString.substring(commaIndex + 1, secondCommaIndex);
+    String redValue = readString.substring(secondCommaIndex + 1, thirdCommaIndex);
+    String greenValue = readString.substring(thirdCommaIndex + 1, fourthCommaIndex);
+    String blueValue = readString.substring(fourthCommaIndex + 1);
+    
+    int numberVal = numberValue.toInt();
+    int red = redValue.toInt();
+    int green = greenValue.toInt();
+    int blue = blueValue.toInt();
+
+    int divisor = numberVal/8;
+    int remainder = numberVal%8;
+
+    if(controlValue=="m"){
+      readMidiNote = false;
+      usbMIDI.sendNoteOn(1, 99, 8);  // Stops playback
+      delay(5); 
+      usbMIDI.sendNoteOn(3, 99, 8);  // Loops on and off
+      delay(5);
+      usbMIDI.sendNoteOn(2, 99, 8); // Changes tempo from 122 to 129 and back again
+    }
+
+    // If play is clicked
+    if(controlValue=="p"){
+      usbMIDI.sendNoteOn(0, 99, 8);
+    }
+
+    // If stop is clicked
+    if(controlValue=="s"){
+      usbMIDI.sendNoteOn(1, 99, 8);
+    }
+
+    // If rewind is clicked
+    if(controlValue=="q"){
+      usbMIDI.sendNoteOn(2, 99, 8); // Changes tempo from 122 to 129 and back again
+    }
+
+    // If pause is clicked
+    if(controlValue=="x"){
+      usbMIDI.sendNoteOn(4, 99, 8);  // Quantize change on and off
+    }
+
+    readString="";
+  }
+}
+
+
   currtouched1 = cap1.touched();
   currtouched2 = cap2.touched();
   currtouched3 = cap3.touched();
@@ -4043,6 +4118,104 @@ if(channel_observe==4) {
         setBlockColor(i,led_strip_1.Color(0,0,0));
       }
     }
+
+    if(controlValue=="z") {
+      for(int i=0;i<16; i++) {
+        for(int j=0;j<8;j++) {
+          switch(i){
+            case 0:
+              ColorArray[i][j][0] = 255;
+              ColorArray[i][j][1] = 0;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 1:
+              ColorArray[i][j][0] = 255;
+              ColorArray[i][j][1] = 80;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 2:
+              ColorArray[i][j][0] = 255;
+              ColorArray[i][j][1] = 125;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 3:
+              ColorArray[i][j][0] = 255;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 4:
+              ColorArray[i][j][0] = 125;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 5:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 0;
+              break;
+            case 6:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 80;
+              break;
+            case 7:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 180;
+              break;
+            case 8:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 255;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 9:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 180;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 10:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 125;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 11:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 50;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 12:
+              ColorArray[i][j][0] = 0;
+              ColorArray[i][j][1] = 0;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 13:
+              ColorArray[i][j][0] = 80;
+              ColorArray[i][j][1] = 0;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 14:
+              ColorArray[i][j][0] = 130;
+              ColorArray[i][j][1] = 0;
+              ColorArray[i][j][2] = 255;
+              break;
+            case 15:
+              ColorArray[i][j][0] = 255;
+              ColorArray[i][j][1] = 0;
+              ColorArray[i][j][2] = 255;
+              break;
+          }
+        }
+       }
+      for(int i=0;i<16; i++) {
+        for(int j=0;j<8;j++) {
+          setBlockColor((i*8)+j,led_strip_1.Color(ColorArray[i][j][0],ColorArray[i][j][1],ColorArray[i][j][2]));
+        }
+      }
+      delay(2500);
+      for(int i=1;i<=128;i++) {
+        setBlockColor(i,led_strip_1.Color(0,0,0));
+      }
+    }
     
     if(controlValue=="b"){
       ColorArray[divisor][remainder-1][0] = red;
@@ -4080,14 +4253,40 @@ if(channel_observe==4) {
         setBlockColor((numberVal-1)*8+i,led_strip_1.Color(0,0,0));
       }
     }
+
+    if(controlValue=="m"){
+      readMidiNote = true;
+      usbMIDI.sendNoteOn(1, 99, 8);  // Stops playback
+      delay(5); 
+      usbMIDI.sendNoteOn(3, 99, 8);  // Loops on and off
+      delay(5);
+      usbMIDI.sendNoteOn(2, 99, 8); // Changes tempo from 122 to 129 and back again
+    }
+
+    // If switching to Daft Punk Sounds
+    if(controlValue=="d"){
+      channel = 1;
+      for(int i=0;i<7;i++) {
+        usbMIDI.sendNoteOn(4, 99, 8);
+        delay(50);
+      }
+    }
+
+    // If switching to Normal sounds
+    if(controlValue=="n"){
+      channel = 3;
+      for(int i=0;i<7;i++) {
+        usbMIDI.sendNoteOn(4, 99, 8);
+        delay(50);
+      }
+    }
     readString="";
   } 
   
-  
+  // Loop through all capavitive touch modules and determine if a touch or release occurred
   for (uint8_t i=0; i<12; i++) {
-    // it if *is* touched and *wasnt* touched before, alert!
 
-    /* Used for detecting and handling touch events that occur on the first MPR121 Module */
+    // Used for detecting and handling touch events that occur on the 1st MPR121 Module
     if ((currtouched1 & _BV(i)) && !(lasttouched1 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(0, 99, channel);  // 60 = C4
@@ -4137,7 +4336,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(11, 99, channel);  
         setBlockColor(12,led_strip_1.Color(ColorArray[1][3][0],ColorArray[1][3][1],ColorArray[1][3][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 1");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched1 & _BV(i)) && (lasttouched1 & _BV(i)) ) {
@@ -4192,6 +4391,7 @@ if(channel_observe==4) {
       Serial.print(i); Serial.println(" released");
     }
     /*********************************************************/
+    // Used for detecting and handling touch events that occur on the 2nd MPR121 Module
     if ((currtouched2 & _BV(i)) && !(lasttouched2 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(12, 99, channel);  // 60 = C4
@@ -4241,7 +4441,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(23, 99, channel);  
         setBlockColor(24,led_strip_2.Color(ColorArray[2][7][0],ColorArray[2][7][1],ColorArray[2][7][2]));
       }
-      Serial.print(i); Serial.println(" touched on MPR 1");
+      Serial.print(i); Serial.println(" touched on MPR 2");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched2 & _BV(i)) && (lasttouched2 & _BV(i)) ) {
@@ -4295,6 +4495,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 3rd MPR121 Module
     if ((currtouched3 & _BV(i)) && !(lasttouched3 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(24, 99, channel);  // 60 = C4
@@ -4344,7 +4545,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(35, 99, channel);  
         setBlockColor(36,led_strip_3.Color(ColorArray[4][3][0],ColorArray[4][3][1],ColorArray[4][3][2]));
       }
-      Serial.print(i); Serial.println(" touched on MPR 2");
+      Serial.print(i); Serial.println(" touched on MPR 3");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched3 & _BV(i)) && (lasttouched3 & _BV(i)) ) {
@@ -4398,6 +4599,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 4th MPR121 Module
     if ((currtouched4 & _BV(i)) && !(lasttouched4 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(36, 99, channel);  // 60 = C4
@@ -4447,7 +4649,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(47, 99, channel);  
         setBlockColor(48,led_strip_3.Color(ColorArray[5][7][0],ColorArray[5][7][1],ColorArray[5][7][2]));
       }
-      Serial.print(i); Serial.println(" touched on MPR 3");
+      Serial.print(i); Serial.println(" touched on MPR 4");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched4 & _BV(i)) && (lasttouched4 & _BV(i)) ) {
@@ -4501,6 +4703,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 5th MPR121 Module
     if ((currtouched5 & _BV(i)) && !(lasttouched5 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(48, 99, channel);  // 60 = C4
@@ -4550,7 +4753,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(59, 99, channel);  
         setBlockColor(60,led_strip_4.Color(ColorArray[7][3][0],ColorArray[7][3][1],ColorArray[7][3][2]));
       }
-      Serial.print(i); Serial.println(" touched on MPR 4");
+      Serial.print(i); Serial.println(" touched on MPR 5");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched5 & _BV(i)) && (lasttouched5 & _BV(i)) ) {
@@ -4604,6 +4807,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 6th MPR121 Module
     if ((currtouched6 & _BV(i)) && !(lasttouched6 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(60, 99, channel);  // 60 = C4
@@ -4653,7 +4857,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(71, 99, channel);  
         setBlockColor(72,led_strip_5.Color(ColorArray[8][7][0],ColorArray[8][7][1],ColorArray[8][7][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 6");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched6 & _BV(i)) && (lasttouched6 & _BV(i)) ) {
@@ -4707,6 +4911,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 7th MPR121 Module
     if ((currtouched7 & _BV(i)) && !(lasttouched7 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(72, 99, channel);  // 60 = C4
@@ -4756,7 +4961,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(83, 99, channel);  
         setBlockColor(84,led_strip_5.Color(ColorArray[10][3][0],ColorArray[10][3][1],ColorArray[10][3][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 7");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched7 & _BV(i)) && (lasttouched7 & _BV(i)) ) {
@@ -4810,6 +5015,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 8th MPR121 Module
     if ((currtouched8 & _BV(i)) && !(lasttouched8 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(84, 99, channel);  // 60 = C4
@@ -4859,7 +5065,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(95, 99, channel);  
         setBlockColor(96,led_strip_6.Color(ColorArray[11][7][0],ColorArray[11][7][1],ColorArray[11][7][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 8");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched8 & _BV(i)) && (lasttouched8 & _BV(i)) ) {
@@ -4913,6 +5119,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 9th MPR121 Module
     if ((currtouched9 & _BV(i)) && !(lasttouched9 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(96, 99, channel);  // 60 = C4
@@ -4958,7 +5165,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(106, 99, channel);  
         setBlockColor(107,led_strip_7.Color(ColorArray[13][2][0],ColorArray[13][2][1],ColorArray[13][2][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 9");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched9 & _BV(i)) && (lasttouched9 & _BV(i)) ) {
@@ -5008,6 +5215,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 10th MPR121 Module
     if ((currtouched10 & _BV(i)) && !(lasttouched10 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(107, 99, channel);  // 60 = C4
@@ -5057,7 +5265,7 @@ if(channel_observe==4) {
         usbMIDI.sendNoteOn(118, 99, channel);  
         setBlockColor(119,led_strip_7.Color(ColorArray[14][6][0],ColorArray[14][6][1],ColorArray[14][6][2]));
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 10");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched10 & _BV(i)) && (lasttouched10 & _BV(i)) ) {
@@ -5111,6 +5319,7 @@ if(channel_observe==4) {
       }
       Serial.print(i); Serial.println(" released");
     }
+    // Used for detecting and handling touch events that occur on the 11th MPR121 Module
     if ((currtouched11 & _BV(i)) && !(lasttouched11 & _BV(i)) ) {
       if(i==11) {
         usbMIDI.sendNoteOn(119, 99, channel);  // 60 = C4
@@ -5130,14 +5339,6 @@ if(channel_observe==4) {
       }
       if(i==7) {
         usbMIDI.sendNoteOn(123, 99, channel);
-        // TODO
-        // Change this for after the demo
-        if(channel==1) {
-          channel = 2;
-        }
-        else {
-          channel = 1;
-        }
         setBlockColor(124,led_strip_8.Color(ColorArray[15][3][0],ColorArray[15][3][1],ColorArray[15][3][2])); 
       }
       if(i==6) {
@@ -5155,8 +5356,16 @@ if(channel_observe==4) {
       if(i==3) {
         usbMIDI.sendNoteOn(127, 99, channel);  
         setBlockColor(128,led_strip_8.Color(ColorArray[15][7][0],ColorArray[15][7][1],ColorArray[15][7][2]));
+        if(channel==1) {
+          channel = 2;
+        }
+        else {
+          if(channel==2) {
+            channel = 1;
+          }
+        }
       }
-      Serial.print(i); Serial.println(" touched");
+      Serial.print(i); Serial.println(" touched on MPR 11");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(currtouched11 & _BV(i)) && (lasttouched11 & _BV(i)) ) {
@@ -5213,29 +5422,10 @@ if(channel_observe==4) {
   lasttouched10 = currtouched10;
   lasttouched11 = currtouched11;
 
-  // comment out this line for detailed data from the sensor!
   return;
-  /*
-  // debugging info
-  Serial.print("\t\t\t\t\t\t\t\t\t\t\t\t\t 0x"); Serial.println(cap1.touched(), HEX);
-  Serial.print("Filt: ");
-  for (uint8_t i=0; i<12; i++) {
-    Serial.print(cap1.filteredData(i)); Serial.print("\t");
-  }
-  Serial.println();
-  Serial.print("Base: ");
-  for (uint8_t i=0; i<12; i++) {
-    Serial.print(cap1.baselineData(i)); Serial.print("\t");
-  }
-  Serial.println();
-  */
 }
 
 // this function is called whenever a MIDI note on is received
-// the function is executed using the received message bytes of channel, pitch and velocity corresponding to the variable names below
-// for example, a middle C with full velocity on the first channel will be called with OnNoteOn(1, 60, 127);
-// messages can be filtered by channel and pitch
-
 void OnNoteOn(byte channel, byte pitch, byte velocity) {
   // Serial.print("Testing \n");
   // setColor4(strip4.Color(255, 0, 0));
@@ -5244,16 +5434,13 @@ void OnNoteOn(byte channel, byte pitch, byte velocity) {
 
 
 // this function is called whenever a MIDI note off is received
-// the function is executed using the received message bytes of channel, pitch and velocity corresponding to the variable names below
-// for example, a middle C note off on the first channel will be called with OnNoteOn(1, 60, 0);
-// messages can be filtered by channel and pitch
-
 void OnNoteOff(byte channel, byte pitch, byte velocity) {
   // Serial.print("Testing Again\n");
   // setColor4(strip4.Color(0, 0, 0));
   // setColor3(led_strip.Color(0, 0, 0));
 }
 
+// These functions are used to determine what switch on a multiplexer to use in order to send a light signal to the proper box
 void out0() {
  digitalWrite (EN_1, LOW);
  digitalWrite (S0, LOW);
@@ -6489,6 +6676,7 @@ void out15_MAIN()
  led_strip.show();
 }
 
+// Initializes all of the LED strips for the neo pixel strands
 void setUpLEDStrips() {
   led_strip.begin();
   led_strip.show();
@@ -6518,6 +6706,7 @@ void testColorStrip(uint32_t color) {
       led_strip_1.show();
 }
 
+// Sets the individual box color 
 void setBlockColor(uint8_t number, uint32_t color) {
   switch (number) {
     case 1:
@@ -7422,6 +7611,7 @@ void setBlockColor(uint8_t number, uint32_t color) {
   }
 }
 
+// 4th of July Demo
 void testBluetoothLEDLoop() {
 //  for(int i=1;i<=128;i++) {
 //    setBlockColor(i,led_strip_1.Color(255,30,0));
@@ -8285,6 +8475,7 @@ delay(800);
   }
 }
 
+// Main Demo Setup
 void demo() {
   // Hi
   setBlockColor(33,led_strip_1.Color(255,0,0));
@@ -8871,12 +9062,14 @@ void demo() {
     setBlockColor(i,led_strip_1.Color(0,0,0));
   }
   delay(1000);
-  usbMIDI.sendNoteOn(0, 120, 8); 
+//  usbMIDI.sendNoteOn(0, 120, 8); 
+//timer1.reset();
+//timer1.start();
+//timer1.run();
 }
 
-
-
-
-
-
-
+// This is the function that is called when the timer expires.
+void myTimerFunction(MillisTimer &mt)
+{
+  demo();
+}

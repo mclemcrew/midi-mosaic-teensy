@@ -46,7 +46,7 @@ boolean Adafruit_MPR121::begin(uint8_t i2caddr,uint8_t port) {
   if (c != 0x24) return false;
 
 
-  setThreshholds(20, 10);  // Normal thresholds are 12 and 6
+  setThreshholds(15, 10);  // Normal thresholds are 12 and 6
   writeRegister(MPR121_MHDR, 0x01);
   writeRegister(MPR121_NHDR, 0x01);
   writeRegister(MPR121_NCLR, 0x0E);
