@@ -31,6 +31,13 @@ Due to the nature of this project, the code isn't necessarily transferrable to o
 * [MPR 121 Cap Touch Module] – Converts the user’s “touch” into a trigger in the software
 * [TXB0108 Level Converter] – Take 3.3V to 5V and vice versa
 
+## CAD Model
+
+If anyone is interested, I used OnShape to sketch everything in CAD.  The model can be found [here](https://cad.onshape.com/documents/8cc8a91fe985116ffbdf6bbd/w/6f97be81eeae7664b89baed9/e/5e68668bd3000bb2f4dac299).
+
+## Programming Lights
+
+I created a little web app in order to program all the lights (because generative programming definitely needed to happen with the sheer number of lights used in this project).  You can play around with the web app [here](https://mclemcrew.github.io/LED-Code-Generator-for-Midi-Mosaic/) and as always, the code for the web app is open source and can be found [here](https://github.com/mclemcrew/LED-Code-Generator-for-Midi-Mosaic).
 
 ## Authors
 
