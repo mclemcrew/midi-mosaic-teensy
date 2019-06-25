@@ -1,6 +1,6 @@
-# Midi Mosaic
+# Midi Mosaic :musical_keyboard:
 
-![Midi Mosiac Blue](https://1drv.ms/u/s!AuiQBsNu381rgsob_0rbRVHL1dnsyw)
+![Midi Mosiac Blue](http://mclemens.mgserver.org/Images/IMG_3551.jpg)
 
 The Midi Mosaic is an interactive art exhibit for a children’s museum that doubles as an interactive MIDI controller via capacitive touch photographs.
 
